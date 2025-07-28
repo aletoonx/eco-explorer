@@ -12,10 +12,9 @@ export default function Home() {
           <span className="sr-only">Eco Explorer</span>
         </Link>
         <nav className="ml-auto flex gap-4 sm:gap-6">
-          <Button variant="ghost" asChild>
+          <Button variant="secondary" asChild>
             <Link
               href="/login"
-              className="text-sm font-medium"
               prefetch={false}
             >
               Login
