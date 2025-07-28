@@ -9,16 +9,16 @@ export default function AppLayout({
 }) {
   return (
     <SidebarProvider>
-      <div className="flex flex-col min-h-screen">
-        <div className="flex flex-1">
-          <AppSidebar />
+      <div className="flex min-h-screen">
+        <AppSidebar />
+        <div className="flex flex-col flex-1">
           <SidebarInset>
-            <div className="flex-1 p-4 sm:p-6 lg:p-8">
+            <main className="flex-1 p-4 sm:p-6 lg:p-8">
               {children}
-            </div>
+            </main>
           </SidebarInset>
+          <Footer appLayout />
         </div>
-        <Footer appLayout />
       </div>
     </SidebarProvider>
   );
