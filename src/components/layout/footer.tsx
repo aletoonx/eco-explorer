@@ -9,7 +9,7 @@ export function Footer() {
             <div className="container mx-auto py-8 px-4 md:px-6">
 
                 <div className="grid md:grid-cols-2 gap-8 items-center">
-                    <div className="flex items-center gap-4 justify-center md:justify-start" style={{ position: 'relative', left: '300px' }}>
+                    <div className="flex items-center gap-4 justify-center md:justify-start" style={{ position: 'relative', left: '250px' }}>
                          <Avatar className="w-16 h-16">
                             <AvatarImage src="https://placehold.co/100x100.png" alt="Ihan Fuentes Arroyo" data-ai-hint="profile picture" />
                             <AvatarFallback>IFA</AvatarFallback>
