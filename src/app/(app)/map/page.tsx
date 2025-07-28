@@ -1,28 +1,19 @@
 import { HighlightMapFeatures } from "@/components/map/highlight-map-features";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import Image from "next/image";
+import { InteractiveMap } from "@/components/map/interactive-map";
+import { foundations } from "@/lib/data";
 
 export default function MapPage() {
   return (
     <div className="space-y-8 pb-8">
       <div>
-        <h1 className="text-3xl font-bold font-headline">Interactive Map</h1>
+        <h1 className="text-3xl font-bold font-headline">Interactive Map of Costa Rica</h1>
         <p className="text-muted-foreground">
-          Explore habitats, see recent sightings, and learn about conservation efforts on the ground.
+          Explore wildlife foundations and their conservation efforts on the ground.
         </p>
       </div>
-      <Card>
-        <CardContent className="p-2">
-           <Image 
-            src="https://placehold.co/1200x600.png"
-            alt="Interactive Map"
-            width={1200}
-            height={600}
-            className="w-full h-auto rounded-md"
-            data-ai-hint="world map"
-           />
-        </CardContent>
-      </Card>
+      <div className="w-full">
+        <InteractiveMap foundations={foundations} />
+      </div>
       <HighlightMapFeatures />
     </div>
   );

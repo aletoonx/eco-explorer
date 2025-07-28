@@ -62,52 +62,62 @@ export type Foundation = {
   dataAiHint: string;
   recentSightings: string;
   foundationActivities: string;
+  lat: number;
+  lng: number;
 };
 
 export const foundations: Foundation[] = [
   {
-    slug: 'wildlife-conservation-network',
-    name: 'Wildlife Conservation Network',
-    mission: 'To protect endangered species and their habitats by supporting innovative, community-based conservation efforts.',
-    location: 'Global',
-    contact: 'info@wcn.org',
+    slug: 'corcovado-foundation',
+    name: 'Corcovado Foundation',
+    mission: 'To protect the natural heritage of Costa Rica by supporting conservation and community development.',
+    location: 'Corcovado National Park, Osa Peninsula',
+    contact: 'info@corcovadofoundation.org',
     imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'wildlife conservation',
-    recentSightings: 'An increase in elephant sightings near protected corridors in Kenya.',
-    foundationActivities: 'Hosted a workshop on human-wildlife conflict resolution and launched a new funding initiative for snow leopard conservation.',
+    dataAiHint: 'rainforest conservation',
+    recentSightings: 'Sightings of Baird\'s Tapir have increased by 15% in the last year.',
+    foundationActivities: 'Reforestation of 50 hectares and a new sea turtle monitoring program.',
+    lat: 8.57,
+    lng: -83.58
   },
   {
-    slug: 'world-wildlife-fund',
-    name: 'World Wildlife Fund (WWF)',
-    mission: 'To conserve nature and reduce the most pressing threats to the diversity of life on Earth.',
-    location: 'Global',
-    contact: 'contact@wwf.org',
+    slug: 'monteverde-conservation-league',
+    name: 'Monteverde Conservation League',
+    mission: 'To conserve, preserve, and rehabilitate tropical ecosystems, their biodiversity, and their communities.',
+    location: 'Monteverde, Puntarenas',
+    contact: 'contact@acmcr.org',
     imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'earth globe',
-    recentSightings: 'Camera traps captured footage of a new tiger family in the Terai Arc Landscape, Nepal.',
-    foundationActivities: 'Published a report on plastic pollution in oceans and supported a major reforestation project in the Amazon.',
+    dataAiHint: 'cloud forest',
+    recentSightings: 'The Resplendent Quetzal has been spotted frequently during its nesting season.',
+    foundationActivities: 'Acquired 100 acres of land to expand the Children\'s Eternal Rainforest and launched an environmental education program for local schools.',
+    lat: 10.3,
+    lng: -84.82
   },
   {
-    slug: 'panthera-corporation',
-    name: 'Panthera Corporation',
-    mission: 'To ensure a future for wild cats and the vast landscapes on which they depend.',
-    location: 'Global',
-    contact: 'info@panthera.org',
+    slug: 'tortuguero-conservancy',
+    name: 'Tortuguero Conservancy',
+    mission: 'To protect sea turtles and their habitats in the Tortuguero area.',
+    location: 'Tortuguero National Park, Limón',
+    contact: 'info@tortugueroconservancy.org',
     imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'wild cat',
-    recentSightings: 'Successful GPS collaring of a jaguar in the Pantanal to track its movement and behavior.',
-    foundationActivities: 'Working with local governments in Southeast Asia to establish anti-poaching patrols to protect tigers.',
+    dataAiHint: 'sea turtle',
+    recentSightings: 'Record number of green sea turtle nests documented this season.',
+    foundationActivities: 'Nightly patrols to protect nesting turtles from poachers and a new research project on the impact of climate change on hatchling success.',
+    lat: 10.54,
+    lng: -83.5
   },
   {
-    slug: 'savanna-wildlife-trust',
-    name: 'Savanna Wildlife Trust',
-    mission: 'Dedicated to the conservation of the African savanna ecosystem and its magnificent wildlife.',
-    location: 'Serengeti, Tanzania',
-    contact: 'contact@savannawild.org',
+    slug: 'jaguar-rescue-center',
+    name: 'Jaguar Rescue Center',
+    mission: 'To rescue and rehabilitate injured, orphaned, and displaced wild animals and release them back into their natural habitats.',
+    location: 'Puerto Viejo de Talamanca, Limón',
+    contact: 'info@jaguarrescue.foundation',
     imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'savanna landscape',
-    recentSightings: 'Large herds of wildebeest and zebra were observed during their annual migration across the Mara River.',
-    foundationActivities: 'Completed a new ranger outpost to improve surveillance against poaching. Conducted a community outreach program on sustainable grazing practices.',
+    dataAiHint: 'jaguar wildlife',
+    recentSightings: 'A rehabilitated two-toed sloth was successfully released back into the wild.',
+    foundationActivities: 'Opened a new veterinary clinic for wildlife and expanded the enclosure for recovering monkeys.',
+    lat: 9.66,
+    lng: -82.76
   },
 ];
 
