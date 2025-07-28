@@ -5,26 +5,20 @@ export function middleware(request: NextRequest) {
   const authToken = request.cookies.get('auth_token')?.value
   const { pathname } = request.nextUrl
 
-  // Public routes that don't require authentication
   const publicRoutes = ['/login', '/register', '/']
+  const isPublicRoute = publicRoutes.includes(pathname)
 
-  if (publicRoutes.includes(pathname)) {
-    // If user is logged in and tries to access login/register, redirect to dashboard
-    if (authToken && (pathname === '/login' || pathname === '/register')) {
-      return NextResponse.redirect(new URL('/dashboard', request.url))
-    }
+  // If it's a public route, let them through.
+  if (isPublicRoute) {
     return NextResponse.next()
   }
 
-  // Protected routes
-  const protectedRoutes = ['/dashboard', '/animals', '/foundations', '/map']
-  const isProtectedRoute = protectedRoutes.some(route => pathname.startsWith(route))
-
-  if (isProtectedRoute && !authToken) {
-    // If accessing a protected route without a token, redirect to login
+  // If it's a protected route and there is no token, redirect to login.
+  if (!authToken) {
     return NextResponse.redirect(new URL('/login', request.url))
   }
 
+  // Otherwise, let them through to the protected route.
   return NextResponse.next()
 }
 

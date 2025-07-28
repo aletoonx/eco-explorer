@@ -12,7 +12,6 @@ import { useToast } from "@/hooks/use-toast";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { auth } from "@/lib/firebase";
 import { signInWithEmailAndPassword, setPersistence, browserSessionPersistence } from "firebase/auth";
-import { Leaf } from "lucide-react";
 
 export function LoginForm() {
   const router = useRouter();
