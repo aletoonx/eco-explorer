@@ -12,6 +12,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { auth } from "@/lib/firebase";
 import { signInWithEmailAndPassword, setPersistence, browserSessionPersistence } from "firebase/auth";
+import { Leaf } from "lucide-react";
 
 export function LoginForm() {
   const router = useRouter();
@@ -44,7 +45,9 @@ export function LoginForm() {
         title: "Login Successful",
         description: "Welcome back! Redirecting you to the dashboard...",
       });
-      router.push("/dashboard");
+      
+      // A full page refresh is more reliable with cookie-based middleware
+      window.location.href = "/dashboard";
 
     } catch (e: any) {
        if (e.code === 'auth/user-not-found' || e.code === 'auth/wrong-password' || e.code === 'auth/invalid-credential') {
