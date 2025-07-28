@@ -12,7 +12,7 @@ import { ExplorationPlanner } from "@/components/ai/exploration-planner";
 
 export default function DashboardPage() {
   return (
-    <div className="flex flex-col h-full gap-8">
+    <div className="flex flex-col gap-8">
       <div className="grid gap-8 lg:grid-cols-3">
         <div className="lg:col-span-2 space-y-8">
           <div>
@@ -72,8 +72,8 @@ export default function DashboardPage() {
           
         </div>
       </div>
-      <div className="flex-grow flex flex-col">
-        <Card className="flex-grow flex flex-col">
+      <div className="flex-grow">
+        <Card className="h-full flex flex-col">
           <CardHeader>
             <div className="flex items-center gap-2">
               <Rocket className="w-6 h-6 text-accent" />

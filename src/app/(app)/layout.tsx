@@ -11,9 +11,9 @@ export default function AppLayout({
     <SidebarProvider>
       <div className="flex min-h-screen">
         <AppSidebar />
-        <div className="flex flex-col flex-1 w-full">
+        <div className="flex flex-col flex-1">
           <SidebarInset>
-            <main className="flex flex-col flex-1 p-4 sm:p-6 lg:p-8">
+            <main className="flex-1 flex flex-col p-4 sm:p-6 lg:p-8">
               {children}
             </main>
             <Footer />
