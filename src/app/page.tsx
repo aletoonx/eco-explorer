@@ -12,13 +12,15 @@ export default function Home() {
           <span className="sr-only">Eco Explorer</span>
         </Link>
         <nav className="ml-auto flex gap-4 sm:gap-6">
-          <Link
-            href="/login"
-            className="text-sm font-medium hover:underline underline-offset-4"
-            prefetch={false}
-          >
-            Login
-          </Link>
+          <Button variant="ghost" asChild>
+            <Link
+              href="/login"
+              className="text-sm font-medium"
+              prefetch={false}
+            >
+              Login
+            </Link>
+          </Button>
           <Button asChild>
             <Link href="/register" prefetch={false}>
               Register
