@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function MapPage() {
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 pb-8">
       <div>
         <h1 className="text-3xl font-bold font-headline">Interactive Map</h1>
         <p className="text-muted-foreground">
