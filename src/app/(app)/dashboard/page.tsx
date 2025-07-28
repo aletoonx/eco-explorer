@@ -1,4 +1,3 @@
-
 import {
   Card,
   CardContent,
@@ -49,21 +48,21 @@ export default function DashboardPage() {
             </CardContent>
           </Card>
         </Link>
-        <Link href="/foundations" className="md:col-span-2">
-          <Card className="hover:border-primary transition-colors h-full">
-            <CardHeader className="flex flex-row items-center justify-between pb-2">
-              <CardTitle className="text-sm font-medium">Conservation Heroes</CardTitle>
-              <Landmark className="w-4 h-4 text-muted-foreground" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold font-headline">Find Foundations</div>
-              <p className="text-xs text-muted-foreground">
-                Connect with organizations protecting our planet.
-              </p>
-            </CardContent>
-          </Card>
-        </Link>
       </div>
+      <Link href="/foundations">
+        <Card className="hover:border-primary transition-colors h-full">
+          <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <CardTitle className="text-sm font-medium">Conservation Heroes</CardTitle>
+            <Landmark className="w-4 h-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold font-headline">Find Foundations</div>
+            <p className="text-xs text-muted-foreground">
+              Connect with organizations protecting our planet.
+            </p>
+          </CardContent>
+        </Card>
+      </Link>
 
       <Card className="h-full flex flex-col w-full">
         <CardHeader>

@@ -13,7 +13,7 @@ export function Footer() {
                     <div className="flex items-center gap-4 justify-center md:justify-start">
                          <Avatar className="w-16 h-16">
                             <AvatarImage src="https://placehold.co/100x100.png" alt="Ihan Fuentes Arroyo" data-ai-hint="profile picture" />
-                            <AvatarFallback>IFA</AvatarFallback>
+                            <AvatarFallback>N</AvatarFallback>
                         </Avatar>
                         <div>
                             <p className="font-bold text-lg font-headline">Ihan Fuentes Arroyo</p>
