@@ -12,7 +12,6 @@ import {
 import { Leaf, Map, PawPrint, Landmark, LayoutDashboard, LogOut } from "lucide-react";
 import { usePathname } from "next/navigation";
 import Link from 'next/link';
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export function AppSidebar() {
   const pathname = usePathname();
@@ -47,7 +46,7 @@ export function AppSidebar() {
             <SidebarMenuButton asChild isActive={isActive('/foundations')} tooltip="Foundations">
                <Link href="/foundations"><Landmark /><span>Foundations</span></Link>
             </SidebarMenuButton>
-          </AI-powered>
+          </SidebarMenuItem>
         </SidebarMenu>
       </SidebarContent>
       <SidebarFooter>
