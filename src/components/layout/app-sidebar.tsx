@@ -13,15 +13,23 @@ import { Leaf, Map, PawPrint, Landmark, LayoutDashboard, LogOut } from "lucide-r
 import { usePathname } from "next/navigation";
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { auth } from "@/lib/firebase";
+import { signOut } from "firebase/auth";
 
 export function AppSidebar() {
   const pathname = usePathname();
   const router = useRouter();
   const isActive = (path: string) => pathname === path;
 
-  const handleLogout = () => {
-    document.cookie = 'auth_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
-    router.push('/login');
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      // Clear the session cookie
+      document.cookie = 'auth_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+      router.push('/login');
+    } catch (error) {
+      console.error("Error signing out: ", error);
+    }
   };
 
   return (
