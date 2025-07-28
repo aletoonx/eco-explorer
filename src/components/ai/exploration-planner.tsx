@@ -9,7 +9,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { suggestExplorationPath, SuggestExplorationPathOutput } from "@/ai/flows/suggest-exploration-path";
 import { mapFeatures } from "@/lib/data";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Lightbulb, Loader2 } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
 
@@ -50,7 +50,7 @@ export function ExplorationPlanner() {
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 flex flex-col flex-grow">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
           <FormField
@@ -80,7 +80,7 @@ export function ExplorationPlanner() {
         <AlertDescription>{error}</AlertDescription>
       </Alert>}
       {result && (
-        <Card className="bg-muted/50">
+        <Card className="bg-muted/50 mt-4">
           <CardHeader>
             <div className="flex items-center gap-2">
               <Lightbulb className="w-5 h-5 text-yellow-400" />
