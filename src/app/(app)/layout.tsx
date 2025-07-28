@@ -1,6 +1,5 @@
-import { AppSidebar } from "@/components/layout/app-sidebar";
+import { AppHeader } from "@/components/layout/app-header";
 import { Footer } from "@/components/layout/footer";
-import { SidebarProvider } from "@/components/ui/sidebar";
 
 export default function AppLayout({
   children,
@@ -8,16 +7,12 @@ export default function AppLayout({
   children: React.ReactNode;
 }) {
   return (
-    <SidebarProvider>
-      <div className="flex min-h-screen flex-col">
-        <div className="flex flex-1">
-          <AppSidebar />
-          <main className="flex-1 p-8">
-            {children}
-          </main>
-        </div>
-        <Footer />
-      </div>
-    </SidebarProvider>
+    <div className="flex min-h-screen flex-col">
+      <AppHeader />
+      <main className="flex-1 container mx-auto p-4 sm:p-6 lg:p-8">
+        {children}
+      </main>
+      <Footer />
+    </div>
   );
 }
