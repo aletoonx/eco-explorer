@@ -26,7 +26,7 @@ export function AppSidebar() {
         </div>
       </SidebarHeader>
       <SidebarContent>
-        <SidebarMenu className="ml-2">
+        <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton asChild isActive={isActive('/dashboard')} tooltip="Dashboard">
               <Link href="/dashboard"><LayoutDashboard /><span>Dashboard</span></Link>
