@@ -5,10 +5,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { Map, PawPrint, Landmark, Rocket, Mail, Phone } from "lucide-react"
+import { Map, PawPrint, Landmark, Rocket } from "lucide-react"
 import Link from "next/link"
 import { ExplorationPlanner } from "@/components/ai/exploration-planner";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export default function DashboardPage() {
   return (
@@ -83,33 +82,7 @@ export default function DashboardPage() {
       </div>
 
       <div className="lg:col-span-1 space-y-8">
-        <Card>
-          <CardHeader>
-            <CardTitle className="font-headline">Contact</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-              <div className="flex items-center gap-4">
-                  <Avatar className="w-16 h-16">
-                      <AvatarImage src="https://placehold.co/100x100.png" alt="Ihan Fuentes Arroyo" data-ai-hint="profile picture" />
-                      <AvatarFallback>IFA</AvatarFallback>
-                  </Avatar>
-                  <div>
-                      <p className="font-semibold">Ihan Fuentes Arroyo</p>
-                      <p className="text-sm text-muted-foreground">Project Lead</p>
-                  </div>
-              </div>
-              <div className="space-y-2 text-sm">
-                  <div className="flex items-center gap-2">
-                      <Mail className="w-4 h-4 text-muted-foreground" />
-                      <a href="mailto:aletoonx@gmail.com" className="hover:underline">aletoonx@gmail.com</a>
-                  </div>
-                  <div className="flex items-center gap-2">
-                      <Phone className="w-4 h-4 text-muted-foreground" />
-                      <span>+506 8377-1010</span>
-                  </div>
-              </div>
-          </CardContent>
-        </Card>
+        
       </div>
     </div>
   )

@@ -1,9 +1,34 @@
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Mail, Phone } from "lucide-react";
 import Link from "next/link";
 
 export function Footer() {
     return (
         <footer className="border-t w-full bg-card">
             <div className="container mx-auto py-8 px-4 md:px-6">
+
+                <div className="flex justify-between items-center mb-8">
+                    <div className="space-y-2 text-sm">
+                        <div className="flex items-center gap-2">
+                            <Mail className="w-4 h-4 text-muted-foreground" />
+                            <a href="mailto:aletoonx@gmail.com" className="hover:underline">aletoonx@gmail.com</a>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <Phone className="w-4 h-4 text-muted-foreground" />
+                            <span>+506 8377-1010</span>
+                        </div>
+                    </div>
+                    <div className="flex flex-col items-center gap-2">
+                        <Avatar className="w-16 h-16">
+                            <AvatarImage src="https://placehold.co/100x100.png" alt="Ihan Fuentes Arroyo" data-ai-hint="profile picture" />
+                            <AvatarFallback>IFA</AvatarFallback>
+                        </Avatar>
+                        <div className="text-center">
+                            <p className="font-semibold">Ihan Fuentes Arroyo</p>
+                        </div>
+                    </div>
+                </div>
+
                 <div className="border-t pt-4 text-center text-sm text-muted-foreground">
                     <p>&copy; 2024 Eco Explorer. All rights reserved.</p>
                     <nav className="flex gap-4 justify-center mt-2">
