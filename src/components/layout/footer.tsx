@@ -5,7 +5,7 @@ import { Mail, Phone } from "lucide-react";
 export function Footer() {
     return (
         <footer className="border-t w-full bg-card">
-            <div className="container mx-auto py-8 px-4 md:px-6 grid md:grid-cols-2 gap-8 items-center">
+            <div className="container mx-auto py-8 px-4 md:px-6 flex flex-col md:flex-row items-center justify-between gap-8">
                 <div className="flex flex-col gap-4 text-center md:text-left">
                     <div>
                         <p className="text-sm text-muted-foreground">&copy; 2024 Eco Explorer. All rights reserved.</p>
