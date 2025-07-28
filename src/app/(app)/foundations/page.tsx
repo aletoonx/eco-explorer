@@ -2,8 +2,8 @@
 import { getFoundations } from "@/lib/data";
 import { FoundationCard } from "@/components/foundations/foundation-card";
 
-export default function FoundationsPage() {
-  const foundations = getFoundations();
+export default async function FoundationsPage() {
+  const foundations = await getFoundations();
   return (
     <div className="space-y-8">
       <div>

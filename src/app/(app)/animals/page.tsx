@@ -2,8 +2,8 @@
 import { getAnimals } from "@/lib/data";
 import { AnimalCard } from "@/components/animals/animal-card";
 
-export default function AnimalsPage() {
-  const animals = getAnimals();
+export default async function AnimalsPage() {
+  const animals = await getAnimals();
 
   return (
     <div className="space-y-8">

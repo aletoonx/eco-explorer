@@ -6,15 +6,15 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { PawPrint, Globe } from "lucide-react";
 
-export function generateStaticParams() {
-  const animals = getAnimals();
+export async function generateStaticParams() {
+  const animals = await getAnimals();
   return animals.map((animal) => ({
     slug: animal.slug,
   }));
 }
 
-export default function AnimalDetailPage({ params }: { params: { slug: string } }) {
-  const animal = getAnimal(params.slug);
+export default async function AnimalDetailPage({ params }: { params: { slug: string } }) {
+  const animal = await getAnimal(params.slug);
 
   if (!animal) {
     notFound();

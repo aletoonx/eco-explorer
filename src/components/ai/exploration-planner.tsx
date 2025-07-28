@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -24,7 +24,15 @@ export function ExplorationPlanner() {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<SuggestExplorationPathOutput | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const mapFeatures = getMapFeatures();
+  const [mapFeatures, setMapFeatures] = useState<string>("");
+
+  useEffect(() => {
+    async function fetchMapFeatures() {
+      const features = await getMapFeatures();
+      setMapFeatures(features);
+    }
+    fetchMapFeatures();
+  }, []);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),

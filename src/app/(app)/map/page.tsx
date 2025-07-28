@@ -3,8 +3,8 @@ import { HighlightMapFeatures } from "@/components/map/highlight-map-features";
 import { InteractiveMap } from "@/components/map/interactive-map";
 import { getFoundations } from "@/lib/data";
 
-export default function MapPage() {
-  const foundations = getFoundations();
+export default async function MapPage() {
+  const foundations = await getFoundations();
 
   return (
     <div className="space-y-8 pb-8">
