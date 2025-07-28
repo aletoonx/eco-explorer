@@ -7,14 +7,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useToast } from "@/hooks/use-toast";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { auth } from "@/lib/firebase";
 import { signInWithEmailAndPassword, setPersistence, browserSessionPersistence } from "firebase/auth";
+import { Leaf } from "lucide-react";
 
 export function LoginForm() {
-  const router = useRouter();
   const { toast } = useToast();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -47,7 +46,8 @@ export function LoginForm() {
         description: "Welcome back! Redirecting you to the dashboard...",
       });
       
-      router.push("/dashboard");
+      // Force a hard navigation to ensure the cookie is sent with the next request.
+      window.location.href = "/dashboard";
 
     } catch (e: any) {
        if (e.code === 'auth/user-not-found' || e.code === 'auth/wrong-password' || e.code === 'auth/invalid-credential') {
@@ -65,39 +65,50 @@ export function LoginForm() {
   };
 
   return (
-    <Card>
-      <form onSubmit={handleSubmit}>
-        <CardHeader>
-          <CardTitle className="font-headline">Login</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          {error && (
-            <Alert variant="destructive">
-              <AlertTitle>Error</AlertTitle>
-              <AlertDescription>{error}</AlertDescription>
-            </Alert>
-          )}
-          <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
-            <Input id="email" type="email" placeholder="explorer@example.com" value={email} onChange={(e) => setEmail(e.target.value)} disabled={loading} />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="password">Password</Label>
-            <Input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} disabled={loading} />
-          </div>
-        </CardContent>
-        <CardFooter className="flex flex-col gap-4">
-          <Button type="submit" className="w-full" disabled={loading}>
-            {loading ? 'Signing In...' : 'Sign In'}
-          </Button>
-          <p className="text-sm text-center text-muted-foreground">
-            Don't have an account?{" "}
-            <Link href="/register" className="underline text-primary">
-              Register here
+    <div className="flex items-center justify-center min-h-screen p-4">
+      <div className="w-full max-w-md space-y-6">
+        <div className="flex flex-col items-center text-center">
+            <Link href="/" className="inline-block mb-4">
+                <Leaf className="w-12 h-12 text-primary" />
             </Link>
-          </p>
-        </CardFooter>
-      </form>
-    </Card>
+          <h1 className="text-3xl font-bold font-headline">Welcome Back to Eco Explorer</h1>
+          <p className="text-muted-foreground">Enter your credentials to continue your journey.</p>
+        </div>
+        <Card>
+          <form onSubmit={handleSubmit}>
+            <CardHeader>
+              <CardTitle className="font-headline">Login</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              {error && (
+                <Alert variant="destructive">
+                  <AlertTitle>Error</AlertTitle>
+                  <AlertDescription>{error}</AlertDescription>
+                </Alert>
+              )}
+              <div className="space-y-2">
+                <Label htmlFor="email">Email</Label>
+                <Input id="email" type="email" placeholder="explorer@example.com" value={email} onChange={(e) => setEmail(e.target.value)} disabled={loading} />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="password">Password</Label>
+                <Input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} disabled={loading} />
+              </div>
+            </CardContent>
+            <CardFooter className="flex flex-col gap-4">
+              <Button type="submit" className="w-full" disabled={loading}>
+                {loading ? 'Signing In...' : 'Sign In'}
+              </Button>
+              <p className="text-sm text-center text-muted-foreground">
+                Don't have an account?{" "}
+                <Link href="/register" className="underline text-primary">
+                  Register here
+                </Link>
+              </p>
+            </CardFooter>
+          </form>
+        </Card>
+      </div>
+    </div>
   );
 }
