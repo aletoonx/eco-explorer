@@ -1,8 +1,11 @@
+
 import { HighlightMapFeatures } from "@/components/map/highlight-map-features";
 import { InteractiveMap } from "@/components/map/interactive-map";
-import { foundations } from "@/lib/data";
+import { getFoundations } from "@/lib/data";
 
-export default function MapPage() {
+export default async function MapPage() {
+  const foundations = await getFoundations();
+
   return (
     <div className="space-y-8 pb-8">
       <div>
@@ -14,7 +17,7 @@ export default function MapPage() {
       <div className="w-full">
         <InteractiveMap foundations={foundations} />
       </div>
-      <HighlightMapFeatures />
+      <HighlightMapFeatures foundations={foundations} />
     </div>
   );
 }

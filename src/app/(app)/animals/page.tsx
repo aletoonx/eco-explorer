@@ -1,7 +1,10 @@
-import { animals } from "@/lib/data";
+
+import { getAnimals } from "@/lib/data";
 import { AnimalCard } from "@/components/animals/animal-card";
 
-export default function AnimalsPage() {
+export default async function AnimalsPage() {
+  const animals = await getAnimals();
+
   return (
     <div className="space-y-8">
       <div>
@@ -10,11 +13,15 @@ export default function AnimalsPage() {
           Learn more about the world's most vulnerable species.
         </p>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        {animals.map((animal) => (
-          <AnimalCard key={animal.slug} animal={animal} />
-        ))}
-      </div>
+      {animals.length > 0 ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          {animals.map((animal) => (
+            <AnimalCard key={animal.slug} animal={animal} />
+          ))}
+        </div>
+      ) : (
+        <p>No animals found. Please add some to the Firestore database.</p>
+      )}
     </div>
   );
 }

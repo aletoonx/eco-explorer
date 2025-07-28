@@ -1,4 +1,5 @@
-import { animals, type Animal } from "@/lib/data";
+
+import { getAnimals, getAnimal, type Animal } from "@/lib/data";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
@@ -6,17 +7,14 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { PawPrint, Globe } from "lucide-react";
 
 export async function generateStaticParams() {
+  const animals = await getAnimals();
   return animals.map((animal) => ({
     slug: animal.slug,
   }));
 }
 
-function getAnimal(slug: string): Animal | undefined {
-  return animals.find((animal) => animal.slug === slug);
-}
-
-export default function AnimalDetailPage({ params }: { params: { slug: string } }) {
-  const animal = getAnimal(params.slug);
+export default async function AnimalDetailPage({ params }: { params: { slug: string } }) {
+  const animal = await getAnimal(params.slug);
 
   if (!animal) {
     notFound();

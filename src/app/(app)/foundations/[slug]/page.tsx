@@ -1,21 +1,19 @@
-import { foundations, type Foundation } from "@/lib/data";
+
+import { getFoundations, getFoundation, type Foundation } from "@/lib/data";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Mail, MapPin, Target } from "lucide-react";
 
 export async function generateStaticParams() {
+  const foundations = await getFoundations();
   return foundations.map((foundation) => ({
     slug: foundation.slug,
   }));
 }
 
-function getFoundation(slug: string): Foundation | undefined {
-  return foundations.find((foundation) => foundation.slug === slug);
-}
-
-export default function FoundationDetailPage({ params }: { params: { slug: string } }) {
-  const foundation = getFoundation(params.slug);
+export default async function FoundationDetailPage({ params }: { params: { slug: string } }) {
+  const foundation = await getFoundation(params.slug);
 
   if (!foundation) {
     notFound();

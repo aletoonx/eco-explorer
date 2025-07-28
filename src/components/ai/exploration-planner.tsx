@@ -1,6 +1,7 @@
+
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -8,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { suggestExplorationPath, SuggestExplorationPathOutput } from "@/ai/flows/suggest-exploration-path";
-import { mapFeatures } from "@/lib/data";
+import { getMapFeatures } from "@/lib/data";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Lightbulb, Loader2 } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
@@ -23,6 +24,15 @@ export function ExplorationPlanner() {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<SuggestExplorationPathOutput | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [mapFeatures, setMapFeatures] = useState("");
+
+  useEffect(() => {
+    async function loadMapFeatures() {
+      const features = await getMapFeatures();
+      setMapFeatures(features);
+    }
+    loadMapFeatures();
+  }, []);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -63,15 +73,16 @@ export function ExplorationPlanner() {
                   <Textarea
                     placeholder="e.g., 'I'm fascinated by big cats and want to see conservation efforts for tigers and leopards.' or 'I want to learn about marine life and ocean conservation.'"
                     {...field}
+                    disabled={!mapFeatures || loading}
                   />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
-          <Button type="submit" disabled={loading}>
+          <Button type="submit" disabled={loading || !mapFeatures}>
             {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-            Suggest a Path
+            {loading ? 'Generating...' : 'Suggest a Path'}
           </Button>
         </form>
       </Form>

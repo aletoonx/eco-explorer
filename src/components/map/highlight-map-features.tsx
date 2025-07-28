@@ -1,15 +1,20 @@
+
 "use client";
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { highlightMapFeatures, HighlightMapFeaturesOutput } from "@/ai/flows/highlight-map-features";
-import { foundations } from "@/lib/data";
+import { type Foundation } from "@/lib/data";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Lightbulb, Loader2, LocateFixed } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
 
-export function HighlightMapFeatures() {
+interface HighlightMapFeaturesProps {
+    foundations: Foundation[];
+}
+
+export function HighlightMapFeatures({ foundations }: HighlightMapFeaturesProps) {
   const [loading, setLoading] = useState(false);
   const [selectedFoundationSlug, setSelectedFoundationSlug] = useState<string | null>(null);
   const [result, setResult] = useState<HighlightMapFeaturesOutput | null>(null);
@@ -56,7 +61,7 @@ export function HighlightMapFeatures() {
         </CardHeader>
         <CardContent className="space-y-4">
             <div className="flex items-center gap-4">
-                <Select onValueChange={handleSelection} disabled={loading}>
+                <Select onValueChange={handleSelection} disabled={loading || foundations.length === 0}>
                     <SelectTrigger className="w-[280px]">
                         <SelectValue placeholder="Select a foundation" />
                     </SelectTrigger>

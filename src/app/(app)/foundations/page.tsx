@@ -1,7 +1,9 @@
-import { foundations } from "@/lib/data";
+
+import { getFoundations } from "@/lib/data";
 import { FoundationCard } from "@/components/foundations/foundation-card";
 
-export default function FoundationsPage() {
+export default async function FoundationsPage() {
+  const foundations = await getFoundations();
   return (
     <div className="space-y-8">
       <div>
@@ -10,11 +12,15 @@ export default function FoundationsPage() {
           Discover organizations dedicated to protecting wildlife and their habitats.
         </p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-        {foundations.map((foundation) => (
-          <FoundationCard key={foundation.slug} foundation={foundation} />
-        ))}
-      </div>
+      {foundations.length > 0 ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+          {foundations.map((foundation) => (
+            <FoundationCard key={foundation.slug} foundation={foundation} />
+          ))}
+        </div>
+      ) : (
+        <p>No foundations found. Please add some to the Firestore database.</p>
+      )}
     </div>
   );
 }
