@@ -70,12 +70,12 @@ export const foundations: Foundation[] = [
   {
     slug: 'corcovado-foundation',
     name: 'Corcovado Foundation',
-    mission: 'To protect the natural heritage of Costa Rica by supporting conservation and community development.',
+    mission: 'To protect the natural heritage of Costa Rica by supporting conservation and community development in the Osa Peninsula.',
     location: 'Corcovado National Park, Osa Peninsula',
     contact: 'info@corcovadofoundation.org',
     imageUrl: 'https://placehold.co/600x400.png',
     dataAiHint: 'rainforest conservation',
-    recentSightings: 'Sightings of Baird\'s Tapir have increased by 15% in the last year.',
+    recentSightings: "Sightings of Baird's Tapir have increased by 15% in the last year.",
     foundationActivities: 'Reforestation of 50 hectares and a new sea turtle monitoring program.',
     lat: 8.57,
     lng: -83.58
@@ -83,20 +83,20 @@ export const foundations: Foundation[] = [
   {
     slug: 'monteverde-conservation-league',
     name: 'Monteverde Conservation League',
-    mission: 'To conserve, preserve, and rehabilitate tropical ecosystems, their biodiversity, and their communities.',
+    mission: 'To conserve, preserve, and rehabilitate tropical ecosystems, their biodiversity, and their communities in the Monteverde region.',
     location: 'Monteverde, Puntarenas',
     contact: 'contact@acmcr.org',
     imageUrl: 'https://placehold.co/600x400.png',
     dataAiHint: 'cloud forest',
     recentSightings: 'The Resplendent Quetzal has been spotted frequently during its nesting season.',
-    foundationActivities: 'Acquired 100 acres of land to expand the Children\'s Eternal Rainforest and launched an environmental education program for local schools.',
+    foundationActivities: "Acquired 100 acres of land to expand the Children's Eternal Rainforest and launched an environmental education program for local schools.",
     lat: 10.3,
     lng: -84.82
   },
   {
     slug: 'tortuguero-conservancy',
     name: 'Tortuguero Conservancy',
-    mission: 'To protect sea turtles and their habitats in the Tortuguero area.',
+    mission: 'To protect sea turtles and their habitats in the Tortuguero area on the Caribbean coast.',
     location: 'Tortuguero National Park, Limón',
     contact: 'info@tortugueroconservancy.org',
     imageUrl: 'https://placehold.co/600x400.png',
@@ -119,6 +119,32 @@ export const foundations: Foundation[] = [
     lat: 9.66,
     lng: -82.76
   },
+  {
+    slug: 'manuel-antonio-park-friends',
+    name: 'Friends of Manuel Antonio',
+    mission: 'Support the conservation and sustainable development of one of Costa Rica\'s most popular national parks.',
+    location: 'Manuel Antonio National Park, Puntarenas',
+    contact: 'info@manuelantoniofriends.org',
+    imageUrl: 'https://placehold.co/600x400.png',
+    dataAiHint: 'beach monkey',
+    recentSightings: 'White-faced capuchin monkeys are thriving, with several new births recorded this year.',
+    foundationActivities: 'Launched a "Leave No Trace" campaign for tourists and funded a study on the impact of tourism on local wildlife.',
+    lat: 9.40,
+    lng: -84.15
+  },
+  {
+    slug: 'arenal-conservation-fund',
+    name: 'Arenal Conservation Fund',
+    mission: 'To protect the watershed and biodiversity of the Arenal Volcano region through land conservation and community engagement.',
+    location: 'Arenal Conservation Area, Alajuela',
+    contact: 'contact@arenalfund.org',
+    imageUrl: 'https://placehold.co/600x400.png',
+    dataAiHint: 'volcano jungle',
+    recentSightings: 'The population of the Great Curassow, a large bird species, has stabilized thanks to habitat protection efforts.',
+    foundationActivities: 'Partnered with local landowners to create biological corridors for wildlife and organized a fundraiser for a new canopy bridge.',
+    lat: 10.46,
+    lng: -84.70
+  }
 ];
 
 export const mapFeatures = foundations.map(f => `${f.name} in ${f.location}`).join(', ');
