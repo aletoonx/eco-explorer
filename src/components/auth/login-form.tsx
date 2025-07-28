@@ -39,6 +39,8 @@ export function LoginForm() {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       
       const token = await userCredential.user.getIdToken();
+      
+      // Set cookie to be picked up by middleware
       document.cookie = `auth_token=${token}; path=/; max-age=3600`;
 
       toast({
@@ -46,8 +48,9 @@ export function LoginForm() {
         description: "Welcome back! Redirecting you to the dashboard...",
       });
       
-      // A full page refresh is more reliable with cookie-based middleware
-      window.location.href = "/dashboard";
+      router.push("/dashboard");
+      router.refresh();
+
 
     } catch (e: any) {
        if (e.code === 'auth/user-not-found' || e.code === 'auth/wrong-password' || e.code === 'auth/invalid-credential') {
