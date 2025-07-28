@@ -12,10 +12,17 @@ import {
 import { Leaf, Map, PawPrint, Landmark, LayoutDashboard, LogOut } from "lucide-react";
 import { usePathname } from "next/navigation";
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 export function AppSidebar() {
   const pathname = usePathname();
+  const router = useRouter();
   const isActive = (path: string) => pathname === path;
+
+  const handleLogout = () => {
+    document.cookie = 'auth_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+    router.push('/login');
+  };
 
   return (
     <Sidebar>
@@ -48,8 +55,8 @@ export function AppSidebar() {
             </SidebarMenuButton>
           </SidebarMenuItem>
            <SidebarMenuItem>
-                <SidebarMenuButton asChild tooltip="Logout">
-                    <Link href="/login"><LogOut/><span>Logout</span></Link>
+                <SidebarMenuButton onClick={handleLogout} tooltip="Logout">
+                    <LogOut/><span>Logout</span>
                 </SidebarMenuButton>
             </SidebarMenuItem>
         </SidebarMenu>

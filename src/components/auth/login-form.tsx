@@ -15,7 +15,8 @@ export function LoginForm() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     // In a real app, you'd have form validation and an API call here.
-    // For this demo, we'll simulate a successful login.
+    // For this demo, we'll simulate a successful login and set a cookie.
+    document.cookie = "auth_token=simulated_token; path=/; max-age=3600";
     toast({
       title: "Login Successful",
       description: "Welcome back! Redirecting you to the dashboard...",
