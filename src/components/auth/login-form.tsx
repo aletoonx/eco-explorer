@@ -49,8 +49,6 @@ export function LoginForm() {
       });
       
       router.push("/dashboard");
-      router.refresh();
-
 
     } catch (e: any) {
        if (e.code === 'auth/user-not-found' || e.code === 'auth/wrong-password' || e.code === 'auth/invalid-credential') {
