@@ -45,6 +45,11 @@ export function RegisterForm() {
       return;
     }
 
+    if (!email.includes('@')) {
+        setError("Please enter a valid email address.");
+        return;
+    }
+
     const passwordErrors = validatePassword(password);
     if (passwordErrors.length > 0) {
       setError(`Password must ${passwordErrors.join(", ")}.`);
