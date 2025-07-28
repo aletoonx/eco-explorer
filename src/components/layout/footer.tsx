@@ -18,12 +18,12 @@ export function Footer() {
                             <span>+506 8377-1010</span>
                         </div>
                     </div>
-                    <div className="flex flex-col items-center gap-2">
+                    <div className="flex items-center gap-4">
                         <Avatar className="w-16 h-16">
                             <AvatarImage src="https://placehold.co/100x100.png" alt="Ihan Fuentes Arroyo" data-ai-hint="profile picture" />
                             <AvatarFallback>IFA</AvatarFallback>
                         </Avatar>
-                        <div className="text-center">
+                        <div className="text-left">
                             <p className="font-semibold">Ihan Fuentes Arroyo</p>
                         </div>
                     </div>
