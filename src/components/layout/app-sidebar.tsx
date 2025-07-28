@@ -40,8 +40,8 @@ export function AppSidebar() {
           <SidebarMenuItem>
             <SidebarMenuButton asChild isActive={isActive('/animals')} tooltip="Animals">
                <Link href="/animals"><PawPrint /><span>Animals</span></Link>
-            </S/p>
-  <p>The code in this file seems to have an extra `</p>` tag. I will fix the code and help you with your request.idebarMenuItem>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
           <SidebarMenuItem>
             <SidebarMenuButton asChild isActive={isActive('/foundations')} tooltip="Foundations">
                <Link href="/foundations"><Landmark /><span>Foundations</span></Link>
