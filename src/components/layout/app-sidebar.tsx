@@ -24,9 +24,7 @@ export function AppSidebar() {
   const handleLogout = async () => {
     try {
       await signOut(auth);
-      // Clear the session cookie
-      document.cookie = 'auth_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
-      router.push('/login');
+      router.push('/');
     } catch (error) {
       console.error("Error signing out: ", error);
     }

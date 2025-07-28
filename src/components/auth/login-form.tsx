@@ -12,9 +12,11 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { auth } from "@/lib/firebase";
 import { signInWithEmailAndPassword, setPersistence, browserSessionPersistence } from "firebase/auth";
 import { Leaf } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export function LoginForm() {
   const { toast } = useToast();
+  const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -34,20 +36,14 @@ export function LoginForm() {
     try {
       await setPersistence(auth, browserSessionPersistence);
       
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      await signInWithEmailAndPassword(auth, email, password);
       
-      const token = await userCredential.user.getIdToken();
-      
-      // Set cookie to be picked up by middleware
-      document.cookie = `auth_token=${token}; path=/; max-age=3600`;
-
       toast({
         title: "Login Successful",
         description: "Welcome back! Redirecting you to the dashboard...",
       });
       
-      // Force a hard navigation to ensure the cookie is sent with the next request.
-      window.location.href = "/dashboard";
+      router.push("/dashboard");
 
     } catch (e: any) {
        if (e.code === 'auth/user-not-found' || e.code === 'auth/wrong-password' || e.code === 'auth/invalid-credential') {
