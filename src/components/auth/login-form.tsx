@@ -49,7 +49,10 @@ export function LoginForm() {
     } catch (e: any) {
        if (e.code === 'auth/user-not-found' || e.code === 'auth/wrong-password' || e.code === 'auth/invalid-credential') {
         setError("Invalid email or password.");
-      } else {
+      } else if (e.code === 'auth/configuration-not-found') {
+        setError("Firebase authentication is not configured. Please enable Email/Password sign-in in the Firebase console.");
+      }
+      else {
         setError("An unexpected error occurred during login. Please try again.");
         console.error(e);
       }

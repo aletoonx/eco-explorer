@@ -76,6 +76,8 @@ export function RegisterForm() {
         setError("The password is too weak.");
       } else if (e.code === 'auth/invalid-email') {
         setError("The email address is not valid.");
+      } else if (e.code === 'auth/configuration-not-found') {
+        setError("Firebase authentication is not configured. Please enable Email/Password sign-in in the Firebase console.");
       }
        else {
         setError("An unexpected error occurred. Please try again.");
