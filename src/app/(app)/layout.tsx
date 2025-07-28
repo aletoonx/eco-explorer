@@ -13,11 +13,11 @@ export default function AppLayout({
         <AppSidebar />
         <div className="flex flex-1 flex-col min-h-screen">
           <SidebarInset>
-            <main className="flex-1 px-8">
+            <main className="flex-1 p-8">
               {children}
             </main>
-            <Footer />
           </SidebarInset>
+          <Footer />
         </div>
       </div>
     </SidebarProvider>
