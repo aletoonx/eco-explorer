@@ -17,6 +17,7 @@ export function RegisterForm() {
   const router = useRouter();
   const { toast } = useToast();
   const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -39,7 +40,7 @@ export function RegisterForm() {
     event.preventDefault();
     setError(null);
 
-    if (!username || !password) {
+    if (!username || !email || !password) {
       setError("Please fill in all fields.");
       return;
     }
@@ -52,12 +53,8 @@ export function RegisterForm() {
     
     setLoading(true);
     try {
-      // Firebase doesn't have direct username/password auth, so we'll use email/password
-      // and treat the username as the "local part" of an email address for a dummy domain.
-      const email = `${username}@eco-explorer.com`;
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       
-      // We can store the username in the user's profile.
       await updateProfile(userCredential.user, {
         displayName: username
       });
@@ -69,10 +66,13 @@ export function RegisterForm() {
       router.push("/login");
     } catch (e: any) {
       if (e.code === 'auth/email-already-in-use') {
-        setError("This username is already taken. Please choose another one.");
+        setError("This email is already in use. Please choose another one.");
       } else if (e.code === 'auth/weak-password') {
-        setError("The password is too weak. It should be at least 6 characters long.");
-      } else {
+        setError("The password is too weak.");
+      } else if (e.code === 'auth/invalid-email') {
+        setError("The email address is not valid.");
+      }
+       else {
         setError("An unexpected error occurred. Please try again.");
         console.error(e);
       }
@@ -97,6 +97,10 @@ export function RegisterForm() {
           <div className="space-y-2">
             <Label htmlFor="username">Username</Label>
             <Input id="username" placeholder="explorer123" value={username} onChange={(e) => setUsername(e.target.value)} disabled={loading} />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="email">Email</Label>
+            <Input id="email" type="email" placeholder="explorer@example.com" value={email} onChange={(e) => setEmail(e.target.value)} disabled={loading} />
           </div>
           <div className="space-y-2">
             <Label htmlFor="password">Password</Label>

@@ -16,7 +16,7 @@ import { signInWithEmailAndPassword, setPersistence, browserSessionPersistence }
 export function LoginForm() {
   const router = useRouter();
   const { toast } = useToast();
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -26,8 +26,8 @@ export function LoginForm() {
     event.preventDefault();
     setError(null);
 
-    if (!username || !password) {
-      setError("Please enter both username and password.");
+    if (!email || !password) {
+      setError("Please enter both email and password.");
       return;
     }
     
@@ -35,11 +35,8 @@ export function LoginForm() {
     try {
       await setPersistence(auth, browserSessionPersistence);
       
-      const email = `${username}@eco-explorer.com`;
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       
-      // The onAuthStateChanged listener in a parent component will handle the redirect.
-      // For the middleware, we'll set a simple cookie.
       const token = await userCredential.user.getIdToken();
       document.cookie = `auth_token=${token}; path=/; max-age=3600`;
 
@@ -51,7 +48,7 @@ export function LoginForm() {
 
     } catch (e: any) {
        if (e.code === 'auth/user-not-found' || e.code === 'auth/wrong-password' || e.code === 'auth/invalid-credential') {
-        setError("Invalid username or password.");
+        setError("Invalid email or password.");
       } else {
         setError("An unexpected error occurred during login. Please try again.");
         console.error(e);
@@ -75,8 +72,8 @@ export function LoginForm() {
             </Alert>
           )}
           <div className="space-y-2">
-            <Label htmlFor="username">Username</Label>
-            <Input id="username" placeholder="explorer123" value={username} onChange={(e) => setUsername(e.target.value)} disabled={loading} />
+            <Label htmlFor="email">Email</Label>
+            <Input id="email" type="email" placeholder="explorer@example.com" value={email} onChange={(e) => setEmail(e.target.value)} disabled={loading} />
           </div>
           <div className="space-y-2">
             <Label htmlFor="password">Password</Label>
