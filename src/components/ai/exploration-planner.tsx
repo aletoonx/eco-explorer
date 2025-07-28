@@ -25,11 +25,14 @@ export function ExplorationPlanner() {
   const [result, setResult] = useState<SuggestExplorationPathOutput | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [mapFeatures, setMapFeatures] = useState<string>("");
+  const [loadingFeatures, setLoadingFeatures] = useState(true);
 
   useEffect(() => {
     async function fetchMapFeatures() {
+      setLoadingFeatures(true);
       const features = await getMapFeatures();
       setMapFeatures(features);
+      setLoadingFeatures(false);
     }
     fetchMapFeatures();
   }, []);
@@ -73,14 +76,14 @@ export function ExplorationPlanner() {
                   <Textarea
                     placeholder="e.g., 'I'm fascinated by big cats and want to see conservation efforts for tigers and leopards.' or 'I want to learn about marine life and ocean conservation.'"
                     {...field}
-                    disabled={!mapFeatures || loading}
+                    disabled={loadingFeatures || loading}
                   />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
-          <Button type="submit" disabled={loading || !mapFeatures}>
+          <Button type="submit" disabled={loading || loadingFeatures}>
             {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
             {loading ? 'Generating...' : 'Suggest a Path'}
           </Button>
