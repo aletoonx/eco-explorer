@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -21,12 +22,32 @@ export function RegisterForm() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  const validatePassword = (password: string): string[] => {
+    const errors: string[] = [];
+    if (password.length < 8) {
+      errors.push("be at least 8 characters long");
+    }
+    if (!/[A-Z]/.test(password)) {
+      errors.push("contain an uppercase letter");
+    }
+    if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+      errors.push("contain a special character");
+    }
+    return errors;
+  }
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setError(null);
 
     if (!username || !password) {
       setError("Please fill in all fields.");
+      return;
+    }
+
+    const passwordErrors = validatePassword(password);
+    if (passwordErrors.length > 0) {
+      setError(`Password must ${passwordErrors.join(", ")}.`);
       return;
     }
     
