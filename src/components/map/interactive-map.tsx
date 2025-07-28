@@ -10,7 +10,7 @@ type InteractiveMapProps = {
   foundations: Foundation[];
 };
 
-// Map dimensions (aspect ratio of Costa Rica)
+// Map dimensions based on the image aspect ratio
 const MAP_WIDTH = 560;
 const MAP_HEIGHT = 500;
 
@@ -33,7 +33,7 @@ export function InteractiveMap({ foundations }: InteractiveMapProps) {
   return (
     <TooltipProvider>
       <div className="relative w-full max-w-4xl mx-auto rounded-lg bg-card p-4 border">
-        <div className="relative" style={{ width: `${MAP_WIDTH}px`, height: `${MAP_HEIGHT}px`}}>
+        <div className="relative mx-auto" style={{ width: `${MAP_WIDTH}px`, height: `${MAP_HEIGHT}px`}}>
             <Image 
                 src="https://placehold.co/560x500.png"
                 alt="Map of Costa Rica"
@@ -51,10 +51,11 @@ export function InteractiveMap({ foundations }: InteractiveMapProps) {
                         href={`/foundations/${foundation.slug}`}
                         className="absolute cursor-pointer group"
                         style={{ top: `${top}%`, left: `${left}%`, transform: 'translate(-50%, -50%)' }}
+                        aria-label={foundation.name}
                     >
                         <div className="relative flex items-center justify-center">
                             <div className="absolute w-3 h-3 rounded-full bg-primary transition-all group-hover:w-4 group-hover:h-4" />
-                            <div className="w-5 h-5 rounded-full bg-primary/50 animate-ping" />
+                            <div className="absolute w-5 h-5 rounded-full bg-primary/50 animate-ping" />
                         </div>
                     </a>
                     </TooltipTrigger>
