@@ -3,16 +3,14 @@ import { Mail, Phone } from "lucide-react";
 import Link from "next/link";
 import { Separator } from "../ui/separator";
 
-export function Footer({ appLayout = false }: { appLayout?: boolean }) {
-    const creatorInfoStyle = appLayout ? { position: 'relative' as const, left: '250px' } : {};
-    const copyrightStyle = appLayout ? { position: 'relative' as const, left: '250px' } : {};
+export function Footer() {
 
     return (
         <footer className="border-t w-full bg-card text-card-foreground">
             <div className="container mx-auto py-8 px-4 md:px-6">
 
                 <div className="grid md:grid-cols-2 gap-8 items-center">
-                    <div className="flex items-center gap-4 justify-center md:justify-start" style={creatorInfoStyle}>
+                    <div className="flex items-center gap-4 justify-center md:justify-start">
                          <Avatar className="w-16 h-16">
                             <AvatarImage src="https://placehold.co/100x100.png" alt="Ihan Fuentes Arroyo" data-ai-hint="profile picture" />
                             <AvatarFallback>IFA</AvatarFallback>
@@ -37,7 +35,7 @@ export function Footer({ appLayout = false }: { appLayout?: boolean }) {
                 <Separator className="my-6" />
 
                 <div className="flex flex-col md:flex-row justify-between items-center text-center md:text-left text-sm text-muted-foreground gap-4">
-                    <p style={copyrightStyle}>&copy; 2024 Eco Explorer. All rights reserved.</p>
+                    <p>&copy; 2024 Eco Explorer. All rights reserved.</p>
                     <div className="flex gap-4">
                         <Link href="#" className="hover:text-primary hover:underline underline-offset-4" prefetch={false}>
                             Terms of Service
