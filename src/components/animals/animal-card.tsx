@@ -1,6 +1,5 @@
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import type { Animal } from "@/lib/data";
-import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "../ui/badge";
@@ -10,15 +9,12 @@ type AnimalCardProps = {
 };
 
 export function AnimalCard({ animal }: AnimalCardProps) {
-  const placeholderImageUrl = "https://placehold.co/400x300.png";
-  const imageUrl = animal.imageUrl || placeholderImageUrl;
-  const isExternalImage = imageUrl !== placeholderImageUrl && !imageUrl.startsWith("https://placehold.co");
+  const imageUrl = animal.imageUrl || "https://placehold.co/400x300.png";
 
   return (
     <Card className="flex flex-col h-full overflow-hidden transition-all hover:shadow-lg hover:border-primary/50">
        <CardHeader className="p-0">
-        {isExternalImage ? (
-          <img
+        <img
             src={imageUrl}
             alt={animal.name}
             width={400}
@@ -26,16 +22,6 @@ export function AnimalCard({ animal }: AnimalCardProps) {
             className="object-cover w-full h-48"
             data-ai-hint={animal.dataAiHint}
           />
-        ) : (
-          <Image
-            src={imageUrl}
-            alt={animal.name}
-            width={400}
-            height={300}
-            className="object-cover w-full h-48"
-            data-ai-hint={animal.dataAiHint}
-          />
-        )}
      </CardHeader>
       <CardContent className="p-4 flex-grow">
         <CardTitle className="text-lg font-headline mb-2">{animal.name}</CardTitle>

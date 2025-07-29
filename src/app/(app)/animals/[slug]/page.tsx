@@ -1,6 +1,5 @@
 import { getAnimals, getAnimal, type Animal } from "@/lib/data";
 import { notFound } from "next/navigation";
-import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { PawPrint, Globe } from "lucide-react";
@@ -31,7 +30,7 @@ export default async function AnimalDetailPage({ params }: { params: { slug: str
 
       <Card className="overflow-hidden">
         <CardContent className="p-0">
-          <Image
+          <img
               src={imageUrl}
               alt={animal.name}
               width={800}
