@@ -34,13 +34,13 @@ export function InteractiveMap({ foundations }: InteractiveMapProps) {
     <TooltipProvider>
       <div className="relative w-full max-w-4xl mx-auto rounded-lg bg-card p-4 border">
         <div className="relative mx-auto" style={{ width: `${MAP_WIDTH}px`, height: `${MAP_HEIGHT}px`}}>
-            <Image 
+            {/* Using a standard img tag to load from the public folder */}
+            <img
                 src="/costa-rica-map.png"
                 alt="Map of Costa Rica"
                 width={MAP_WIDTH}
                 height={MAP_HEIGHT}
-                className="rounded-md"
-                data-ai-hint="costa rica"
+                className="rounded-md object-cover"
             />
             {foundations.map((foundation) => {
                 const { left, top } = convertCoords(foundation.lat, foundation.lng);
