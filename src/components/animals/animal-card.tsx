@@ -12,16 +12,22 @@ type AnimalCardProps = {
 export function AnimalCard({ animal }: AnimalCardProps) {
   return (
     <Card className="flex flex-col h-full overflow-hidden transition-all hover:shadow-lg hover:border-primary/50">
-       <CardHeader className="p-0">
-        <Image
-            src={animal.imageUrl}
-            alt={animal.name}
-            width={400}
-            height={300}
-            className="object-cover w-full h-48"
-            data-ai-hint={animal.dataAiHint}
-          />
-     </CardHeader>
+      {animal.imageUrl ? (
+         <CardHeader className="p-0">
+          <Image
+              src={animal.imageUrl}
+              alt={animal.name}
+              width={400}
+              height={300}
+              className="object-cover w-full h-48"
+              data-ai-hint={animal.dataAiHint}
+            />
+       </CardHeader>
+      ) : (
+        <div className="h-48 bg-muted flex items-center justify-center text-muted-foreground">
+            No image
+        </div>
+      )}
       <CardContent className="p-4 flex-grow">
         <CardTitle className="text-lg font-headline mb-2">{animal.name}</CardTitle>
         <Badge variant={animal.status === 'En Peligro' || animal.status === 'Endangered' ? 'destructive' : 'secondary'}>{animal.status}</Badge>

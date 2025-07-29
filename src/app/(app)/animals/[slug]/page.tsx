@@ -1,16 +1,9 @@
-import { getAnimals, getAnimal, type Animal } from "@/lib/data";
+import { getAnimal } from "@/lib/data";
 import { notFound } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { PawPrint, Globe } from "lucide-react";
 import Image from "next/image";
-
-export async function generateStaticParams() {
-  const animals = await getAnimals();
-  return animals.map((animal) => ({
-    slug: animal.slug,
-  }));
-}
 
 export default async function AnimalDetailPage({ params }: { params: { slug: string } }) {
   const animal = await getAnimal(params.slug);
@@ -26,18 +19,20 @@ export default async function AnimalDetailPage({ params }: { params: { slug: str
         <p className="text-xl text-muted-foreground font-headline">{animal.scientificName}</p>
       </div>
 
-      <Card className="overflow-hidden">
-        <CardContent className="p-0">
-          <Image
-              src={animal.imageUrl}
-              alt={animal.name}
-              width={800}
-              height={450}
-              className="w-full object-cover"
-              data-ai-hint={animal.dataAiHint}
-          />
-        </CardContent>
-      </Card>
+      {animal.imageUrl && (
+        <Card className="overflow-hidden">
+            <CardContent className="p-0">
+            <Image
+                src={animal.imageUrl}
+                alt={animal.name}
+                width={800}
+                height={450}
+                className="w-full object-cover"
+                data-ai-hint={animal.dataAiHint}
+            />
+            </CardContent>
+        </Card>
+      )}
       
       <p className="text-lg leading-relaxed">{animal.description}</p>
 
