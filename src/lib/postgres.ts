@@ -4,7 +4,9 @@ import { Pool } from 'pg';
 
 // Comprueba si la variable de entorno está definida al inicio.
 if (!process.env.POSTGRES_URL) {
-  throw new Error('La variable de entorno POSTGRES_URL no está definida.');
+  // Este error se lanzará durante la compilación si la variable no está definida,
+  // deteniendo el proceso antes de que la aplicación intente ejecutarse sin ella.
+  throw new Error('CRÍTICO: La variable de entorno POSTGRES_URL no está definida.');
 }
 
 // Crea una nueva instancia del pool de conexiones de PostgreSQL
@@ -37,12 +39,20 @@ export async function query(text: string, params: any[]) {
     }
   } catch (error) {
     console.error('Error de base de datos:', error);
-    // Este mensaje te ayudará a diagnosticar si la variable de entorno está ausente.
-    if (!process.env.POSTGRES_URL) {
-        console.error('CRÍTICO: La variable de entorno POSTGRES_URL no fue encontrada durante la ejecución de la consulta.');
-    } else {
-        console.error('INFO: La variable POSTGRES_URL fue encontrada, el problema podría ser de red, firewall o credenciales incorrectas.');
-    }
+    
+    // El mensaje de error ahora es mucho más específico y accionable
+    console.error(`
+      -----------------------------------------------------------------
+      FALLO EN LA CONEXIÓN A POSTGRESQL: La aplicación no pudo conectarse a la base de datos.
+      CAUSA MÁS PROBABLE: Problema de red, firewall o permisos.
+      
+      QUÉ REVISAR:
+      1.  **Redes Autorizadas en Cloud SQL:** Asegúrate de que la dirección IP de la aplicación que se conecta esté en la lista de "Redes Autorizadas" de tu instancia de Cloud SQL. Para App Hosting, esto a menudo requiere autorizar la IP de salida del servicio.
+      2.  **Firewall de VPC:** Si tu instancia usa una IP privada, verifica las reglas de firewall de la VPC para permitir el tráfico en el puerto 5432 desde el origen de tu aplicación.
+      3.  **Credenciales:** Vuelve a verificar que el usuario, la contraseña y el nombre de la base de datos en tu POSTGRES_URL son correctos.
+      -----------------------------------------------------------------
+    `);
+    
     // Lanza el error para que las funciones que llaman puedan manejarlo
     throw error;
   }
