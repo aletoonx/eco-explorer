@@ -1,5 +1,6 @@
 import { getAnimals } from "@/lib/data";
 import { AnimalCard } from "@/components/animals/animal-card";
+import { ExtinctionInfo } from "@/components/animals/extinction-info";
 
 export default async function AnimalsPage() {
   const animals = await getAnimals();
@@ -12,6 +13,9 @@ export default async function AnimalsPage() {
           Aprende más sobre las especies más vulnerables del mundo.
         </p>
       </div>
+
+      <ExtinctionInfo />
+
       {animals.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {animals.map((animal) => (
