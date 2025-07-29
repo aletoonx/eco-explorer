@@ -1,3 +1,5 @@
+'use server';
+
 // Carga las variables de entorno desde el archivo .env
 import dotenv from 'dotenv';
 dotenv.config();
@@ -13,6 +15,10 @@ if (!process.env.POSTGRES_URL) {
 // El pool gestiona eficientemente las conexiones a la base de datos.
 const pool = new Pool({
   connectionString: process.env.POSTGRES_URL,
+  // Opciones recomendadas para entornos serverless
+  max: 10, // Límite de clientes en el pool
+  idleTimeoutMillis: 30000, // Tiempo que un cliente puede estar inactivo
+  connectionTimeoutMillis: 20000, // Tiempo para esperar una conexión
 });
 
 /**
