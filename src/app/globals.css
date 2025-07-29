@@ -73,6 +73,9 @@ body {
 
 @layer components {
     .dark .alert-destructive {
-        @apply bg-destructive/20 border-destructive/40;
+        @apply bg-gray-200 border-red-500/50 text-red-900;
+        & > svg {
+            @apply text-red-900;
+        }
     }
 }
