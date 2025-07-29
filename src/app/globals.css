@@ -70,3 +70,9 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+    .dark .alert-destructive {
+        @apply bg-destructive/20 border-destructive/40;
+    }
+}
