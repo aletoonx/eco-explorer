@@ -8,8 +8,11 @@ import {
 import { Map, PawPrint, Landmark, Rocket } from "lucide-react"
 import Link from "next/link"
 import { ExplorationPlanner } from "@/components/ai/exploration-planner";
+import { getMapFeatures } from "@/lib/data";
 
-export default function DashboardPage() {
+export default async function DashboardPage() {
+  const mapFeatures = await getMapFeatures();
+
   return (
     <div className="flex flex-col gap-8 flex-grow">
       <div>
@@ -75,7 +78,7 @@ export default function DashboardPage() {
           </CardDescription>
         </CardHeader>
         <CardContent className="flex-grow flex flex-col">
-          <ExplorationPlanner />
+          <ExplorationPlanner mapFeatures={mapFeatures} />
         </CardContent>
       </Card>
     </div>

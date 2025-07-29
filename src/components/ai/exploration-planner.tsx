@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { suggestExplorationPath, SuggestExplorationPathOutput } from "@/ai/flows/suggest-exploration-path";
-import { getMapFeatures } from "@/lib/data";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Lightbulb, Loader2 } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
@@ -19,22 +18,14 @@ const formSchema = z.object({
   }),
 });
 
-export function ExplorationPlanner() {
+interface ExplorationPlannerProps {
+  mapFeatures: string;
+}
+
+export function ExplorationPlanner({ mapFeatures }: ExplorationPlannerProps) {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<SuggestExplorationPathOutput | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [mapFeatures, setMapFeatures] = useState<string>("");
-  const [loadingFeatures, setLoadingFeatures] = useState(true);
-
-  useEffect(() => {
-    async function fetchMapFeatures() {
-      setLoadingFeatures(true);
-      const features = await getMapFeatures();
-      setMapFeatures(features);
-      setLoadingFeatures(false);
-    }
-    fetchMapFeatures();
-  }, []);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -75,14 +66,14 @@ export function ExplorationPlanner() {
                   <Textarea
                     placeholder="Ej: 'Me fascinan los grandes felinos y quiero ver los esfuerzos de conservación para tigres y leopardos.' o 'Quiero aprender sobre la vida marina y la conservación de los océanos.'"
                     {...field}
-                    disabled={loadingFeatures || loading}
+                    disabled={loading}
                   />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
-          <Button type="submit" disabled={loading || loadingFeatures}>
+          <Button type="submit" disabled={loading}>
             {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
             {loading ? 'Generando...' : 'Sugerir una Ruta'}
           </Button>

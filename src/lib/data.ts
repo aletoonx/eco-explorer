@@ -1,3 +1,5 @@
+'use server';
+
 import { db } from './firebase';
 import { collection, getDocs, doc, getDoc, query as firestoreQuery, where, limit } from 'firebase/firestore';
 import { query } from './postgres';
