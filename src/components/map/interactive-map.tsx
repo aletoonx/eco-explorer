@@ -4,17 +4,16 @@
 import type { Foundation } from "@/lib/data";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { MapPin } from "lucide-react";
-import Image from "next/image";
 
 type InteractiveMapProps = {
   foundations: Foundation[];
 };
 
-// Map dimensions based on the image aspect ratio
+// Dimensiones del mapa basadas en la relación de aspecto de la imagen
 const MAP_WIDTH = 560;
 const MAP_HEIGHT = 500;
 
-// Geographic bounds of Costa Rica
+// Límites geográficos de Costa Rica
 const bounds = {
   minLng: -85.95,
   maxLng: -82.5,
@@ -22,7 +21,7 @@ const bounds = {
   maxLat: 11.2,
 };
 
-// Function to convert longitude/latitude to percentage-based top/left coordinates
+// Convierte coordenadas de latitud/longitud a coordenadas porcentuales (top/left)
 function convertCoords(lat: number, lng: number) {
   const left = ((lng - bounds.minLng) / (bounds.maxLng - bounds.minLng)) * 100;
   const top = ((bounds.maxLat - lat) / (bounds.maxLat - bounds.minLat)) * 100;
@@ -34,10 +33,10 @@ export function InteractiveMap({ foundations }: InteractiveMapProps) {
     <TooltipProvider>
       <div className="relative w-full max-w-4xl mx-auto rounded-lg bg-card p-4 border">
         <div className="relative mx-auto" style={{ width: `${MAP_WIDTH}px`, height: `${MAP_HEIGHT}px`}}>
-            {/* Using a standard img tag to load from the public folder */}
+            {/* Carga la imagen desde la carpeta `public` */}
             <img
                 src="/costa-rica-map.png"
-                alt="Map of Costa Rica"
+                alt="Mapa de Costa Rica"
                 width={MAP_WIDTH}
                 height={MAP_HEIGHT}
                 className="rounded-md object-cover"

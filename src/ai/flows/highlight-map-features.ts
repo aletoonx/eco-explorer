@@ -1,11 +1,11 @@
 'use server';
 
 /**
- * @fileOverview An AI agent for highlighting the best features of locations on the interactive map.
+ * @fileOverview Agente de IA para destacar las mejores características de las ubicaciones en el mapa interactivo.
  *
- * - highlightMapFeatures - A function that highlights key features of map locations using AI.
- * - HighlightMapFeaturesInput - The input type for the highlightMapFeatures function.
- * - HighlightMapFeaturesOutput - The return type for the highlightMapFeatures function.
+ * - highlightMapFeatures: Destaca características clave de ubicaciones del mapa usando IA.
+ * - HighlightMapFeaturesInput: El tipo de entrada para la función highlightMapFeatures.
+ * - HighlightMapFeaturesOutput: El tipo de retorno para la función highlightMapFeatures.
  */
 
 import {ai} from '@/ai/genkit';

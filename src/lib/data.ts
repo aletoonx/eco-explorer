@@ -25,7 +25,7 @@ export type Foundation = {
   lng: number;
 };
 
-// --- Animal Data Functions ---
+// --- Funciones de Datos de Animales ---
 
 export async function getAnimals(): Promise<Animal[]> {
   try {
@@ -34,11 +34,9 @@ export async function getAnimals(): Promise<Animal[]> {
     const animalList = animalSnapshot.docs.map(doc => ({ slug: doc.id, ...doc.data() } as Animal));
     return animalList;
   } catch (error) {
-    console.error("Error fetching animals:", error);
-    // In a real app, you'd want more robust error handling.
-    // For now, we return an empty array to prevent the app from crashing.
+    console.error("Error al obtener animales:", error);
     if (error instanceof Error && (error.message.includes("Missing or insufficient permissions") || error.message.includes("firestore/permission-denied"))) {
-       console.error("Firestore permission error: Please check your security rules in the Firebase console.");
+       console.error("Error de permisos en Firestore: Revisa tus reglas de seguridad en la consola de Firebase.");
     }
     return [];
   }
@@ -53,13 +51,13 @@ export async function getAnimal(slug: string): Promise<Animal | undefined> {
     }
     return undefined;
   } catch(error) {
-    console.error(`Error fetching animal with slug ${slug}:`, error);
+    console.error(`Error al obtener el animal con slug ${slug}:`, error);
     return undefined;
   }
 }
 
 
-// --- Foundation Data Functions ---
+// --- Funciones de Datos de Fundaciones ---
 
 export async function getFoundations(): Promise<Foundation[]> {
   try {
@@ -68,9 +66,9 @@ export async function getFoundations(): Promise<Foundation[]> {
     const foundationList = foundationSnapshot.docs.map(doc => ({ slug: doc.id, ...doc.data() } as Foundation));
     return foundationList;
   } catch (error) {
-     console.error("Error fetching foundations:", error);
+     console.error("Error al obtener fundaciones:", error);
      if (error instanceof Error && (error.message.includes("Missing or insufficient permissions") || error.message.includes("firestore/permission-denied"))) {
-       console.error("Firestore permission error: Please check your security rules in the Firebase console.");
+       console.error("Error de permisos en Firestore: Revisa tus reglas de seguridad en la consola de Firebase.");
     }
     return [];
   }
@@ -86,7 +84,7 @@ export async function getFoundation(slug: string): Promise<Foundation | undefine
     }
     return undefined;
   } catch (error) {
-    console.error(`Error fetching foundation with slug ${slug}:`, error);
+    console.error(`Error al obtener la fundación con slug ${slug}:`, error);
     return undefined;
   }
 }
@@ -94,7 +92,7 @@ export async function getFoundation(slug: string): Promise<Foundation | undefine
 export async function getMapFeatures(): Promise<string> {
     const foundations = await getFoundations();
     if (!foundations || foundations.length === 0) {
-      return "No map features available.";
+      return "No hay características de mapa disponibles.";
     }
-    return foundations.map(f => `${f.name} in ${f.location}`).join(', ');
+    return foundations.map(f => `${f.name} en ${f.location}`).join(', ');
 }

@@ -1,13 +1,11 @@
-// Implemented Genkit flow for personalized exploration path suggestions based on user interests.
-
 'use server';
 
 /**
- * @fileOverview AI-powered tool that suggests personalized exploration paths on the interactive map based on user interests.
+ * @fileOverview Herramienta de IA que sugiere rutas de exploración personalizadas en el mapa interactivo.
  *
- * - suggestExplorationPath - A function that handles the suggestion of exploration paths.
- * - SuggestExplorationPathInput - The input type for the suggestExplorationPath function.
- * - SuggestExplorationPathOutput - The return type for the suggestExplorationPath function.
+ * - suggestExplorationPath: Sugiere rutas de exploración.
+ * - SuggestExplorationPathInput: El tipo de entrada para suggestExplorationPath.
+ * - SuggestExplorationPathOutput: El tipo de retorno para suggestExplorationPath.
  */
 
 import {ai} from '@/ai/genkit';
