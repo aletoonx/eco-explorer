@@ -10,10 +10,10 @@ import { signOut } from "firebase/auth";
 import { cn } from "@/lib/utils";
 
 const navItems = [
-  { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/map", label: "Interactive Map", icon: Map },
-  { href: "/animals", label: "Animals", icon: PawPrint },
-  { href: "/foundations", label: "Foundations", icon: Landmark },
+  { href: "/dashboard", label: "Panel", icon: LayoutDashboard },
+  { href: "/map", label: "Mapa Interactivo", icon: Map },
+  { href: "/animals", label: "Animales", icon: PawPrint },
+  { href: "/foundations", label: "Fundaciones", icon: Landmark },
 ];
 
 export function AppHeader() {
@@ -34,7 +34,7 @@ export function AppHeader() {
       <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link href="/dashboard" className="flex items-center gap-2 font-semibold">
           <Leaf className="h-6 w-6 text-primary" />
-          <span className="hidden font-headline text-lg sm:inline-block">Eco Explorer</span>
+          <span className="hidden font-headline text-lg sm:inline-block">Eco Explorador</span>
         </Link>
         <nav className="hidden items-center gap-6 md:flex">
           {navItems.map((item) => (
@@ -51,7 +51,7 @@ export function AppHeader() {
           ))}
         </nav>
         <div className="hidden items-center gap-2 md:flex">
-          <Button variant="ghost" size="icon" onClick={handleLogout} aria-label="Logout">
+          <Button variant="ghost" size="icon" onClick={handleLogout} aria-label="Cerrar sesión">
             <LogOut className="h-5 w-5" />
           </Button>
         </div>
@@ -59,7 +59,7 @@ export function AppHeader() {
           <SheetTrigger asChild>
             <Button variant="outline" size="icon" className="md:hidden">
               <Menu className="h-5 w-5" />
-              <span className="sr-only">Toggle navigation menu</span>
+              <span className="sr-only">Alternar menú de navegación</span>
             </Button>
           </SheetTrigger>
           <SheetContent side="left">
@@ -67,7 +67,7 @@ export function AppHeader() {
               <div className="border-b p-4">
                 <Link href="/dashboard" className="flex items-center gap-2 font-semibold">
                   <Leaf className="h-6 w-6 text-primary" />
-                  <span className="font-headline text-lg">Eco Explorer</span>
+                  <span className="font-headline text-lg">Eco Explorador</span>
                 </Link>
               </div>
               <nav className="flex-1 space-y-2 p-4">
@@ -88,7 +88,7 @@ export function AppHeader() {
               <div className="border-t p-4">
                 <Button variant="ghost" className="w-full justify-start" onClick={handleLogout}>
                   <LogOut className="mr-2 h-4 w-4" />
-                  Logout
+                  Cerrar Sesión
                 </Button>
               </div>
             </div>

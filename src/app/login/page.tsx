@@ -10,8 +10,8 @@ export default function LoginPage() {
             <Link href="/" className="inline-block mb-4">
                 <Leaf className="w-12 h-12 text-primary" />
             </Link>
-          <h1 className="text-3xl font-bold font-headline">Welcome Back to Eco Explorer</h1>
-          <p className="text-muted-foreground">Enter your credentials to continue your journey.</p>
+          <h1 className="text-3xl font-bold font-headline">Bienvenido de Nuevo a Eco Explorador</h1>
+          <p className="text-muted-foreground">Ingresa tus credenciales para continuar tu viaje.</p>
         </div>
         <LoginForm />
       </div>

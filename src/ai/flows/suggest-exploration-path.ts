@@ -26,10 +26,10 @@ export type SuggestExplorationPathInput = z.infer<typeof SuggestExplorationPathI
 const SuggestExplorationPathOutputSchema = z.object({
   suggestedPath: z
     .string()
-    .describe('A suggested exploration path on the interactive map, tailored to the user interests.'),
+    .describe('A suggested exploration path on the interactive map, tailored to the user interests, in Spanish.'),
   reasoning: z
     .string()
-    .describe('The reasoning behind the suggested path, explaining how it aligns with the user interests and map features.'),
+    .describe('The reasoning behind the suggested path, explaining how it aligns with the user interests and map features, in Spanish.'),
 });
 export type SuggestExplorationPathOutput = z.infer<typeof SuggestExplorationPathOutputSchema>;
 
@@ -41,7 +41,7 @@ const suggestExplorationPathPrompt = ai.definePrompt({
   name: 'suggestExplorationPathPrompt',
   input: {schema: SuggestExplorationPathInputSchema},
   output: {schema: SuggestExplorationPathOutputSchema},
-  prompt: `You are an AI assistant designed to suggest personalized exploration paths on an interactive map based on user interests.
+  prompt: `You are an AI assistant designed to suggest personalized exploration paths on an interactive map based on user interests. Your response must be in Spanish.
 
   Given the user's interests and the available features on the map, recommend a path that aligns with their interests.
 

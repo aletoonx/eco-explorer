@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState, useEffect } from "react";
@@ -16,7 +15,7 @@ import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
 
 const formSchema = z.object({
   userInterests: z.string().min(10, {
-    message: "Please tell us a bit more about your interests.",
+    message: "Por favor, cuéntanos un poco más sobre tus intereses.",
   }),
 });
 
@@ -55,7 +54,7 @@ export function ExplorationPlanner() {
       });
       setResult(output);
     } catch (e) {
-      setError("An error occurred while generating your path. Please try again.");
+      setError("Ocurrió un error al generar tu ruta. Por favor, inténtalo de nuevo.");
       console.error(e);
     } finally {
       setLoading(false);
@@ -71,10 +70,10 @@ export function ExplorationPlanner() {
             name="userInterests"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>What are you interested in seeing?</FormLabel>
+                <FormLabel>¿Qué te interesa ver?</FormLabel>
                 <FormControl>
                   <Textarea
-                    placeholder="e.g., 'I'm fascinated by big cats and want to see conservation efforts for tigers and leopards.' or 'I want to learn about marine life and ocean conservation.'"
+                    placeholder="Ej: 'Me fascinan los grandes felinos y quiero ver los esfuerzos de conservación para tigres y leopardos.' o 'Quiero aprender sobre la vida marina y la conservación de los océanos.'"
                     {...field}
                     disabled={loadingFeatures || loading}
                   />
@@ -85,7 +84,7 @@ export function ExplorationPlanner() {
           />
           <Button type="submit" disabled={loading || loadingFeatures}>
             {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-            {loading ? 'Generating...' : 'Suggest a Path'}
+            {loading ? 'Generando...' : 'Sugerir una Ruta'}
           </Button>
         </form>
       </Form>
@@ -98,16 +97,16 @@ export function ExplorationPlanner() {
           <CardHeader>
             <div className="flex items-center gap-2">
               <Lightbulb className="w-5 h-5 text-yellow-400" />
-              <CardTitle className="font-headline text-lg">Your Suggested Path</CardTitle>
+              <CardTitle className="font-headline text-lg">Tu Ruta Sugerida</CardTitle>
             </div>
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
-              <h3 className="font-semibold">Path:</h3>
+              <h3 className="font-semibold">Ruta:</h3>
               <p>{result.suggestedPath}</p>
             </div>
             <div>
-              <h3 className="font-semibold">Reasoning:</h3>
+              <h3 className="font-semibold">Justificación:</h3>
               <p className="text-muted-foreground">{result.reasoning}</p>
             </div>
           </CardContent>

@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState } from "react";
@@ -25,13 +24,13 @@ export function RegisterForm() {
   const validatePassword = (password: string): string[] => {
     const errors: string[] = [];
     if (password.length < 8) {
-      errors.push("be at least 8 characters long");
+      errors.push("tener al menos 8 caracteres");
     }
     if (!/[A-Z]/.test(password)) {
-      errors.push("contain an uppercase letter");
+      errors.push("contener una letra mayúscula");
     }
     if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
-      errors.push("contain a special character");
+      errors.push("contener un carácter especial");
     }
     return errors;
   }
@@ -41,18 +40,18 @@ export function RegisterForm() {
     setError(null);
 
     if (!username || !email || !password) {
-      setError("Please fill in all fields.");
+      setError("Por favor, completa todos los campos.");
       return;
     }
 
     if (!email.includes('@')) {
-        setError("Please enter a valid email address.");
+        setError("Por favor, ingresa una dirección de correo electrónico válida.");
         return;
     }
 
     const passwordErrors = validatePassword(password);
     if (passwordErrors.length > 0) {
-      setError(`Password must ${passwordErrors.join(", ")}.`);
+      setError(`La contraseña debe ${passwordErrors.join(", ")}.`);
       return;
     }
     
@@ -65,22 +64,22 @@ export function RegisterForm() {
       });
 
       toast({
-        title: "Registration Successful",
-        description: "Your account has been created. Please log in.",
+        title: "Registro Exitoso",
+        description: "Tu cuenta ha sido creada. Por favor, inicia sesión.",
       });
       router.push("/login");
     } catch (e: any) {
       if (e.code === 'auth/email-already-in-use') {
-        setError("This email is already in use. Please choose another one.");
+        setError("Este correo electrónico ya está en uso. Por favor, elige otro.");
       } else if (e.code === 'auth/weak-password') {
-        setError("The password is too weak.");
+        setError("La contraseña es demasiado débil.");
       } else if (e.code === 'auth/invalid-email') {
-        setError("The email address is not valid.");
+        setError("La dirección de correo electrónico no es válida.");
       } else if (e.code === 'auth/configuration-not-found') {
-        setError("Firebase authentication is not configured. Please enable Email/Password sign-in in the Firebase console.");
+        setError("La autenticación de Firebase no está configurada. Por favor, habilita el inicio de sesión con Correo/Contraseña en la consola de Firebase.");
       }
        else {
-        setError("An unexpected error occurred. Please try again.");
+        setError("Ocurrió un error inesperado. Por favor, inténtalo de nuevo.");
         console.error(e);
       }
     } finally {
@@ -92,7 +91,7 @@ export function RegisterForm() {
     <Card>
       <form onSubmit={handleSubmit}>
         <CardHeader>
-          <CardTitle className="font-headline">Register</CardTitle>
+          <CardTitle className="font-headline">Registrarse</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
            {error && (
@@ -102,26 +101,26 @@ export function RegisterForm() {
             </Alert>
           )}
           <div className="space-y-2">
-            <Label htmlFor="username">Username</Label>
-            <Input id="username" placeholder="explorer123" value={username} onChange={(e) => setUsername(e.target.value)} disabled={loading} />
+            <Label htmlFor="username">Nombre de Usuario</Label>
+            <Input id="username" placeholder="explorador123" value={username} onChange={(e) => setUsername(e.target.value)} disabled={loading} />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
-            <Input id="email" type="email" placeholder="explorer@example.com" value={email} onChange={(e) => setEmail(e.target.value)} disabled={loading} />
+            <Label htmlFor="email">Correo Electrónico</Label>
+            <Input id="email" type="email" placeholder="explorador@ejemplo.com" value={email} onChange={(e) => setEmail(e.target.value)} disabled={loading} />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="password">Password</Label>
+            <Label htmlFor="password">Contraseña</Label>
             <Input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} disabled={loading} />
           </div>
         </CardContent>
         <CardFooter className="flex flex-col gap-4">
           <Button type="submit" className="w-full" disabled={loading}>
-            {loading ? 'Creating Account...' : 'Create Account'}
+            {loading ? 'Creando Cuenta...' : 'Crear Cuenta'}
           </Button>
           <p className="text-sm text-center text-muted-foreground">
-            Already have an account?{" "}
+            ¿Ya tienes una cuenta?{" "}
             <Link href="/login" className="underline text-primary">
-              Login here
+              Inicia sesión aquí
             </Link>
           </p>
         </CardFooter>

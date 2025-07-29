@@ -25,7 +25,7 @@ export type HighlightMapFeaturesInput = z.infer<typeof HighlightMapFeaturesInput
 const HighlightMapFeaturesOutputSchema = z.object({
   highlightedFeatures: z
     .string()
-    .describe('A highlighted summary of the best features of the location.'),
+    .describe('A highlighted summary of the best features of the location, in Spanish.'),
 });
 export type HighlightMapFeaturesOutput = z.infer<typeof HighlightMapFeaturesOutputSchema>;
 
@@ -39,7 +39,7 @@ const highlightMapFeaturesPrompt = ai.definePrompt({
   name: 'highlightMapFeaturesPrompt',
   input: {schema: HighlightMapFeaturesInputSchema},
   output: {schema: HighlightMapFeaturesOutputSchema},
-  prompt: `You are an AI assistant designed to highlight the best features of a location on an interactive map for Eco Explorer. Consider recent animal sightings and foundation activities at the location.
+  prompt: `You are an AI assistant designed to highlight the best features of a location on an interactive map for Eco Explorer. Your response must be in Spanish. Consider recent animal sightings and foundation activities at the location.
 
 Location Name: {{{locationName}}}
 Recent Animal Sightings: {{{recentSightings}}}

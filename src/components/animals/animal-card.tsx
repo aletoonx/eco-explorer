@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import type { Animal } from "@/lib/data";
 import Image from "next/image";
@@ -26,11 +25,11 @@ export function AnimalCard({ animal }: AnimalCardProps) {
       </CardHeader>
       <CardContent className="p-4 flex-grow">
         <CardTitle className="text-lg font-headline mb-2">{animal.name}</CardTitle>
-        <Badge variant={animal.status === 'Endangered' ? 'destructive' : 'secondary'}>{animal.status}</Badge>
+        <Badge variant={animal.status === 'Endangered' || animal.status === 'En Peligro' ? 'destructive' : 'secondary'}>{animal.status}</Badge>
       </CardContent>
       <CardFooter className="p-4 pt-0">
         <Button asChild className="w-full">
-          <Link href={`/animals/${animal.slug}`}>Learn More</Link>
+          <Link href={`/animals/${animal.slug}`}>Aprender Más</Link>
         </Button>
       </CardFooter>
     </Card>

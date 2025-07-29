@@ -17,7 +17,7 @@ export function Footer() {
                         </Avatar>
                         <div>
                             <p className="font-bold text-lg font-headline">Ihan Fuentes Arroyo</p>
-                            <p className="text-sm text-muted-foreground">App Creator</p>
+                            <p className="text-sm text-muted-foreground">Creador de la App</p>
                         </div>
                     </div>
                     <div className="flex flex-col gap-2 text-sm items-center md:items-end">
@@ -35,13 +35,13 @@ export function Footer() {
                 <Separator className="my-6" />
 
                 <div className="flex flex-col md:flex-row justify-between items-center text-center md:text-left text-sm text-muted-foreground gap-4">
-                    <p>&copy; 2024 Eco Explorer. All rights reserved.</p>
+                    <p>&copy; 2024 Eco Explorador. Todos los derechos reservados.</p>
                     <div className="flex gap-4">
                         <Link href="#" className="hover:text-primary hover:underline underline-offset-4" prefetch={false}>
-                            Terms of Service
+                            Términos de Servicio
                         </Link>
                         <Link href="#" className="hover:text-primary hover:underline underline-offset-4" prefetch={false}>
-                            Privacy
+                            Privacidad
                         </Link>
                     </div>
                 </div>

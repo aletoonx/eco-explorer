@@ -1,4 +1,3 @@
-
 import { getFoundations } from "@/lib/data";
 import { FoundationCard } from "@/components/foundations/foundation-card";
 
@@ -7,9 +6,9 @@ export default async function FoundationsPage() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-3xl font-bold font-headline">Foundation Directory</h1>
+        <h1 className="text-3xl font-bold font-headline">Directorio de Fundaciones</h1>
         <p className="text-muted-foreground">
-          Discover organizations dedicated to protecting wildlife and their habitats.
+          Descubre organizaciones dedicadas a proteger la vida silvestre y sus hábitats.
         </p>
       </div>
       {foundations.length > 0 ? (
@@ -19,7 +18,7 @@ export default async function FoundationsPage() {
           ))}
         </div>
       ) : (
-        <p>No foundations found. Please add some to the Firestore database.</p>
+        <p>No se encontraron fundaciones. Por favor, agrega algunas a la base de datos de Firestore.</p>
       )}
     </div>
   );

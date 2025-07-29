@@ -1,4 +1,3 @@
-
 import { getAnimals } from "@/lib/data";
 import { AnimalCard } from "@/components/animals/animal-card";
 
@@ -8,9 +7,9 @@ export default async function AnimalsPage() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-3xl font-bold font-headline">Animal Kingdom</h1>
+        <h1 className="text-3xl font-bold font-headline">Reino Animal</h1>
         <p className="text-muted-foreground">
-          Learn more about the world's most vulnerable species.
+          Aprende más sobre las especies más vulnerables del mundo.
         </p>
       </div>
       {animals.length > 0 ? (
@@ -20,7 +19,7 @@ export default async function AnimalsPage() {
           ))}
         </div>
       ) : (
-        <p>No animals found. Please add some to the Firestore database.</p>
+        <p>No se encontraron animales. Por favor, agrega algunos a la base de datos de Firestore.</p>
       )}
     </div>
   );

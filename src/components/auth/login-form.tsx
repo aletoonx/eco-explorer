@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState } from "react";
@@ -28,7 +27,7 @@ export function LoginForm() {
     setError(null);
 
     if (!email || !password) {
-      setError("Please enter both email and password.");
+      setError("Por favor, ingresa el correo electrónico y la contraseña.");
       return;
     }
     
@@ -39,20 +38,20 @@ export function LoginForm() {
       await signInWithEmailAndPassword(auth, email, password);
       
       toast({
-        title: "Login Successful",
-        description: "Welcome back! Redirecting you to the dashboard...",
+        title: "Inicio de Sesión Exitoso",
+        description: "¡Bienvenido de nuevo! Redirigiendo al panel...",
       });
       
       router.push("/dashboard");
 
     } catch (e: any) {
        if (e.code === 'auth/user-not-found' || e.code === 'auth/wrong-password' || e.code === 'auth/invalid-credential') {
-        setError("Invalid email or password.");
+        setError("Correo electrónico o contraseña inválidos.");
       } else if (e.code === 'auth/configuration-not-found') {
-        setError("Firebase authentication is not configured. Please enable Email/Password sign-in in the Firebase console.");
+        setError("La autenticación de Firebase no está configurada. Por favor, habilita el inicio de sesión con Correo/Contraseña en la consola de Firebase.");
       }
       else {
-        setError("An unexpected error occurred during login. Please try again.");
+        setError("Ocurrió un error inesperado durante el inicio de sesión. Por favor, inténtalo de nuevo.");
         console.error(e);
       }
     } finally {
@@ -64,7 +63,7 @@ export function LoginForm() {
     <Card>
       <form onSubmit={handleSubmit}>
         <CardHeader>
-          <CardTitle className="font-headline">Login</CardTitle>
+          <CardTitle className="font-headline">Iniciar Sesión</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           {error && (
@@ -74,22 +73,22 @@ export function LoginForm() {
             </Alert>
           )}
           <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
-            <Input id="email" type="email" placeholder="explorer@example.com" value={email} onChange={(e) => setEmail(e.target.value)} disabled={loading} />
+            <Label htmlFor="email">Correo Electrónico</Label>
+            <Input id="email" type="email" placeholder="explorador@ejemplo.com" value={email} onChange={(e) => setEmail(e.target.value)} disabled={loading} />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="password">Password</Label>
+            <Label htmlFor="password">Contraseña</Label>
             <Input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} disabled={loading} />
           </div>
         </CardContent>
         <CardFooter className="flex flex-col gap-4">
           <Button type="submit" className="w-full" disabled={loading}>
-            {loading ? 'Signing In...' : 'Sign In'}
+            {loading ? 'Iniciando Sesión...' : 'Iniciar Sesión'}
           </Button>
           <p className="text-sm text-center text-muted-foreground">
-            Don't have an account?{" "}
+            ¿No tienes una cuenta?{" "}
             <Link href="/register" className="underline text-primary">
-              Register here
+              Regístrate aquí
             </Link>
           </p>
         </CardFooter>

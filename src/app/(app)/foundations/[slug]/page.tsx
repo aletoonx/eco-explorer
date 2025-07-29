@@ -1,4 +1,3 @@
-
 import { getFoundations, getFoundation, type Foundation } from "@/lib/data";
 import { notFound } from "next/navigation";
 import Image from "next/image";
@@ -44,7 +43,7 @@ export default async function FoundationDetailPage({ params }: { params: { slug:
         <CardHeader>
             <CardTitle className="flex items-center gap-2">
                 <Target className="w-5 h-5 text-primary"/>
-                <span>Mission Statement</span>
+                <span>Misión</span>
             </CardTitle>
         </CardHeader>
         <CardContent>
@@ -57,7 +56,7 @@ export default async function FoundationDetailPage({ params }: { params: { slug:
             <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                     <MapPin className="w-5 h-5 text-primary"/>
-                    <span>Location</span>
+                    <span>Ubicación</span>
                 </CardTitle>
             </CardHeader>
             <CardContent>
@@ -68,7 +67,7 @@ export default async function FoundationDetailPage({ params }: { params: { slug:
             <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                     <Mail className="w-5 h-5 text-primary"/>
-                    <span>Contact</span>
+                    <span>Contacto</span>
                 </CardTitle>
             </CardHeader>
             <CardContent>

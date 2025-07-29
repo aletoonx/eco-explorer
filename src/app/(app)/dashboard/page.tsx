@@ -13,9 +13,9 @@ export default function DashboardPage() {
   return (
     <div className="flex flex-col gap-8 flex-grow">
       <div>
-        <h1 className="text-3xl font-bold font-headline">Welcome, Explorer!</h1>
+        <h1 className="text-3xl font-bold font-headline">¡Bienvenido, Explorador!</h1>
         <p className="text-muted-foreground">
-          Your journey into the wild begins here. What will you discover today?
+          Tu viaje a la naturaleza comienza aquí. ¿Qué descubrirás hoy?
         </p>
       </div>
 
@@ -23,13 +23,13 @@ export default function DashboardPage() {
         <Link href="/map">
           <Card className="hover:border-primary transition-colors h-full">
             <CardHeader className="flex flex-row items-center justify-between pb-2">
-              <CardTitle className="text-sm font-medium">Interactive Map</CardTitle>
+              <CardTitle className="text-sm font-medium">Mapa Interactivo</CardTitle>
               <Map className="w-4 h-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold font-headline">Explore Habitats</div>
+              <div className="text-2xl font-bold font-headline">Explora Hábitats</div>
               <p className="text-xs text-muted-foreground">
-                Discover wildlife foundations and animal territories.
+                Descubre fundaciones de vida silvestre y territorios de animales.
               </p>
             </CardContent>
           </Card>
@@ -37,13 +37,13 @@ export default function DashboardPage() {
         <Link href="/animals">
           <Card className="hover:border-primary transition-colors h-full">
             <CardHeader className="flex flex-row items-center justify-between pb-2">
-              <CardTitle className="text-sm font-medium">Animal Kingdom</CardTitle>
+              <CardTitle className="text-sm font-medium">Reino Animal</CardTitle>
               <PawPrint className="w-4 h-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold font-headline">Meet the Species</div>
+              <div className="text-2xl font-bold font-headline">Conoce las Especies</div>
               <p className="text-xs text-muted-foreground">
-                Learn about endangered animals and their stories.
+                Aprende sobre animales en peligro y sus historias.
               </p>
             </CardContent>
           </Card>
@@ -51,13 +51,13 @@ export default function DashboardPage() {
         <Link href="/foundations" className="md:col-span-2">
           <Card className="hover:border-primary transition-colors h-full">
             <CardHeader className="flex flex-row items-center justify-between pb-2">
-              <CardTitle className="text-sm font-medium">Conservation Heroes</CardTitle>
+              <CardTitle className="text-sm font-medium">Héroes de la Conservación</CardTitle>
               <Landmark className="w-4 h-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold font-headline">Find Foundations</div>
+              <div className="text-2xl font-bold font-headline">Encuentra Fundaciones</div>
               <p className="text-xs text-muted-foreground">
-                Connect with organizations protecting our planet.
+                Conéctate con organizaciones que protegen nuestro planeta.
               </p>
             </CardContent>
           </Card>
@@ -68,10 +68,10 @@ export default function DashboardPage() {
         <CardHeader>
           <div className="flex items-center gap-2">
             <Rocket className="w-6 h-6 text-primary" />
-            <CardTitle className="font-headline">Personalized Exploration Path</CardTitle>
+            <CardTitle className="font-headline">Ruta de Exploración Personalizada</CardTitle>
           </div>
           <CardDescription>
-            Let our AI guide suggest a personalized tour on the interactive map based on your interests.
+            Deja que nuestra guía de IA te sugiera un recorrido personalizado en el mapa interactivo basado en tus intereses.
           </CardDescription>
         </CardHeader>
         <CardContent className="flex-grow flex flex-col">

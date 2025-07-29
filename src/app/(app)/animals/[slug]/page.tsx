@@ -1,4 +1,3 @@
-
 import { getAnimals, getAnimal, type Animal } from "@/lib/data";
 import { notFound } from "next/navigation";
 import Image from "next/image";
@@ -49,11 +48,11 @@ export default async function AnimalDetailPage({ params }: { params: { slug: str
             <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                     <PawPrint className="w-5 h-5 text-primary"/>
-                    <span>Conservation Status</span>
+                    <span>Estado de Conservación</span>
                 </CardTitle>
             </CardHeader>
             <CardContent>
-                <Badge variant={animal.status === 'Endangered' ? 'destructive' : 'secondary'} className="text-lg">
+                <Badge variant={animal.status === 'Endangered' || animal.status === 'En Peligro' ? 'destructive' : 'secondary'} className="text-lg">
                     {animal.status}
                 </Badge>
             </CardContent>
@@ -62,7 +61,7 @@ export default async function AnimalDetailPage({ params }: { params: { slug: str
             <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                     <Globe className="w-5 h-5 text-primary"/>
-                    <span>Habitat</span>
+                    <span>Hábitat</span>
                 </CardTitle>
             </CardHeader>
             <CardContent>

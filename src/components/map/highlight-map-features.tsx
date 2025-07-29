@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState } from "react";
@@ -28,7 +27,7 @@ export function HighlightMapFeatures({ foundations }: HighlightMapFeaturesProps)
     
     const foundation = foundations.find(f => f.slug === slug);
     if (!foundation) {
-        setError("Could not find the selected foundation.");
+        setError("No se pudo encontrar la fundación seleccionada.");
         setLoading(false);
         return;
     }
@@ -36,14 +35,12 @@ export function HighlightMapFeatures({ foundations }: HighlightMapFeaturesProps)
     try {
       const output = await highlightMapFeatures({
         locationName: foundation.name,
-        // Ensure these fields exist on your foundation object and are strings.
-        // Provide empty strings as fallbacks if they might be undefined.
         recentSightings: foundation.recentSightings || "",
         foundationActivities: foundation.foundationActivities || "",
       });
       setResult(output);
     } catch (e) {
-      setError("An error occurred while fetching highlights. Please try again.");
+      setError("Ocurrió un error al obtener los destacados. Por favor, inténtalo de nuevo.");
       console.error(e);
     } finally {
       setLoading(false);
@@ -55,17 +52,17 @@ export function HighlightMapFeatures({ foundations }: HighlightMapFeaturesProps)
         <CardHeader>
             <div className="flex items-center gap-2">
                 <LocateFixed className="w-6 h-6 text-accent" />
-                <CardTitle className="font-headline">Location Highlights</CardTitle>
+                <CardTitle className="font-headline">Puntos Destacados del Lugar</CardTitle>
             </div>
             <CardDescription>
-                Select a foundation from the map to see AI-powered highlights about its location.
+                Selecciona una fundación del mapa para ver los puntos destacados sobre su ubicación, generados por IA.
             </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
             <div className="flex items-center gap-4">
                 <Select onValueChange={handleSelection} disabled={loading || foundations.length === 0}>
                     <SelectTrigger className="w-[280px]">
-                        <SelectValue placeholder={foundations.length === 0 ? "No foundations loaded" : "Select a foundation"} />
+                        <SelectValue placeholder={foundations.length === 0 ? "No hay fundaciones cargadas" : "Selecciona una fundación"} />
                     </SelectTrigger>
                     <SelectContent>
                         {foundations.map(f => (
@@ -84,7 +81,7 @@ export function HighlightMapFeatures({ foundations }: HighlightMapFeaturesProps)
                     <CardHeader>
                         <div className="flex items-center gap-2">
                         <Lightbulb className="w-5 h-5 text-yellow-400" />
-                        <CardTitle className="font-headline text-lg">Highlights for {foundations.find(f => f.slug === selectedFoundationSlug)?.name}</CardTitle>
+                        <CardTitle className="font-headline text-lg">Destacados para {foundations.find(f => f.slug === selectedFoundationSlug)?.name}</CardTitle>
                         </div>
                     </CardHeader>
                     <CardContent>

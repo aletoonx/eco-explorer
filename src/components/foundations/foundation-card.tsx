@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import type { Foundation } from "@/lib/data";
 import Image from "next/image";
@@ -29,7 +28,7 @@ export function FoundationCard({ foundation }: FoundationCardProps) {
       </CardContent>
       <CardFooter className="p-4 pt-0">
         <Button asChild className="w-full">
-          <Link href={`/foundations/${foundation.slug}`}>View Details</Link>
+          <Link href={`/foundations/${foundation.slug}`}>Ver Detalles</Link>
         </Button>
       </CardFooter>
     </Card>
