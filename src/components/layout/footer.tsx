@@ -12,7 +12,7 @@ export function Footer() {
                 <div className="grid md:grid-cols-2 gap-8 items-center">
                     <div className="flex items-center gap-4 justify-center md:justify-start">
                          <Avatar className="w-16 h-16">
-                            <AvatarImage src="/avatar-placeholder.png" alt="Ihan Fuentes Arroyo" data-ai-hint="profile picture" />
+                            <AvatarImage src="/avatar.jpg" alt="Ihan Fuentes Arroyo" data-ai-hint="profile picture" />
                             <AvatarFallback>N</AvatarFallback>
                         </Avatar>
                         <div>
