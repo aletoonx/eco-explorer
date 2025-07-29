@@ -39,6 +39,7 @@ export async function getAnimals(): Promise<Animal[]> {
     }));
   } catch (error) {
     console.error("Error al obtener animales desde PostgreSQL:", error);
+    // Devuelve un array vacío para que la app no se rompa.
     return [];
   }
 }
@@ -76,6 +77,7 @@ export async function getFoundations(): Promise<Foundation[]> {
     }));
   } catch (error) {
      console.error("Error al obtener fundaciones desde PostgreSQL:", error);
+     // Devuelve un array vacío para que la app no se rompa.
     return [];
   }
 }
