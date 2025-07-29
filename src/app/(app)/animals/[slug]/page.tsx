@@ -19,8 +19,6 @@ export default async function AnimalDetailPage({ params }: { params: { slug: str
     notFound();
   }
 
-  const imageUrl = animal.imageUrl || "https://placehold.co/800x450.png";
-
   return (
     <div className="space-y-8 max-w-4xl mx-auto">
       <div>
@@ -31,7 +29,7 @@ export default async function AnimalDetailPage({ params }: { params: { slug: str
       <Card className="overflow-hidden">
         <CardContent className="p-0">
           <img
-              src={imageUrl}
+              src={animal.imageUrl}
               alt={animal.name}
               width={800}
               height={450}
