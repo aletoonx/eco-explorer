@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { PawPrint, Globe } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 export async function generateStaticParams() {
   const animals = await getAnimals();
@@ -28,7 +28,7 @@ export default async function AnimalDetailPage({ params }: { params: { slug: str
 
       <Card className="overflow-hidden">
         <CardContent className="p-0">
-          <img
+          <Image
               src={animal.imageUrl}
               alt={animal.name}
               width={800}
@@ -48,7 +48,7 @@ export default async function AnimalDetailPage({ params }: { params: { slug: str
                     <PawPrint className="w-5 h-5 text-primary"/>
                     <span>Estado de Conservación</span>
                 </CardTitle>
-            </CardHeader>
+            </Header>
             <CardContent>
                 <Badge variant={animal.status === 'Endangered' || animal.status === 'En Peligro' ? 'destructive' : 'secondary'} className="text-lg">
                     {animal.status}
@@ -61,7 +61,7 @@ export default async function AnimalDetailPage({ params }: { params: { slug: str
                     <Globe className="w-5 h-5 text-primary"/>
                     <span>Hábitat</span>
                 </CardTitle>
-            </CardHeader>
+            </Header>
             <CardContent>
                 <p>{animal.habitat}</p>
             </CardContent>

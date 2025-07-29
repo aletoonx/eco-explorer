@@ -3,19 +3,18 @@ import type { Animal } from "@/lib/data";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "../ui/badge";
+import Image from "next/image";
 
 type AnimalCardProps = {
   animal: Animal;
 };
 
 export function AnimalCard({ animal }: AnimalCardProps) {
-  const imageUrl = animal.imageUrl;
-
   return (
     <Card className="flex flex-col h-full overflow-hidden transition-all hover:shadow-lg hover:border-primary/50">
        <CardHeader className="p-0">
-        <img
-            src={imageUrl}
+        <Image
+            src={animal.imageUrl}
             alt={animal.name}
             width={400}
             height={300}
