@@ -9,12 +9,12 @@ type FoundationCardProps = {
 };
 
 export function FoundationCard({ foundation }: FoundationCardProps) {
-  const imageUrl = foundation.imageUrl || "https://placehold.co/400x250.png";
+  const imageURL = foundation.imageURL || "https://placehold.co/400x250.png";
   return (
     <Card className="flex flex-col h-full overflow-hidden transition-all hover:shadow-lg hover:border-primary/50">
       <CardHeader className="p-0">
         <Image
-          src={imageUrl}
+          src={imageURL}
           alt={foundation.name}
           width={400}
           height={250}

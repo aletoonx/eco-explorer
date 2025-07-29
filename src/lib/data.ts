@@ -7,7 +7,7 @@ export type Animal = {
   scientificName: string;
   description: string;
   status: string;
-  imageUrl: string;
+  imageURL: string;
   habitat: string;
   dataAiHint: string;
 };
@@ -18,7 +18,7 @@ export type Foundation = {
   mission: string;
   location: string;
   contact: string;
-  imageUrl: string;
+  imageURL: string;
   dataAiHint: string;
   recentSightings: string;
   foundationActivities: string;

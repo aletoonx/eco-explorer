@@ -19,11 +19,11 @@ export default async function AnimalDetailPage({ params }: { params: { slug: str
         <p className="text-xl text-muted-foreground font-headline">{animal.scientificName}</p>
       </div>
 
-      {animal.imageUrl && (
+      {animal.imageURL && (
         <Card className="overflow-hidden">
             <CardContent className="p-0">
             <Image
-                src={animal.imageUrl}
+                src={animal.imageURL}
                 alt={animal.name}
                 width={800}
                 height={450}

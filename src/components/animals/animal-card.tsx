@@ -12,10 +12,10 @@ type AnimalCardProps = {
 export function AnimalCard({ animal }: AnimalCardProps) {
   return (
     <Card className="flex flex-col h-full overflow-hidden transition-all hover:shadow-lg hover:border-primary/50">
-      {animal.imageUrl ? (
+      {animal.imageURL ? (
          <CardHeader className="p-0">
           <Image
-              src={animal.imageUrl}
+              src={animal.imageURL}
               alt={animal.name}
               width={400}
               height={300}
