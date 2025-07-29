@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import type { Animal } from "@/lib/data";
 import Image from "next/image";
@@ -10,11 +11,12 @@ type AnimalCardProps = {
 };
 
 export function AnimalCard({ animal }: AnimalCardProps) {
+  const imageUrl = animal.imageUrl || "https://placehold.co/400x300.png";
   return (
     <Card className="flex flex-col h-full overflow-hidden transition-all hover:shadow-lg hover:border-primary/50">
       <CardHeader className="p-0">
         <Image
-          src={animal.imageUrl}
+          src={imageUrl}
           alt={animal.name}
           width={400}
           height={300}

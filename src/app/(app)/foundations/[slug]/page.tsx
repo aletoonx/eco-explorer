@@ -18,6 +18,8 @@ export default async function FoundationDetailPage({ params }: { params: { slug:
   if (!foundation) {
     notFound();
   }
+  
+  const imageUrl = foundation.imageUrl || "https://placehold.co/800x400.png";
 
   return (
     <div className="space-y-8 max-w-4xl mx-auto">
@@ -28,7 +30,7 @@ export default async function FoundationDetailPage({ params }: { params: { slug:
        <Card className="overflow-hidden">
         <CardContent className="p-0">
             <Image
-                src={foundation.imageUrl}
+                src={imageUrl}
                 alt={foundation.name}
                 width={800}
                 height={400}
