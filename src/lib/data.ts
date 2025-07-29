@@ -30,29 +30,34 @@ export type Foundation = {
 
 export async function getAnimals(): Promise<Animal[]> {
   try {
-    const animalsCol = collection(db, 'animals');
-    const animalSnapshot = await getDocs(animalsCol);
-    const animalList = animalSnapshot.docs.map(doc => ({ slug: doc.id, ...doc.data() } as Animal));
-    return animalList;
+    const res = await query('SELECT slug, name, "scientificName", description, status, "imageURL", habitat, "dataAiHint" FROM animals', []);
+    return res.rows.map(row => ({
+        ...row,
+        scientificName: row.scientificName,
+        imageURL: row.imageURL,
+        dataAiHint: row.dataAiHint,
+    }));
   } catch (error) {
-    console.error("Error al obtener animales:", error);
-    if (error instanceof Error && (error.message.includes("Missing or insufficient permissions") || error.message.includes("firestore/permission-denied"))) {
-       console.error("Error de permisos en Firestore: Revisa tus reglas de seguridad en la consola de Firebase.");
-    }
+    console.error("Error al obtener animales desde PostgreSQL:", error);
     return [];
   }
 }
 
 export async function getAnimal(slug: string): Promise<Animal | undefined> {
   try {
-    const animalRef = doc(db, 'animals', slug);
-    const animalSnap = await getDoc(animalRef);
-    if (animalSnap.exists()) {
-      return { slug: animalSnap.id, ...animalSnap.data() } as Animal;
+    const res = await query('SELECT slug, name, "scientificName", description, status, "imageURL", habitat, "dataAiHint" FROM animals WHERE slug = $1', [slug]);
+    if (res.rows.length > 0) {
+      const row = res.rows[0];
+      return {
+        ...row,
+        scientificName: row.scientificName,
+        imageURL: row.imageURL,
+        dataAiHint: row.dataAiHint,
+      };
     }
     return undefined;
-  } catch(error) {
-    console.error(`Error al obtener el animal con slug ${slug}:`, error);
+  } catch (error) {
+    console.error(`Error al obtener el animal con slug ${slug} desde PostgreSQL:`, error);
     return undefined;
   }
 }
@@ -62,12 +67,12 @@ export async function getAnimal(slug: string): Promise<Animal | undefined> {
 
 export async function getFoundations(): Promise<Foundation[]> {
   try {
-    const res = await query('SELECT slug, name, mission, location, contact, imageURL, dataAiHint, foundationActivities, lat, lng FROM foundations', []);
+    const res = await query('SELECT slug, name, mission, location, contact, "imageURL", "dataAiHint", "foundationActivities", lat, lng FROM foundations', []);
     return res.rows.map(row => ({
         ...row,
-        imageURL: row.imageurl,
-        dataAiHint: row.dataaihint,
-        foundationActivities: row.foundationactivities
+        imageURL: row.imageURL,
+        dataAiHint: row.dataAiHint,
+        foundationActivities: row.foundationActivities
     }));
   } catch (error) {
      console.error("Error al obtener fundaciones desde PostgreSQL:", error);
@@ -77,14 +82,14 @@ export async function getFoundations(): Promise<Foundation[]> {
 
 export async function getFoundation(slug: string): Promise<Foundation | undefined> {
   try {
-    const res = await query('SELECT slug, name, mission, location, contact, imageURL, dataAiHint, foundationActivities, lat, lng FROM foundations WHERE slug = $1', [slug]);
+    const res = await query('SELECT slug, name, mission, location, contact, "imageURL", "dataAiHint", "foundationActivities", lat, lng FROM foundations WHERE slug = $1', [slug]);
     if (res.rows.length > 0) {
       const row = res.rows[0];
       return {
         ...row,
-        imageURL: row.imageurl,
-        dataAiHint: row.dataaihint,
-        foundationActivities: row.foundationactivities
+        imageURL: row.imageURL,
+        dataAiHint: row.dataAiHint,
+        foundationActivities: row.foundationActivities
       };
     }
     return undefined;
