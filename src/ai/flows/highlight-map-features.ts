@@ -13,9 +13,6 @@ import {z} from 'genkit';
 
 const HighlightMapFeaturesInputSchema = z.object({
   locationName: z.string().describe('The name of the location on the map.'),
-  recentSightings: z
-    .string()
-    .describe('A summary of recent animal sightings at the location.'),
   foundationActivities: z
     .string()
     .describe('A summary of recent foundation activities at the location.'),
@@ -39,10 +36,9 @@ const highlightMapFeaturesPrompt = ai.definePrompt({
   name: 'highlightMapFeaturesPrompt',
   input: {schema: HighlightMapFeaturesInputSchema},
   output: {schema: HighlightMapFeaturesOutputSchema},
-  prompt: `You are an AI assistant designed to highlight the best features of a location on an interactive map for Eco Explorer. Your response must be in Spanish. Consider recent animal sightings and foundation activities at the location.
+  prompt: `You are an AI assistant designed to highlight the best features of a location on an interactive map for Eco Explorer. Your response must be in Spanish. Consider the foundation activities at the location.
 
 Location Name: {{{locationName}}}
-Recent Animal Sightings: {{{recentSightings}}}
 Foundation Activities: {{{foundationActivities}}}
 
 Highlight the most significant aspects of this location in a concise summary. Focus on what makes this location particularly interesting or important for Eco Explorer users.`,

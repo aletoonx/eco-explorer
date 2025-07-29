@@ -20,7 +20,6 @@ export type Foundation = {
   contact: string;
   imageURL: string;
   dataAiHint: string;
-  recentSightings: string;
   foundationActivities: string;
   lat: number;
   lng: number;

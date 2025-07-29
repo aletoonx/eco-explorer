@@ -35,7 +35,6 @@ export function HighlightMapFeatures({ foundations }: HighlightMapFeaturesProps)
     try {
       const output = await highlightMapFeatures({
         locationName: foundation.name,
-        recentSightings: foundation.recentSightings || "",
         foundationActivities: foundation.foundationActivities || "",
       });
       setResult(output);
