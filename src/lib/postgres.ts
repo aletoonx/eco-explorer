@@ -1,9 +1,5 @@
 'use server';
 
-// Carga las variables de entorno desde el archivo .env
-import dotenv from 'dotenv';
-dotenv.config();
-
 import { Pool } from 'pg';
 
 // Asegúrate de que la variable de entorno para la URL de la base de datos esté definida
