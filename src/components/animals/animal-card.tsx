@@ -25,7 +25,7 @@ export function AnimalCard({ animal }: AnimalCardProps) {
      </CardHeader>
       <CardContent className="p-4 flex-grow">
         <CardTitle className="text-lg font-headline mb-2">{animal.name}</CardTitle>
-        <Badge variant={animal.status === 'En Peligro' ? 'destructive' : 'secondary'}>{animal.status}</Badge>
+        <Badge variant={animal.status === 'En Peligro' || animal.status === 'Endangered' ? 'destructive' : 'secondary'}>{animal.status}</Badge>
       </CardContent>
       <CardFooter className="p-4 pt-0">
         <Button asChild className="w-full">
