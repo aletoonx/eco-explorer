@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { PawPrint, Globe } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export async function generateStaticParams() {
   const animals = await getAnimals();
@@ -20,6 +21,7 @@ export default async function AnimalDetailPage({ params }: { params: { slug: str
   }
 
   const imageUrl = animal.imageUrl || "https://placehold.co/800x450.png";
+  const isPlaceholder = !imageUrl || imageUrl.includes("placehold.co");
 
   return (
     <div className="space-y-8 max-w-4xl mx-auto">
@@ -30,6 +32,7 @@ export default async function AnimalDetailPage({ params }: { params: { slug: str
 
       <Card className="overflow-hidden">
         <CardContent className="p-0">
+          {isPlaceholder ? (
             <Image
                 src={imageUrl}
                 alt={animal.name}
@@ -38,6 +41,13 @@ export default async function AnimalDetailPage({ params }: { params: { slug: str
                 className="w-full object-cover"
                 data-ai-hint={animal.dataAiHint}
             />
+          ) : (
+             <div className="w-full h-96 bg-secondary flex items-center justify-center">
+                <Button asChild variant="secondary">
+                    <a href={imageUrl} target="_blank" rel="noopener noreferrer">Ver Imagen</a>
+                </Button>
+            </div>
+          )}
         </CardContent>
       </Card>
       
