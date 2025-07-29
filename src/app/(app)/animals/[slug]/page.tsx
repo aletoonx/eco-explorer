@@ -48,7 +48,7 @@ export default async function AnimalDetailPage({ params }: { params: { slug: str
                     <PawPrint className="w-5 h-5 text-primary"/>
                     <span>Estado de Conservación</span>
                 </CardTitle>
-            </Header>
+            </CardHeader>
             <CardContent>
                 <Badge variant={animal.status === 'Endangered' || animal.status === 'En Peligro' ? 'destructive' : 'secondary'} className="text-lg">
                     {animal.status}
@@ -61,7 +61,7 @@ export default async function AnimalDetailPage({ params }: { params: { slug: str
                     <Globe className="w-5 h-5 text-primary"/>
                     <span>Hábitat</span>
                 </CardTitle>
-            </Header>
+            </CardHeader>
             <CardContent>
                 <p>{animal.habitat}</p>
             </CardContent>
