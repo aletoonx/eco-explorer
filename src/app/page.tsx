@@ -10,7 +10,7 @@ export default function Home() {
       <header className="px-4 lg:px-6 h-16 flex items-center bg-background/80 backdrop-blur-sm">
         <Link href="#" className="flex items-center justify-center" prefetch={false}>
           <Leaf className="h-6 w-6 text-primary" />
-          <span className="sr-only">Eco Explorador</span>
+          <span className="sr-only">Eco Explorer</span>
         </Link>
         <nav className="ml-auto flex gap-4 sm:gap-6">
           <Button variant="secondary" asChild>
@@ -35,7 +35,7 @@ export default function Home() {
               <div className="flex flex-col justify-center space-y-4">
                 <div className="space-y-2">
                   <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none font-headline text-primary">
-                    Descubre la Naturaleza con Eco Explorador
+                    Descubre la Naturaleza con Eco Explorer
                   </h1>
                   <p className="max-w-[600px] text-muted-foreground md:text-xl">
                     Adéntrate en el corazón de la naturaleza. Explora fundaciones de vida silvestre, descubre especies en peligro y encuentra tu propio camino hacia la conservación.

@@ -10,7 +10,7 @@ export default function RegisterPage() {
             <Link href="/" className="inline-block mb-4">
                 <Leaf className="w-12 h-12 text-primary" />
             </Link>
-          <h1 className="text-3xl font-bold font-headline">Únete a Eco Explorador</h1>
+          <h1 className="text-3xl font-bold font-headline">Únete a Eco Explorer</h1>
           <p className="text-muted-foreground">Crea tu cuenta para comenzar tu aventura.</p>
         </div>
         <RegisterForm />

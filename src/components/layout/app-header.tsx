@@ -34,7 +34,7 @@ export function AppHeader() {
       <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link href="/dashboard" className="flex items-center gap-2 font-semibold">
           <Leaf className="h-6 w-6 text-primary" />
-          <span className="hidden font-headline text-lg sm:inline-block">Eco Explorador</span>
+          <span className="hidden font-headline text-lg sm:inline-block">Eco Explorer</span>
         </Link>
         <nav className="hidden items-center gap-6 md:flex">
           {navItems.map((item) => (
@@ -67,7 +67,7 @@ export function AppHeader() {
               <div className="border-b p-4">
                 <Link href="/dashboard" className="flex items-center gap-2 font-semibold">
                   <Leaf className="h-6 w-6 text-primary" />
-                  <span className="font-headline text-lg">Eco Explorador</span>
+                  <span className="font-headline text-lg">Eco Explorer</span>
                 </Link>
               </div>
               <nav className="flex-1 space-y-2 p-4">
