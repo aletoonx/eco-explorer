@@ -1,5 +1,6 @@
 import { db } from './firebase';
-import { collection, getDocs, doc, getDoc, query, where, limit } from 'firebase/firestore';
+import { collection, getDocs, doc, getDoc, query as firestoreQuery, where, limit } from 'firebase/firestore';
+import { query } from './postgres';
 
 export type Animal = {
   slug: string;
@@ -61,30 +62,34 @@ export async function getAnimal(slug: string): Promise<Animal | undefined> {
 
 export async function getFoundations(): Promise<Foundation[]> {
   try {
-    const foundationsCol = collection(db, 'foundations');
-    const foundationSnapshot = await getDocs(foundationsCol);
-    const foundationList = foundationSnapshot.docs.map(doc => ({ slug: doc.id, ...doc.data() } as Foundation));
-    return foundationList;
+    const res = await query('SELECT slug, name, mission, location, contact, imageURL, dataAiHint, foundationActivities, lat, lng FROM foundations', []);
+    return res.rows.map(row => ({
+        ...row,
+        imageURL: row.imageurl,
+        dataAiHint: row.dataaihint,
+        foundationActivities: row.foundationactivities
+    }));
   } catch (error) {
-     console.error("Error al obtener fundaciones:", error);
-     if (error instanceof Error && (error.message.includes("Missing or insufficient permissions") || error.message.includes("firestore/permission-denied"))) {
-       console.error("Error de permisos en Firestore: Revisa tus reglas de seguridad en la consola de Firebase.");
-    }
+     console.error("Error al obtener fundaciones desde PostgreSQL:", error);
     return [];
   }
 }
 
 export async function getFoundation(slug: string): Promise<Foundation | undefined> {
   try {
-    const foundationRef = doc(db, 'foundations', slug);
-    const foundationSnap = await getDoc(foundationRef);
-
-    if (foundationSnap.exists()) {
-      return { slug: foundationSnap.id, ...foundationSnap.data() } as Foundation;
+    const res = await query('SELECT slug, name, mission, location, contact, imageURL, dataAiHint, foundationActivities, lat, lng FROM foundations WHERE slug = $1', [slug]);
+    if (res.rows.length > 0) {
+      const row = res.rows[0];
+      return {
+        ...row,
+        imageURL: row.imageurl,
+        dataAiHint: row.dataaihint,
+        foundationActivities: row.foundationactivities
+      };
     }
     return undefined;
   } catch (error) {
-    console.error(`Error al obtener la fundación con slug ${slug}:`, error);
+    console.error(`Error al obtener la fundación con slug ${slug} desde PostgreSQL:`, error);
     return undefined;
   }
 }
