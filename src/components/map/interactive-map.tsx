@@ -17,7 +17,7 @@ const MAP_HEIGHT = 625;
 const bounds = {
     minLng: -86.2,  // Extremo Oeste
     maxLng: -82.2,  // Extremo Este (Ajustado para extender el mapa)
-    minLat: 7.8,    // Extremo Sur
+    minLat: 8.2,    // Extremo Sur (Ajustado para subir el punto de Osa)
     maxLat: 11.4,   // Extremo Norte
 };
 
@@ -72,4 +72,3 @@ export function InteractiveMap({ foundations }: InteractiveMapProps) {
     </TooltipProvider>
   );
 }
-
