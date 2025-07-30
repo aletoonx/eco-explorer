@@ -72,3 +72,4 @@ export function InteractiveMap({ foundations }: InteractiveMapProps) {
     </TooltipProvider>
   );
 }
+
