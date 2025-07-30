@@ -13,6 +13,16 @@ import { signInWithEmailAndPassword, setPersistence, browserSessionPersistence }
 import { Leaf } from "lucide-react";
 import { useRouter } from "next/navigation";
 
+function setCookie(name: string, value: string, days: number) {
+    let expires = "";
+    if (days) {
+        const date = new Date();
+        date.setTime(date.getTime() + (days*24*60*60*1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+}
+
 export function LoginForm() {
   const { toast } = useToast();
   const router = useRouter();
@@ -35,7 +45,10 @@ export function LoginForm() {
     try {
       await setPersistence(auth, browserSessionPersistence);
       
-      await signInWithEmailAndPassword(auth, email, password);
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+
+      const token = await userCredential.user.getIdToken();
+      setCookie("firebase-session", token, 1);
       
       toast({
         title: "Inicio de Sesión Exitoso",

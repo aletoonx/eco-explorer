@@ -16,6 +16,10 @@ const navItems = [
   { href: "/foundations", label: "Fundaciones", icon: Landmark },
 ];
 
+function deleteCookie(name: string) {
+    document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+}
+
 export function AppHeader() {
   const pathname = usePathname();
   const router = useRouter();
@@ -23,6 +27,7 @@ export function AppHeader() {
   const handleLogout = async () => {
     try {
       await signOut(auth);
+      deleteCookie("firebase-session");
       router.push("/");
     } catch (error) {
       console.error("Error signing out: ", error);
