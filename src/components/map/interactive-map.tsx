@@ -11,13 +11,13 @@ type InteractiveMapProps = {
 
 // Dimensiones del mapa basadas en la relación de aspecto de la imagen
 const MAP_WIDTH = 800;
-const MAP_HEIGHT = 715;
+const MAP_HEIGHT = 800;
 
 // Límites geográficos de Costa Rica (AJUSTADOS PARA MAYOR PRECISIÓN)
 const bounds = {
-    minLng: -86.2,  // Extremo Oeste
+    minLng: -86.4,  // Extremo Oeste
     maxLng: -82.2,  // Extremo Este (Ajustado para extender el mapa)
-    minLat: 8.2,    // Extremo Sur (Ajustado para subir el punto de Osa)
+    minLat: 8.0,    // Extremo Sur (Ajustado para subir el punto de Osa)
     maxLat: 11.4,   // Extremo Norte
 };
 
