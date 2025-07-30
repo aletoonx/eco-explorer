@@ -13,12 +13,12 @@ type InteractiveMapProps = {
 const MAP_WIDTH = 560;
 const MAP_HEIGHT = 500;
 
-// Límites geográficos de Costa Rica
+// Límites geográficos de Costa Rica (AJUSTADOS PARA MAYOR PRECISIÓN)
 const bounds = {
-  minLng: -85.95,
-  maxLng: -82.5,
-  minLat: 8.0,
-  maxLat: 11.2,
+    minLng: -86.0,  // Extremo Oeste
+    maxLng: -82.4,  // Extremo Este
+    minLat: 8.0,    // Extremo Sur
+    maxLat: 11.22,  // Extremo Norte
 };
 
 // Convierte coordenadas de latitud/longitud a coordenadas porcentuales (top/left)
