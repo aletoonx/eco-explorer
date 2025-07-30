@@ -10,8 +10,8 @@ type InteractiveMapProps = {
 };
 
 // Dimensiones del mapa basadas en la relación de aspecto de la imagen
-const MAP_WIDTH = 700;
-const MAP_HEIGHT = 625;
+const MAP_WIDTH = 800;
+const MAP_HEIGHT = 715;
 
 // Límites geográficos de Costa Rica (AJUSTADOS PARA MAYOR PRECISIÓN)
 const bounds = {
@@ -31,7 +31,7 @@ function convertCoords(lat: number, lng: number) {
 export function InteractiveMap({ foundations }: InteractiveMapProps) {
   return (
     <TooltipProvider>
-      <div className="relative w-full max-w-4xl mx-auto rounded-lg bg-card p-4 border">
+      <div className="relative w-full max-w-5xl mx-auto rounded-lg bg-card p-4 border">
         <div className="relative mx-auto" style={{ width: `${MAP_WIDTH}px`, height: `${MAP_HEIGHT}px`}}>
             {/* Carga la imagen desde la carpeta `public` */}
             <img
