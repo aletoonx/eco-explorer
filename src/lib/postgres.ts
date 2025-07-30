@@ -6,12 +6,21 @@ if (!process.env.POSTGRES_URL) {
   throw new Error('CRITICAL: POSTGRES_URL environment variable is not defined.');
 }
 
+// Parse the original URL
+const connectionString = process.env.POSTGRES_URL;
+const dbUrl = new URL(connectionString);
+
+// Change the database to 'postgres'
+dbUrl.pathname = '/postgres';
+
+// Use the modified URL
 const pool = new Pool({
-  connectionString: process.env.POSTGRES_URL,
+  connectionString: dbUrl.toString(),
   max: 1, 
   idleTimeoutMillis: 30000,
   connectionTimeoutMillis: 10000,
 });
+
 
 /**
  * Executes an SQL query against the PostgreSQL database.
