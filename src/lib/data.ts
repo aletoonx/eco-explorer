@@ -24,6 +24,7 @@ export type Foundation = {
   foundationActivities: string;
   lat: number;
   lng: number;
+  ofcWebsite: string;
 };
 
 // --- Funciones de Datos de Animales ---
@@ -68,12 +69,13 @@ export async function getAnimal(slug: string): Promise<Animal | undefined> {
 
 export async function getFoundations(): Promise<Foundation[]> {
   try {
-    const res = await query('SELECT slug, name, mission, location, contact, "imageURL", "dataAiHint", "foundationActivities", lat, lng FROM foundations', []);
+    const res = await query('SELECT slug, name, mission, location, contact, "imageURL", "dataAiHint", "foundationActivities", lat, lng, "ofcWebsite" FROM foundations', []);
     return res.rows.map(row => ({
         ...row,
         imageURL: row.imageURL,
         dataAiHint: row.dataAiHint,
-        foundationActivities: row.foundationActivities
+        foundationActivities: row.foundationActivities,
+        ofcWebsite: row.ofcWebsite
     }));
   } catch (error) {
      console.error("Error al obtener fundaciones desde PostgreSQL:", error);
@@ -84,14 +86,15 @@ export async function getFoundations(): Promise<Foundation[]> {
 
 export async function getFoundation(slug: string): Promise<Foundation | undefined> {
   try {
-    const res = await query('SELECT slug, name, mission, location, contact, "imageURL", "dataAiHint", "foundationActivities", lat, lng FROM foundations WHERE slug = $1', [slug]);
+    const res = await query('SELECT slug, name, mission, location, contact, "imageURL", "dataAiHint", "foundationActivities", lat, lng, "ofcWebsite" FROM foundations WHERE slug = $1', [slug]);
     if (res.rows.length > 0) {
       const row = res.rows[0];
       return {
         ...row,
         imageURL: row.imageURL,
         dataAiHint: row.dataAiHint,
-        foundationActivities: row.foundationActivities
+        foundationActivities: row.foundationActivities,
+        ofcWebsite: row.ofcWebsite
       };
     }
     return undefined;

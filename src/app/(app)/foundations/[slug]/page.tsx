@@ -2,7 +2,9 @@ import { getFoundations, getFoundation, type Foundation } from "@/lib/data";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Mail, MapPin, Target } from "lucide-react";
+import { Mail, MapPin, Target, Globe } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export async function generateStaticParams() {
   const foundations = await getFoundations();
@@ -51,7 +53,7 @@ export default async function FoundationDetailPage({ params }: { params: { slug:
         </CardContent>
       </Card>
 
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         <Card>
             <CardHeader>
                 <CardTitle className="flex items-center gap-2">
@@ -74,6 +76,23 @@ export default async function FoundationDetailPage({ params }: { params: { slug:
                 <a href={`mailto:${foundation.contact}`} className="text-accent hover:underline">{foundation.contact}</a>
             </CardContent>
         </Card>
+        {foundation.ofcWebsite && (
+          <Card>
+              <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                      <Globe className="w-5 h-5 text-primary"/>
+                      <span>Sitio Web</span>
+                  </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <Button asChild>
+                  <Link href={foundation.ofcWebsite} target="_blank" rel="noopener noreferrer">
+                    Visitar Sitio
+                  </Link>
+                </Button>
+              </CardContent>
+          </Card>
+        )}
       </div>
     </div>
   );
