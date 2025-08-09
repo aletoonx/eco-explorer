@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { Leaf, Mountain, PawPrint } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import { Footer } from "@/components/layout/footer";
 
@@ -13,9 +12,12 @@ export default function Home() {
           <span className="sr-only">Eco Explorer</span>
         </Link>
         <nav className="ml-auto flex gap-4 sm:gap-6">
+           <Button variant="outline" asChild>
+                <Link href="/login">Iniciar Sesión</Link>
+           </Button>
            <Button asChild>
-            <Link href="/dashboard" prefetch={false}>
-              Comienza a Explorar
+            <Link href="/register" prefetch={false}>
+              Registrarse
             </Link>
           </Button>
         </nav>
@@ -33,10 +35,8 @@ export default function Home() {
                 </p>
               </div>
               <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                <Button size="lg" asChild>
-                  <Link href="/dashboard" prefetch={false}>
-                    Comienza a Explorar
-                  </Link>
+                 <Button size="lg" asChild>
+                    <Link href="/register">Comienza a Explorar</Link>
                 </Button>
               </div>
             </div>
