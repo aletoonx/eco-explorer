@@ -13,17 +13,9 @@ export default function Home() {
           <span className="sr-only">Eco Explorer</span>
         </Link>
         <nav className="ml-auto flex gap-4 sm:gap-6">
-          <Button variant="secondary" asChild>
-            <Link
-              href="/login"
-              prefetch={false}
-            >
-              Iniciar Sesión
-            </Link>
-          </Button>
-          <Button asChild>
-            <Link href="/register" prefetch={false}>
-              Registrarse
+           <Button asChild>
+            <Link href="/dashboard" prefetch={false}>
+              Comienza a Explorar
             </Link>
           </Button>
         </nav>
@@ -42,13 +34,8 @@ export default function Home() {
               </div>
               <div className="flex flex-col gap-2 min-[400px]:flex-row">
                 <Button size="lg" asChild>
-                  <Link href="/register" prefetch={false}>
+                  <Link href="/dashboard" prefetch={false}>
                     Comienza a Explorar
-                  </Link>
-                </Button>
-                <Button size="lg" variant="secondary" asChild>
-                   <Link href="/login" prefetch={false}>
-                    Iniciar Sesión
                   </Link>
                 </Button>
               </div>

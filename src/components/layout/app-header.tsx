@@ -1,12 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Leaf, LogOut, Menu, Map, PawPrint, Landmark, LayoutDashboard } from "lucide-react";
-import { auth } from "@/lib/firebase";
-import { signOut } from "firebase/auth";
+import { Leaf, Menu, Map, PawPrint, Landmark, LayoutDashboard } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navItems = [
@@ -16,23 +14,8 @@ const navItems = [
   { href: "/foundations", label: "Fundaciones", icon: Landmark },
 ];
 
-function deleteCookie(name: string) {
-    document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-}
-
 export function AppHeader() {
   const pathname = usePathname();
-  const router = useRouter();
-
-  const handleLogout = async () => {
-    try {
-      await signOut(auth);
-      deleteCookie("firebase-session");
-      router.push("/");
-    } catch (error) {
-      console.error("Error signing out: ", error);
-    }
-  };
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-card">
@@ -56,9 +39,7 @@ export function AppHeader() {
           ))}
         </nav>
         <div className="hidden items-center gap-2 md:flex">
-          <Button variant="ghost" size="icon" onClick={handleLogout} aria-label="Cerrar sesión">
-            <LogOut className="h-5 w-5" />
-          </Button>
+          {/* Botón de logout eliminado */}
         </div>
         <Sheet>
           <SheetTrigger asChild>
@@ -90,12 +71,6 @@ export function AppHeader() {
                   </Button>
                 ))}
               </nav>
-              <div className="border-t p-4">
-                <Button variant="ghost" className="w-full justify-start" onClick={handleLogout}>
-                  <LogOut className="mr-2 h-4 w-4" />
-                  Cerrar Sesión
-                </Button>
-              </div>
             </div>
           </SheetContent>
         </Sheet>
