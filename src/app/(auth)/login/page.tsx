@@ -34,20 +34,16 @@ export default function LoginPage() {
       }
 
       await createSession(idToken);
-      // La redirección se maneja en la server action y ya no necesitamos hacer nada aquí.
 
     } catch (err: any) {
-        console.error('Error de inicio de sesión:', err);
         let errorMessage = 'Ocurrió un error inesperado al iniciar sesión.';
         if (err.code === 'auth/invalid-credential' || err.code === 'auth/user-not-found' || err.code === 'auth/wrong-password') {
             errorMessage = 'Las credenciales son incorrectas. Por favor, verifica tu correo y contraseña.';
         }
         setError(errorMessage);
-        setLoading(false); // Detenemos el loading aquí para que el usuario pueda volver a intentarlo
-        return; // ¡Importante! Detenemos la ejecución aquí si hay un error.
+        setLoading(false);
+        return; 
     }
-    
-    // No es necesario setLoading(false) aquí porque la página redirigirá en caso de éxito.
   };
 
   return (
