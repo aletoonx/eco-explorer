@@ -31,17 +31,25 @@ export default function LoginPage() {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       
       setIsSuccess(true);
-
-      // Pequeña pausa para que el usuario vea el mensaje de éxito
-      await new Promise(resolve => setTimeout(resolve, 1000));
-
+      
       const idToken = await userCredential.user.getIdToken();
       
       if (!idToken) {
         throw new Error('No se pudo obtener el token de ID.');
       }
 
-      await createSession(idToken);
+      // Pequeña pausa para que el usuario vea el mensaje de éxito
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      const sessionResult = await createSession(idToken);
+
+      if (sessionResult.success) {
+        router.push('/dashboard');
+      } else {
+        setError(sessionResult.message || 'No se pudo iniciar sesión en el servidor.');
+        setIsSuccess(false);
+        setLoading(false);
+      }
 
     } catch (err: any) {
         let errorMessage = 'Ocurrió un error inesperado al iniciar sesión.';
@@ -50,7 +58,6 @@ export default function LoginPage() {
         }
         setError(errorMessage);
         setLoading(false);
-        // ¡Importante! Detiene la ejecución si hay un error
         return; 
     }
   };

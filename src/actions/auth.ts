@@ -4,16 +4,17 @@ import { z } from 'zod';
 import { createSessionCookie, clearSessionCookie } from '@/lib/firebase';
 import { redirect } from 'next/navigation';
 
-// Esta acción se ejecuta en el servidor y es simple, por lo que es compatible
-// con los "redirects" que necesitamos, aunque la lógica principal de auth
-// se mueva al cliente.
-
 export async function createSession(idToken: string) {
     if (!idToken) {
-        throw new Error('No se pudo obtener el token de ID.');
+        return { success: false, message: 'No se pudo obtener el token de ID.' };
     }
-    await createSessionCookie(idToken);
-    redirect('/dashboard');
+    try {
+        await createSessionCookie(idToken);
+        return { success: true };
+    } catch (error) {
+        console.error('Error al crear la cookie de sesión:', error);
+        return { success: false, message: 'Error interno del servidor.' };
+    }
 }
 
 export async function handleSignOut() {
