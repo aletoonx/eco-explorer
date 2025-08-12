@@ -2,6 +2,8 @@ import { HighlightMapFeatures } from "@/components/map/highlight-map-features";
 import { InteractiveMap } from "@/components/map/interactive-map";
 import { getFoundations } from "@/lib/data";
 
+export const dynamic = 'force-dynamic';
+
 export default async function MapPage() {
   const foundations = await getFoundations();
 
