@@ -30,7 +30,7 @@ export default async function DashboardPage() {
               <p className="text-xs text-muted-foreground">
                 Descubre fundaciones de vida silvestre y territorios de animales.
               </p>
-            </CrdContent>
+            </CardContent>
           </Card>
         </Link>
         <Link href="/animals">
