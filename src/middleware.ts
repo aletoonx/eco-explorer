@@ -1,10 +1,12 @@
 import { type NextRequest, NextResponse } from "next/server";
 
 export async function middleware(request: NextRequest) {
-  // Se han eliminado los chequeos para permitir el acceso libre.
+  // El middleware no se ejecuta en un entorno estático.
+  // La lógica de protección de rutas se ha movido a src/app/(app)/layout.tsx
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
+  // Ya no es necesario hacer matching de rutas aquí para el modo estático.
+  matcher: [],
 }
