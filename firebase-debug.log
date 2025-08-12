@@ -1,0 +1,184 @@
+[debug] [2025-08-12T06:54:31.471Z] ----------------------------------------------------------------------
+[debug] [2025-08-12T06:54:31.474Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\ihanf\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2025-08-12T06:54:31.474Z] CLI Version:   14.12.0
+[debug] [2025-08-12T06:54:31.474Z] Platform:      win32
+[debug] [2025-08-12T06:54:31.474Z] Node Version:  v22.18.0
+[debug] [2025-08-12T06:54:31.475Z] Time:          Tue Aug 12 2025 00:54:31 GMT-0600 (hora estándar central)
+[debug] [2025-08-12T06:54:31.475Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-08-12T06:54:31.659Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-08-12T06:54:31.659Z] > authorizing via signed-in user (aletoonx@gmail.com)
+[debug] [2025-08-12T06:54:31.659Z] [iam] checking project eco-explorer-be3cr for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2025-08-12T06:54:31.660Z] Checked if tokens are valid: true, expires at: 1754984962571
+[debug] [2025-08-12T06:54:31.660Z] Checked if tokens are valid: true, expires at: 1754984962571
+[debug] [2025-08-12T06:54:31.661Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/eco-explorer-be3cr:testIamPermissions [none]
+[debug] [2025-08-12T06:54:31.661Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/eco-explorer-be3cr:testIamPermissions x-goog-quota-user=projects/eco-explorer-be3cr
+[debug] [2025-08-12T06:54:31.661Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/eco-explorer-be3cr:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2025-08-12T06:54:32.038Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/eco-explorer-be3cr:testIamPermissions 200
+[debug] [2025-08-12T06:54:32.038Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/eco-explorer-be3cr:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2025-08-12T06:54:32.039Z] Checked if tokens are valid: true, expires at: 1754984962571
+[debug] [2025-08-12T06:54:32.039Z] Checked if tokens are valid: true, expires at: 1754984962571
+[debug] [2025-08-12T06:54:32.039Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/eco-explorer-be3cr [none]
+[debug] [2025-08-12T06:54:32.483Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/eco-explorer-be3cr 200
+[debug] [2025-08-12T06:54:32.483Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/eco-explorer-be3cr {"projectId":"eco-explorer-be3cr","projectNumber":"584130378792","displayName":"Eco Explorer","name":"projects/eco-explorer-be3cr","resources":{"hostingSite":"eco-explorer-be3cr"},"state":"ACTIVE","etag":"1_c8ef66fa-f0c7-4f5c-97f6-14ced0338412"}
+[debug] [2025-08-12T06:54:35.310Z] defaultcredentials: writing to file C:\Users\ihanf\AppData\Roaming\firebase\aletoonx_gmail_com_application_default_credentials.json
+[debug] [2025-08-12T06:54:35.312Z] Checked if tokens are valid: true, expires at: 1754984962571
+[debug] [2025-08-12T06:54:35.312Z] Checked if tokens are valid: true, expires at: 1754984962571
+[debug] [2025-08-12T06:54:35.312Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/eco-explorer-be3cr/sites pageToken=&pageSize=10
+[debug] [2025-08-12T06:54:35.792Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/eco-explorer-be3cr/sites 200
+[debug] [2025-08-12T06:54:35.792Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/eco-explorer-be3cr/sites {"sites":[{"name":"projects/eco-explorer-be3cr/sites/eco-explorer-be3cr","defaultUrl":"https://eco-explorer-be3cr.web.app","type":"DEFAULT_SITE"}]}
+[debug] [2025-08-12T06:54:35.794Z] Checked if tokens are valid: true, expires at: 1754984962571
+[debug] [2025-08-12T06:54:35.794Z] Checked if tokens are valid: true, expires at: 1754984962571
+[debug] [2025-08-12T06:54:35.794Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/eco-explorer-be3cr/sites 
+[debug] [2025-08-12T06:54:35.999Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/eco-explorer-be3cr/sites 200
+[debug] [2025-08-12T06:54:35.999Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/eco-explorer-be3cr/sites {"sites":[{"name":"projects/eco-explorer-be3cr/sites/eco-explorer-be3cr","defaultUrl":"https://eco-explorer-be3cr.web.app","type":"DEFAULT_SITE"}]}
+[debug] [2025-08-12T06:54:35.999Z] Checked if tokens are valid: true, expires at: 1754984962571
+[debug] [2025-08-12T06:54:36.000Z] Checked if tokens are valid: true, expires at: 1754984962571
+[debug] [2025-08-12T06:54:36.000Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/eco-explorer-be3cr/webApps/-/config [none]
+[debug] [2025-08-12T06:54:36.364Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/eco-explorer-be3cr/webApps/-/config 200
+[debug] [2025-08-12T06:54:36.364Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/eco-explorer-be3cr/webApps/-/config {"projectId":"eco-explorer-be3cr","appId":"1:584130378792:web:cdc41561381bbcec9dc91d","storageBucket":"eco-explorer-be3cr.firebasestorage.app","apiKey":"AIzaSyDYnzDs5N8U1wtCadY2EsgH162a_GCOaIc","authDomain":"eco-explorer-be3cr.firebaseapp.com","messagingSenderId":"584130378792"}
+[info] 
+   Thank you for trying our early preview of Next.js support on Firebase Hosting.
+   During the preview, support is best-effort and breaking changes can be expected. Proceed with caution.
+   The integration is known to work with Next.js version 12 - 15.0. You may encounter errors.
+
+   Documentation: https://firebase.google.com/docs/hosting/frameworks/nextjs
+   File a bug: https://github.com/firebase/firebase-tools/issues/new?template=bug_report.md
+   Submit a feature request: https://github.com/firebase/firebase-tools/issues/new?template=feature_request.md
+
+   We'd love to learn from you. Express your interest in helping us shape the future of Firebase Hosting: https://goo.gle/41enW5X
+
+[debug] [2025-08-12T06:54:42.674Z] Checked if tokens are valid: true, expires at: 1754984962571
+[debug] [2025-08-12T06:54:42.674Z] Checked if tokens are valid: true, expires at: 1754984962571
+[debug] [2025-08-12T06:54:42.674Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/eco-explorer-be3cr/sites/eco-explorer-be3cr [none]
+[debug] [2025-08-12T06:54:43.160Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/eco-explorer-be3cr/sites/eco-explorer-be3cr 200
+[debug] [2025-08-12T06:54:43.160Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/eco-explorer-be3cr/sites/eco-explorer-be3cr {"name":"projects/eco-explorer-be3cr/sites/eco-explorer-be3cr","defaultUrl":"https://eco-explorer-be3cr.web.app","type":"DEFAULT_SITE"}
+[info]    ▲ Next.js 15.3.3
+
+[info]    - Environments: .env
+
+
+[info]    Creating an optimized production build ...
+
+[info] Failed to compile.
+
+
+[info] ./src/app/(app)/foundations/[slug]/page.tsx
+Error:   x Unexpected token `div`. Expected jsx identifier
+    ,-[C:\Users\ihanf\Documents\mario\eco-explorer\src\app\(app)\foundations\[slug]\page.tsx:19:1]
+ 16 |   const imageURL = foundation.imageURL || "https://placehold.co/800x400.png";
+ 17 | 
+ 18 |   return (
+ 19 |     <div className="space-y-8 max-w-4xl mx-auto">
+    :      ^^^
+ 20 |       <div>
+ 21 |         <h1 className="text-4xl md:text-5xl font-bold font-headline mb-2">{foundation.name}</h1>
+ 21 |       </div>
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/app/(app)/foundations/[slug]/page.tsx
+
+
+[info] 
+
+[info] > Build failed because of webpack errors
+
+[debug] [2025-08-12T06:54:49.043Z] Error: ENOENT: no such file or directory, open 'C:\Users\ihanf\Documents\mario\eco-explorer\.next\server\middleware-manifest.json'
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2025-08-12T06:56:18.763Z] ----------------------------------------------------------------------
+[debug] [2025-08-12T06:56:18.766Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\ihanf\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2025-08-12T06:56:18.767Z] CLI Version:   14.12.0
+[debug] [2025-08-12T06:56:18.767Z] Platform:      win32
+[debug] [2025-08-12T06:56:18.767Z] Node Version:  v22.18.0
+[debug] [2025-08-12T06:56:18.767Z] Time:          Tue Aug 12 2025 00:56:18 GMT-0600 (hora estándar central)
+[debug] [2025-08-12T06:56:18.767Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-08-12T06:56:18.964Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-08-12T06:56:18.964Z] > authorizing via signed-in user (aletoonx@gmail.com)
+[debug] [2025-08-12T06:56:18.964Z] [iam] checking project eco-explorer-be3cr for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2025-08-12T06:56:18.965Z] Checked if tokens are valid: true, expires at: 1754984962571
+[debug] [2025-08-12T06:56:18.965Z] Checked if tokens are valid: true, expires at: 1754984962571
+[debug] [2025-08-12T06:56:18.966Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/eco-explorer-be3cr:testIamPermissions [none]
+[debug] [2025-08-12T06:56:18.966Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/eco-explorer-be3cr:testIamPermissions x-goog-quota-user=projects/eco-explorer-be3cr
+[debug] [2025-08-12T06:56:18.967Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/eco-explorer-be3cr:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2025-08-12T06:56:19.307Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/eco-explorer-be3cr:testIamPermissions 200
+[debug] [2025-08-12T06:56:19.307Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/eco-explorer-be3cr:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2025-08-12T06:56:19.308Z] Checked if tokens are valid: true, expires at: 1754984962571
+[debug] [2025-08-12T06:56:19.309Z] Checked if tokens are valid: true, expires at: 1754984962571
+[debug] [2025-08-12T06:56:19.309Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/eco-explorer-be3cr [none]
+[debug] [2025-08-12T06:56:19.763Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/eco-explorer-be3cr 200
+[debug] [2025-08-12T06:56:19.763Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/eco-explorer-be3cr {"projectId":"eco-explorer-be3cr","projectNumber":"584130378792","displayName":"Eco Explorer","name":"projects/eco-explorer-be3cr","resources":{"hostingSite":"eco-explorer-be3cr"},"state":"ACTIVE","etag":"1_c8ef66fa-f0c7-4f5c-97f6-14ced0338412"}
+[debug] [2025-08-12T06:56:22.657Z] defaultcredentials: writing to file C:\Users\ihanf\AppData\Roaming\firebase\aletoonx_gmail_com_application_default_credentials.json
+[debug] [2025-08-12T06:56:22.658Z] Checked if tokens are valid: true, expires at: 1754984962571
+[debug] [2025-08-12T06:56:22.658Z] Checked if tokens are valid: true, expires at: 1754984962571
+[debug] [2025-08-12T06:56:22.659Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/eco-explorer-be3cr/sites pageToken=&pageSize=10
+[debug] [2025-08-12T06:56:23.185Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/eco-explorer-be3cr/sites 200
+[debug] [2025-08-12T06:56:23.185Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/eco-explorer-be3cr/sites {"sites":[{"name":"projects/eco-explorer-be3cr/sites/eco-explorer-be3cr","defaultUrl":"https://eco-explorer-be3cr.web.app","type":"DEFAULT_SITE"}]}
+[debug] [2025-08-12T06:56:23.185Z] Checked if tokens are valid: true, expires at: 1754984962571
+[debug] [2025-08-12T06:56:23.186Z] Checked if tokens are valid: true, expires at: 1754984962571
+[debug] [2025-08-12T06:56:23.186Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/eco-explorer-be3cr/sites 
+[debug] [2025-08-12T06:56:23.367Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/eco-explorer-be3cr/sites 200
+[debug] [2025-08-12T06:56:23.368Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/eco-explorer-be3cr/sites {"sites":[{"name":"projects/eco-explorer-be3cr/sites/eco-explorer-be3cr","defaultUrl":"https://eco-explorer-be3cr.web.app","type":"DEFAULT_SITE"}]}
+[debug] [2025-08-12T06:56:23.368Z] Checked if tokens are valid: true, expires at: 1754984962571
+[debug] [2025-08-12T06:56:23.369Z] Checked if tokens are valid: true, expires at: 1754984962571
+[debug] [2025-08-12T06:56:23.369Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/eco-explorer-be3cr/webApps/-/config [none]
+[debug] [2025-08-12T06:56:23.704Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/eco-explorer-be3cr/webApps/-/config 200
+[debug] [2025-08-12T06:56:23.704Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/eco-explorer-be3cr/webApps/-/config {"projectId":"eco-explorer-be3cr","appId":"1:584130378792:web:cdc41561381bbcec9dc91d","storageBucket":"eco-explorer-be3cr.firebasestorage.app","apiKey":"AIzaSyDYnzDs5N8U1wtCadY2EsgH162a_GCOaIc","authDomain":"eco-explorer-be3cr.firebaseapp.com","messagingSenderId":"584130378792"}
+[info] 
+   Thank you for trying our early preview of Next.js support on Firebase Hosting.
+   During the preview, support is best-effort and breaking changes can be expected. Proceed with caution.
+   The integration is known to work with Next.js version 12 - 15.0. You may encounter errors.
+
+   Documentation: https://firebase.google.com/docs/hosting/frameworks/nextjs
+   File a bug: https://github.com/firebase/firebase-tools/issues/new?template=bug_report.md
+   Submit a feature request: https://github.com/firebase/firebase-tools/issues/new?template=feature_request.md
+
+   We'd love to learn from you. Express your interest in helping us shape the future of Firebase Hosting: https://goo.gle/41enW5X
+
+[debug] [2025-08-12T06:56:30.025Z] Checked if tokens are valid: true, expires at: 1754984962571
+[debug] [2025-08-12T06:56:30.025Z] Checked if tokens are valid: true, expires at: 1754984962571
+[debug] [2025-08-12T06:56:30.025Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/eco-explorer-be3cr/sites/eco-explorer-be3cr [none]
+[debug] [2025-08-12T06:56:30.451Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/eco-explorer-be3cr/sites/eco-explorer-be3cr 200
+[debug] [2025-08-12T06:56:30.452Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/eco-explorer-be3cr/sites/eco-explorer-be3cr {"name":"projects/eco-explorer-be3cr/sites/eco-explorer-be3cr","defaultUrl":"https://eco-explorer-be3cr.web.app","type":"DEFAULT_SITE"}
+[info]    ▲ Next.js 15.3.3
+
+[info]    - Environments: .env
+
+
+[info]    Creating an optimized production build ...
+
+[info] Failed to compile.
+
+
+[info] ./src/app/(app)/foundations/[slug]/page.tsx
+Error:   x Unexpected token `div`. Expected jsx identifier
+    ,-[C:\Users\ihanf\Documents\mario\eco-explorer\src\app\(app)\foundations\[slug]\page.tsx:19:1]
+ 16 |   const imageURL = foundation.imageURL || "https://placehold.co/800x400.png";
+ 17 | 
+ 18 |   return (
+ 19 |     <div className="space-y-8 max-w-4xl mx-auto">
+    :      ^^^
+ 20 |       <div>
+ 21 |         <h1 className="text-4xl md:text-5xl font-bold font-headline mb-2">{foundation.name}</h1>
+ 21 |       </div>
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/app/(app)/foundations/[slug]/page.tsx
+
+
+[info] 
+
+[info] > Build failed because of webpack errors
+
+[debug] [2025-08-12T06:56:36.013Z] Error: ENOENT: no such file or directory, open 'C:\Users\ihanf\Documents\mario\eco-explorer\.next\server\middleware-manifest.json'
+[error] 
+[error] Error: An unexpected error has occurred.
