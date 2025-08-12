@@ -11,7 +11,7 @@ type AnimalCardProps = {
 export function AnimalCard({ animal }: AnimalCardProps) {
   return (
     <Card className="flex flex-col h-full overflow-hidden transition-all hover:shadow-lg hover:border-primary/50">
-      {animal.imageURL ? (
+      {animal.imageURL && (
          <div className="relative h-48 w-full">
           <img
               src={animal.imageURL}
@@ -20,10 +20,6 @@ export function AnimalCard({ animal }: AnimalCardProps) {
               data-ai-hint={animal.dataAiHint}
             />
        </div>
-      ) : (
-        <div className="h-48 bg-muted flex items-center justify-center text-muted-foreground">
-            No image
-        </div>
       )}
       <CardContent className="p-4 flex-grow">
         <CardTitle className="text-lg font-headline mb-2">{animal.name}</CardTitle>

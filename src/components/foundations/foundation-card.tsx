@@ -11,14 +11,16 @@ export function FoundationCard({ foundation }: FoundationCardProps) {
   const imageURL = foundation.imageURL || "https://placehold.co/400x250.png";
   return (
     <Card className="flex flex-col h-full overflow-hidden transition-all hover:shadow-lg hover:border-primary/50">
-      <div className="relative h-40 w-full">
-        <img
-          src={imageURL}
-          alt={foundation.name}
-          className="w-full h-full object-cover"
-          data-ai-hint={foundation.dataAiHint}
-        />
-      </div>
+      {foundation.imageURL && (
+        <div className="relative h-40 w-full">
+            <img
+            src={imageURL}
+            alt={foundation.name}
+            className="w-full h-full object-cover"
+            data-ai-hint={foundation.dataAiHint}
+            />
+        </div>
+      )}
       <CardContent className="p-4 flex-grow">
         <CardTitle className="text-lg font-headline mb-2">{foundation.name}</CardTitle>
         <CardDescription>{foundation.mission.substring(0, 100)}...</CardDescription>
