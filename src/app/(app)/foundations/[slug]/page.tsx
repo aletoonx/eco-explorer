@@ -26,11 +26,10 @@ export default async function FoundationDetailPage({ params }: { params: { slug:
             <Image
                 src={imageURL}
                 alt={foundation.name}
-                layout="fill"
-                objectFit="cover"
+                fill
+                style={{objectFit: "cover"}}
                 className="w-full h-full"
                 data-ai-hint={foundation.dataAiHint}
-                unoptimized
             />
         </CardContent>
       </Card>

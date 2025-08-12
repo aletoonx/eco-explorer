@@ -18,11 +18,10 @@ export function AnimalCard({ animal }: AnimalCardProps) {
           <Image
               src={imageURL}
               alt={animal.name}
-              layout="fill"
-              objectFit="cover"
+              fill
+              style={{objectFit: "cover"}}
               className="w-full h-full"
               data-ai-hint={animal.dataAiHint}
-              unoptimized
             />
        </div>
       )}

@@ -27,11 +27,10 @@ export default async function AnimalDetailPage({ params }: { params: { slug: str
             <Image
                 src={imageURL}
                 alt={animal.name}
-                layout="fill"
-                objectFit="cover"
+                fill
+                style={{objectFit: "cover"}}
                 className="w-full h-full"
                 data-ai-hint={animal.dataAiHint}
-                unoptimized
             />
             </CardContent>
         </Card>
