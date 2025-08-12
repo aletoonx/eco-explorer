@@ -67,7 +67,7 @@ export default async function FoundationDetailPage({ params }: { params: { slug:
             </CardHeader>
             <CardContent>
                 <a href={`mailto:${foundation.contact}`} className="text-accent hover:underline">{foundation.contact}</a>
-            </CrdContent>
+            </CardContent>
         </Card>
         {foundation.ofcWebsite && (
           <Card>
@@ -76,7 +76,7 @@ export default async function FoundationDetailPage({ params }: { params: { slug:
                       <Globe className="w-5 h-5 text-primary"/>
                       <span>Sitio Web</span>
                   </CardTitle>
-              </Header>
+              </CardHeader>
               <CardContent>
                 <Button asChild>
                   <Link href={foundation.ofcWebsite} target="_blank" rel="noopener noreferrer">
