@@ -7,6 +7,7 @@ import {
 } from "@/components/ui/card"
 import { Map, PawPrint, Landmark } from "lucide-react"
 import Link from "next/link"
+import { ExplorationPlanner } from "@/components/ai/exploration-path-planner"
 
 export default async function DashboardPage() {
   return (
@@ -18,8 +19,8 @@ export default async function DashboardPage() {
         </p>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-2">
-        <Link href="/map">
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <Link href="/map" className="lg:col-span-1">
           <Card className="hover:border-primary transition-colors h-full">
             <CardHeader className="flex flex-row items-center justify-between pb-2">
               <CardTitle className="text-sm font-medium">Mapa Interactivo</CardTitle>
@@ -28,12 +29,12 @@ export default async function DashboardPage() {
             <CardContent>
               <div className="text-2xl font-bold font-headline">Explora Hábitats</div>
               <p className="text-xs text-muted-foreground">
-                Descubre fundaciones de vida silvestre y territorios de animales.
+                Descubre fundaciones y territorios de animales.
               </p>
             </CardContent>
           </Card>
         </Link>
-        <Link href="/animals">
+        <Link href="/animals" className="lg:col-span-1">
           <Card className="hover:border-primary transition-colors h-full">
             <CardHeader className="flex flex-row items-center justify-between pb-2">
               <CardTitle className="text-sm font-medium">Reino Animal</CardTitle>
@@ -47,7 +48,7 @@ export default async function DashboardPage() {
             </CardContent>
           </Card>
         </Link>
-        <Link href="/foundations" className="md:col-span-2">
+        <Link href="/foundations" className="lg:col-span-1">
           <Card className="hover:border-primary transition-colors h-full">
             <CardHeader className="flex flex-row items-center justify-between pb-2">
               <CardTitle className="text-sm font-medium">Héroes de la Conservación</CardTitle>
@@ -62,6 +63,8 @@ export default async function DashboardPage() {
           </Card>
         </Link>
       </div>
+
+      <ExplorationPlanner />
     </div>
   )
 }
