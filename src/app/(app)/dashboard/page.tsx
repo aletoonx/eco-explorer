@@ -10,6 +10,8 @@ import Link from "next/link"
 import { ExplorationPlanner } from "@/components/ai/exploration-planner";
 import { getMapFeatures } from "@/lib/data";
 
+export const dynamic = 'force-dynamic';
+
 export default async function DashboardPage() {
   const mapFeatures = await getMapFeatures();
 
