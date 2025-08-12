@@ -30,10 +30,6 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  experimental: {
-    // Permite las solicitudes del preview de Firebase Studio
-    allowedDevOrigins: ["*.cluster-f4iwdviaqvc2ct6pgytzw4xqy4.cloudworkstations.dev"],
-  },
 };
 
 export default nextConfig;
