@@ -6,9 +6,11 @@ if (!process.env.POSTGRES_URL) {
   throw new Error('CRITICAL: POSTGRES_URL environment variable is not defined.');
 }
 
-// Se elimina la manipulación de la URL. Ahora se usará la POSTGRES_URL tal como está en .env
 const pool = new Pool({
   connectionString: process.env.POSTGRES_URL,
+  ssl: {
+    rejectUnauthorized: false,
+  },
   max: 1, 
   idleTimeoutMillis: 30000,
   connectionTimeoutMillis: 10000,
