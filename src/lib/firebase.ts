@@ -107,6 +107,3 @@ export async function getSession() {
 export async function clearSessionCookie() {
     cookies().delete(SESSION_COOKIE_NAME);
 }
-
-// Exportamos lo que pueda ser útil, incluso si es null
-export { app, auth, adminAuth };
