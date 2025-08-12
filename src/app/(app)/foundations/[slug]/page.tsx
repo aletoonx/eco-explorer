@@ -67,7 +67,7 @@ export default async function FoundationPage({ params }: FoundationPageParams) {
                     </CardHeader>
                     <CardContent>
                         <p className="text-muted-foreground text-justify">{foundation.foundationActivities}</p>
-                    </CrdContent>
+                    </CardContent>
                 </Card>
             </div>
              <div>
