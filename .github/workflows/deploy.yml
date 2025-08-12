@@ -1,0 +1,43 @@
+# Este flujo de trabajo de GitHub Actions despliega tu proyecto en Firebase Hosting
+# cada vez que haces un push a la rama 'main'.
+
+name: Deploy to Firebase Hosting
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: npm run build
+        env:
+          # Estas variables son necesarias para el proceso de build, pero pueden ser ficticias
+          # ya que el build de Next.js las necesita pero no se usan para el despliegue estático.
+          POSTGRES_URL: ${{ secrets.POSTGRES_URL_DUMMY || 'postgres://dummy:dummy@dummy/dummy' }}
+          FIREBASE_SERVICE_ACCOUNT_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY_DUMMY || '{"type":"service_account","project_id":"dummy"}' }}
+          NEXT_PUBLIC_FIREBASE_API_KEY: ${{ secrets.NEXT_PUBLIC_FIREBASE_API_KEY_DUMMY || 'dummy' }}
+          NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: ${{ secrets.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN_DUMMY || 'dummy' }}
+          NEXT_PUBLIC_FIREBASE_PROJECT_ID: ${{ secrets.NEXT_PUBLIC_FIREBASE_PROJECT_ID_DUMMY || 'dummy' }}
+
+      - name: Deploy to Firebase Hosting
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY_REAL }}'
+          channelId: live
+          projectId: ${{ secrets.FIREBASE_PROJECT_ID_REAL }}
