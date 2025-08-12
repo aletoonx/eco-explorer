@@ -2,8 +2,9 @@
 'use client';
 import { AppHeader } from "@/components/layout/app-header";
 import { Footer } from "@/components/layout/footer";
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { app } from '@/lib/firebase';
+import { onAuthStateChanged } from 'firebase/auth';
+// Importamos desde el nuevo archivo específico del cliente
+import { auth } from '@/lib/firebase-client'; 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
@@ -15,13 +16,14 @@ export default function AppLayout({
   const router = useRouter();
 
   useEffect(() => {
-    const auth = getAuth(app);
+    // onAuthStateChanged ya sabe a qué instancia de auth pertenece
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (!user) {
         router.push('/login');
       }
     });
 
+    // Limpiamos la suscripción al desmontar el componente
     return () => unsubscribe();
   }, [router]);
 

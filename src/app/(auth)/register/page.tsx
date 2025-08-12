@@ -9,7 +9,9 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { AlertCircle, Loader2 } from 'lucide-react';
-import { signUpWithEmail } from '@/lib/firebase'; // Usamos las funciones del cliente
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '@/lib/firebase-client';
+import { createSession } from '@/actions/auth';
 
 export default function RegisterPage() {
   const [email, setEmail] = useState('');
@@ -30,25 +32,14 @@ export default function RegisterPage() {
     }
 
     try {
-      const idToken = await signUpWithEmail(email, password);
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const idToken = await userCredential.user.getIdToken();
        if (!idToken) {
         throw new Error('No se pudo obtener el token de ID después del registro.');
       }
       
-      const response = await fetch('/api/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ idToken }),
-        });
-
-        if (response.ok) {
-            router.push('/dashboard');
-        } else {
-            const data = await response.json();
-            setError(data.message || 'Ocurrió un error durante el registro.');
-        }
+      await createSession(idToken);
+      // El redirect a /dashboard se maneja en la server action
 
     } catch (err: any) {
       console.error('Error de registro:', err);

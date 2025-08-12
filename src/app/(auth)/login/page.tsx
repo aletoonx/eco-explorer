@@ -9,7 +9,9 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { AlertCircle, Loader2 } from 'lucide-react';
-import { signInWithEmail, createSessionCookie } from '@/lib/firebase'; // Usamos las funciones del cliente
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '@/lib/firebase-client';
+import { createSession } from '@/actions/auth';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -24,25 +26,16 @@ export default function LoginPage() {
     setError(null);
 
     try {
-      const idToken = await signInWithEmail(email, password);
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const idToken = await userCredential.user.getIdToken();
+      
       if (!idToken) {
         throw new Error('No se pudo obtener el token de ID.');
       }
-      
-      const response = await fetch('/api/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ idToken }),
-        });
 
-        if (response.ok) {
-            router.push('/dashboard');
-        } else {
-            const data = await response.json();
-            setError(data.message || 'Ocurrió un error al iniciar sesión.');
-        }
+      await createSession(idToken);
+      // El redirect se manejará en la acción del servidor
+      // router.push('/dashboard');
 
     } catch (err: any) {
         console.error('Error de inicio de sesión:', err);
