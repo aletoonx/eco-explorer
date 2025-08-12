@@ -1,11 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Leaf, Menu, Map, PawPrint, Landmark, LayoutDashboard } from "lucide-react";
+import { Leaf, Menu, Map, PawPrint, Landmark, LayoutDashboard, LogOut } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { clearSessionCookie } from "@/lib/firebase";
 
 const navItems = [
   { href: "/dashboard", label: "Panel", icon: LayoutDashboard },
@@ -16,6 +17,13 @@ const navItems = [
 
 export function AppHeader() {
   const pathname = usePathname();
+  const router = useRouter();
+
+  const handleSignOut = async () => {
+    await clearSessionCookie();
+    router.push('/login');
+    router.refresh();
+  };
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-card">
@@ -39,7 +47,10 @@ export function AppHeader() {
           ))}
         </nav>
         <div className="hidden items-center gap-2 md:flex">
-           {/* Botón de cierre de sesión eliminado para el sitio estático */}
+           <Button variant="ghost" size="sm" onClick={handleSignOut}>
+             <LogOut className="mr-2 h-4 w-4" />
+             Cerrar Sesión
+           </Button>
         </div>
         <Sheet>
           <SheetTrigger asChild>
@@ -72,7 +83,10 @@ export function AppHeader() {
                 ))}
               </nav>
               <div className="border-t p-4">
-                 {/* Lógica de cierre de sesión eliminada para el sitio estático */}
+                 <Button variant="ghost" className="w-full justify-start" onClick={handleSignOut}>
+                    <LogOut className="mr-2 h-4 w-4" />
+                    Cerrar Sesión
+                 </Button>
               </div>
             </div>
           </SheetContent>

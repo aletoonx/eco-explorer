@@ -32,7 +32,7 @@ export default function RegisterPage() {
 
     try {
       await createUserWithEmailAndPassword(auth, email, password);
-      // Después de un registro exitoso, redirigimos al login.
+      // Después de un registro exitoso, redirigimos al login para que el usuario inicie sesión.
       router.push('/login');
 
     } catch (err: any) {
@@ -50,7 +50,7 @@ export default function RegisterPage() {
     <Card>
       <CardHeader className="space-y-1 text-center">
         <CardTitle className="text-2xl">Crea una Cuenta</CardTitle>
-        <CardDescription>Esta sección se mantiene por demostración, pero la app es de acceso público.</CardDescription>
+        <CardDescription>Regístrate para comenzar tu aventura como eco explorador.</CardDescription>
       </CardHeader>
       <form onSubmit={handleSubmit}>
         <CardContent className="space-y-4">

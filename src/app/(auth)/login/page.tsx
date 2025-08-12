@@ -11,6 +11,7 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { AlertCircle, CheckCircle, Loader2 } from 'lucide-react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '@/lib/firebase-client';
+import { createSessionCookie } from '@/lib/firebase';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -27,15 +28,18 @@ export default function LoginPage() {
     setIsSuccess(false);
 
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const idToken = await userCredential.user.getIdToken();
       
+      // Crear la cookie de sesión en el servidor
+      await createSessionCookie(idToken);
+
       setIsSuccess(true);
       
-      // Pequeña pausa para que el usuario vea el mensaje de éxito
       await new Promise(resolve => setTimeout(resolve, 1000));
       
-      // Redirección directa al dashboard en un sitio estático
       router.push('/dashboard');
+      router.refresh(); // Para asegurar que el servidor lee la nueva sesión
 
     } catch (err: any) {
         let errorMessage = 'Ocurrió un error inesperado al iniciar sesión.';
@@ -52,7 +56,7 @@ export default function LoginPage() {
     <Card>
       <CardHeader className="space-y-1 text-center">
         <CardTitle className="text-2xl">Iniciar Sesión</CardTitle>
-        <CardDescription>Esta sección se mantiene por demostración, pero la app es de acceso público.</CardDescription>
+        <CardDescription>Accede a tu cuenta de explorador para continuar.</CardDescription>
       </CardHeader>
       <form onSubmit={handleSubmit}>
         <CardContent className="space-y-4">
