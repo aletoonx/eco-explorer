@@ -5,17 +5,15 @@ import { initializeApp as initializeAdminApp, getApps as getAdminApps, getApp as
 import { getAuth as getAdminAuth } from "firebase-admin/auth";
 import { cookies } from "next/headers";
 
-// --- Configuración de Firebase para el servidor (Admin SDK) ---
+const serviceAccount: ServiceAccount = JSON.parse(
+  process.env.FIREBASE_SERVICE_ACCOUNT_KEY as string
+);
 
-const serviceAccount: ServiceAccount | null = process.env.FIREBASE_SERVICE_ACCOUNT_KEY
-  ? JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_KEY)
-  : null;
-
-const adminApp: AdminApp | null = serviceAccount && !getAdminApps().length
+const adminApp: AdminApp = !getAdminApps().length
   ? initializeAdminApp({ credential: cert(serviceAccount) })
-  : getAdminApps().length > 0 ? getAdminApp() : null;
+  : getAdminApp();
 
-const adminAuth = adminApp ? getAdminAuth(adminApp) : null;
+const adminAuth = getAdminAuth(adminApp);
 
 const SESSION_COOKIE_NAME = "eco-explorer-session";
 
@@ -38,10 +36,6 @@ export async function createSessionCookie(idToken: string) {
 }
 
 export async function getSession() {
-    if (!adminAuth) {
-        console.warn("Firebase Admin SDK not initialized. Sessions cannot be verified.");
-        return null;
-    }
     const sessionCookie = cookies().get(SESSION_COOKIE_NAME)?.value;
     if (!sessionCookie) {
         return null;
@@ -55,20 +49,6 @@ export async function getSession() {
         return null;
     }
 }
-
-export async function checkSession(sessionCookieValue: string) {
-    if (!adminAuth) {
-        console.warn("Firebase Admin SDK not initialized. Sessions cannot be verified.");
-        return null;
-    }
-    try {
-        const decodedClaims = await adminAuth.verifySessionCookie(sessionCookieValue, true);
-        return decodedClaims;
-    } catch (error) {
-        return null;
-    }
-}
-
 
 export async function clearSessionCookie() {
     cookies().delete(SESSION_COOKIE_NAME);
