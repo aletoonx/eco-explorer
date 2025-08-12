@@ -34,8 +34,14 @@ jobs:
           NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: ${{ secrets.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN_DUMMY || 'dummy' }}
           NEXT_PUBLIC_FIREBASE_PROJECT_ID: ${{ secrets.NEXT_PUBLIC_FIREBASE_PROJECT_ID_DUMMY || 'dummy' }}
 
-      - name: Set project_id to lowercase
-        run: echo "PROJECT_ID_LOWER=$(echo "${{ secrets.FIREBASE_PROJECT_ID_REAL }}" | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+      - name: Extract and set lowercase project_id
+        run: |
+          RAW_PROJECT_ID="${{ secrets.FIREBASE_PROJECT_ID_REAL }}"
+          # Extrae la parte después del último '=' si existe, si no, usa la cadena completa
+          CLEAN_PROJECT_ID=$(echo "$RAW_PROJECT_ID" | awk -F'=' '{print $NF}')
+          # Convierte a minúsculas
+          PROJECT_ID_LOWER=$(echo "$CLEAN_PROJECT_ID" | tr '[:upper:]' '[:lower:]')
+          echo "PROJECT_ID_LOWER=$PROJECT_ID_LOWER" >> $GITHUB_ENV
 
       - name: Deploy to Firebase Hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
