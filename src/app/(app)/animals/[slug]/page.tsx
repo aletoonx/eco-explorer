@@ -5,8 +5,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { PawPrint, Globe } from "lucide-react";
 import Image from "next/image";
 
-export const dynamic = 'force-dynamic';
-
 export default async function AnimalDetailPage({ params }: { params: { slug: string } }) {
   const animal = await getAnimal(params.slug);
 

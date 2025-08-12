@@ -1,8 +1,6 @@
 import { getFoundations } from "@/lib/data";
 import { FoundationCard } from "@/components/foundations/foundation-card";
 
-export const dynamic = 'force-dynamic';
-
 export default async function FoundationsPage() {
   const foundations = await getFoundations();
   return (

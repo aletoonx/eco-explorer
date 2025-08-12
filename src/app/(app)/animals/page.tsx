@@ -2,8 +2,6 @@ import { getAnimals } from "@/lib/data";
 import { AnimalCard } from "@/components/animals/animal-card";
 import { ExtinctionInfo } from "@/components/animals/extinction-info";
 
-export const dynamic = 'force-dynamic';
-
 export default async function AnimalsPage() {
   const animals = await getAnimals();
 

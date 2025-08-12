@@ -6,8 +6,6 @@ import { Mail, MapPin, Target, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
-export const dynamic = 'force-dynamic';
-
 export default async function FoundationDetailPage({ params }: { params: { slug: string } }) {
   const foundation = await getFoundation(params.slug);
 
