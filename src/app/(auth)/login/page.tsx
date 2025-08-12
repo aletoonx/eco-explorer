@@ -8,7 +8,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { AlertCircle, Loader2 } from 'lucide-react';
+import { AlertCircle, CheckCircle, Loader2 } from 'lucide-react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '@/lib/firebase-client';
 import { createSession } from '@/actions/auth';
@@ -18,15 +18,23 @@ export default function LoginPage() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
   const router = useRouter();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setLoading(true);
     setError(null);
+    setIsSuccess(false);
 
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      
+      setIsSuccess(true);
+
+      // Pequeña pausa para que el usuario vea el mensaje de éxito
+      await new Promise(resolve => setTimeout(resolve, 1000));
+
       const idToken = await userCredential.user.getIdToken();
       
       if (!idToken) {
@@ -42,6 +50,7 @@ export default function LoginPage() {
         }
         setError(errorMessage);
         setLoading(false);
+        // ¡Importante! Detiene la ejecución si hay un error
         return; 
     }
   };
@@ -49,7 +58,7 @@ export default function LoginPage() {
   return (
     <Card>
       <CardHeader className="space-y-1 text-center">
-        <CardTitle className="text-2xl">¡Bienvenido de Nuevo!</CardTitle>
+        <CardTitle className="text-2xl">Iniciar Sesión</CardTitle>
         <CardDescription>Ingresa tu correo y contraseña para acceder a tu cuenta</CardDescription>
       </CardHeader>
       <form onSubmit={handleSubmit}>
@@ -91,8 +100,9 @@ export default function LoginPage() {
         </CardContent>
         <CardFooter className="flex flex-col gap-4">
           <Button type="submit" className="w-full" disabled={loading}>
-            {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-            {loading ? 'Iniciando Sesión...' : 'Iniciar Sesión'}
+            {loading && !isSuccess && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+            {isSuccess && <CheckCircle className="mr-2 h-4 w-4" />}
+            {isSuccess ? '¡Bienvenido de Nuevo!' : loading ? 'Verificando...' : 'Iniciar Sesión'}
           </Button>
           <p className="text-center text-sm text-muted-foreground">
             ¿No tienes una cuenta?{' '}
