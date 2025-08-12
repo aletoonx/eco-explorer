@@ -11,7 +11,6 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { AlertCircle, Loader2 } from 'lucide-react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '@/lib/firebase-client';
-import { createSession } from '@/actions/auth';
 
 export default function RegisterPage() {
   const [email, setEmail] = useState('');
@@ -32,14 +31,9 @@ export default function RegisterPage() {
     }
 
     try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      const idToken = await userCredential.user.getIdToken();
-       if (!idToken) {
-        throw new Error('No se pudo obtener el token de ID después del registro.');
-      }
-      
-      await createSession(idToken);
-      // El redirect a /dashboard se maneja en la server action
+      await createUserWithEmailAndPassword(auth, email, password);
+      // Después de un registro exitoso, redirigimos al login.
+      router.push('/login');
 
     } catch (err: any) {
       console.error('Error de registro:', err);
@@ -48,7 +42,6 @@ export default function RegisterPage() {
           errorMessage = 'Este correo electrónico ya está en uso. Por favor, intenta con otro.';
       }
       setError(errorMessage);
-    } finally {
       setLoading(false);
     }
   };
