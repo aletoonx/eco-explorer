@@ -1,7 +1,5 @@
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import type { Foundation } from "@/lib/data";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
 type FoundationCardProps = {
@@ -26,12 +24,10 @@ export function FoundationCard({ foundation }: FoundationCardProps) {
       )}
       <CardContent className="p-4 flex-grow">
         <CardTitle className="text-lg font-headline mb-2">{foundation.name}</CardTitle>
-        <CardDescription>{foundation.mission.substring(0, 100)}...</CardDescription>
+        <CardDescription>{foundation.mission.substring(0, 120)}...</CardDescription>
       </CardContent>
       <CardFooter className="p-4 pt-0">
-        <Button asChild className="w-full">
-          <Link href={`/foundations/${foundation.slug}`}>Ver Detalles</Link>
-        </Button>
+         <p className="text-sm text-muted-foreground">{foundation.location}</p>
       </CardFooter>
     </Card>
   );

@@ -1,7 +1,5 @@
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import type { Animal } from "@/lib/data";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { Badge } from "../ui/badge";
 import Image from 'next/image';
 
@@ -27,12 +25,11 @@ export function AnimalCard({ animal }: AnimalCardProps) {
       )}
       <CardContent className="p-4 flex-grow">
         <CardTitle className="text-lg font-headline mb-2">{animal.name}</CardTitle>
-        <Badge variant={animal.status === 'En Peligro' || animal.status === 'Endangered' ? 'destructive' : 'secondary'}>{animal.status}</Badge>
+        <CardDescription>{animal.scientificName}</CardDescription>
+        <p className="text-sm text-muted-foreground mt-2">{animal.habitat}</p>
       </CardContent>
       <CardFooter className="p-4 pt-0">
-        <Button asChild className="w-full">
-          <Link href={`/animals/${animal.slug}`}>Aprender Más</Link>
-        </Button>
+        <Badge variant={animal.status === 'En Peligro' || animal.status === 'Endangered' ? 'destructive' : 'secondary'}>{animal.status}</Badge>
       </CardFooter>
     </Card>
   );

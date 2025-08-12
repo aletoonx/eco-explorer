@@ -1,4 +1,4 @@
-import { HighlightMapFeatures } from "@/components/map/highlight-map-features";
+
 import { InteractiveMap } from "@/components/map/interactive-map";
 import { getFoundations } from "@/lib/data";
 
@@ -16,7 +16,6 @@ export default async function MapPage() {
       <div className="w-full">
         <InteractiveMap foundations={foundations} />
       </div>
-      <HighlightMapFeatures foundations={foundations} />
     </div>
   );
 }
