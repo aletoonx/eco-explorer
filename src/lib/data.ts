@@ -32,9 +32,13 @@ export type Foundation = {
 export async function getAnimals(): Promise<Animal[]> {
   const res = await query('SELECT slug, name, "scientificName", description, status, "imageURL", habitat, "dataAiHint" FROM animals', []);
   return res.rows.map(row => ({
-      ...row,
+      slug: row.slug,
+      name: row.name,
       scientificName: row.scientificName,
+      description: row.description,
+      status: row.status,
       imageURL: row.imageURL,
+      habitat: row.habitat,
       dataAiHint: row.dataAiHint,
   }));
 }
@@ -44,9 +48,13 @@ export async function getAnimal(slug: string): Promise<Animal | undefined> {
   if (res.rows.length > 0) {
     const row = res.rows[0];
     return {
-      ...row,
+      slug: row.slug,
+      name: row.name,
       scientificName: row.scientificName,
+      description: row.description,
+      status: row.status,
       imageURL: row.imageURL,
+      habitat: row.habitat,
       dataAiHint: row.dataAiHint,
     };
   }
@@ -59,10 +67,16 @@ export async function getAnimal(slug: string): Promise<Animal | undefined> {
 export async function getFoundations(): Promise<Foundation[]> {
   const res = await query('SELECT slug, name, mission, location, contact, "imageURL", "dataAiHint", "foundationActivities", lat, lng, "ofcWebsite" FROM foundations', []);
   return res.rows.map(row => ({
-      ...row,
+      slug: row.slug,
+      name: row.name,
+      mission: row.mission,
+      location: row.location,
+      contact: row.contact,
       imageURL: row.imageURL,
       dataAiHint: row.dataAiHint,
       foundationActivities: row.foundationActivities,
+      lat: row.lat,
+      lng: row.lng,
       ofcWebsite: row.ofcWebsite
   }));
 }
@@ -72,10 +86,16 @@ export async function getFoundation(slug: string): Promise<Foundation | undefine
   if (res.rows.length > 0) {
     const row = res.rows[0];
     return {
-      ...row,
+      slug: row.slug,
+      name: row.name,
+      mission: row.mission,
+      location: row.location,
+      contact: row.contact,
       imageURL: row.imageURL,
       dataAiHint: row.dataAiHint,
       foundationActivities: row.foundationActivities,
+      lat: row.lat,
+      lng: row.lng,
       ofcWebsite: row.ofcWebsite
     };
   }
