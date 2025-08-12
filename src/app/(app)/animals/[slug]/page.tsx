@@ -12,7 +12,7 @@ export default async function AnimalDetailPage({ params }: { params: { slug: str
     notFound();
   }
 
-  const imageURL = "https://placehold.co/800x450.png";
+  const imageURL = animal.imageURL || "https://placehold.co/800x450.png";
 
   return (
     <div className="space-y-8 max-w-4xl mx-auto">

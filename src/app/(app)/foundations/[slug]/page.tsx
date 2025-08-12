@@ -13,7 +13,7 @@ export default async function FoundationDetailPage({ params }: { params: { slug:
     notFound();
   }
   
-  const imageURL = "https://placehold.co/800x400.png";
+  const imageURL = foundation.imageURL || "https://placehold.co/800x400.png";
 
   return (
     <div className="space-y-8 max-w-4xl mx-auto">
