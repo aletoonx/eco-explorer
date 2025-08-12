@@ -4,9 +4,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Leaf, Menu, Map, PawPrint, Landmark, LayoutDashboard, LogOut } from "lucide-react";
+import { Leaf, Menu, Map, PawPrint, Landmark, LayoutDashboard } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { handleSignOut } from "@/actions/auth";
 
 const navItems = [
   { href: "/dashboard", label: "Panel", icon: LayoutDashboard },
@@ -40,11 +39,7 @@ export function AppHeader() {
           ))}
         </nav>
         <div className="hidden items-center gap-2 md:flex">
-          <form action={handleSignOut}>
-              <Button variant="ghost" size="icon" type="submit" aria-label="Cerrar sesión">
-                <LogOut className="w-5 h-5" />
-              </Button>
-          </form>
+           {/* Botón de cierre de sesión eliminado para el sitio estático */}
         </div>
         <Sheet>
           <SheetTrigger asChild>
@@ -77,12 +72,7 @@ export function AppHeader() {
                 ))}
               </nav>
               <div className="border-t p-4">
-                <form action={handleSignOut}>
-                    <Button variant="ghost" className="w-full justify-start" type="submit">
-                      <LogOut className="mr-2 h-4 w-4" />
-                      Cerrar Sesión
-                    </Button>
-                </form>
+                 {/* Lógica de cierre de sesión eliminada para el sitio estático */}
               </div>
             </div>
           </SheetContent>

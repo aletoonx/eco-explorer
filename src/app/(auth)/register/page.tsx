@@ -50,7 +50,7 @@ export default function RegisterPage() {
     <Card>
       <CardHeader className="space-y-1 text-center">
         <CardTitle className="text-2xl">Crea una Cuenta</CardTitle>
-        <CardDescription>Ingresa tus datos para unirte a la aventura</CardDescription>
+        <CardDescription>Esta sección se mantiene por demostración, pero la app es de acceso público.</CardDescription>
       </CardHeader>
       <form onSubmit={handleSubmit}>
         <CardContent className="space-y-4">

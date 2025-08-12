@@ -11,7 +11,6 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { AlertCircle, CheckCircle, Loader2 } from 'lucide-react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '@/lib/firebase-client';
-import { createSession } from '@/actions/auth';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -28,28 +27,15 @@ export default function LoginPage() {
     setIsSuccess(false);
 
     try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      await signInWithEmailAndPassword(auth, email, password);
       
       setIsSuccess(true);
       
-      const idToken = await userCredential.user.getIdToken();
-      
-      if (!idToken) {
-        throw new Error('No se pudo obtener el token de ID.');
-      }
-
       // Pequeña pausa para que el usuario vea el mensaje de éxito
       await new Promise(resolve => setTimeout(resolve, 1000));
       
-      const sessionResult = await createSession(idToken);
-
-      if (sessionResult.success) {
-        router.push('/dashboard');
-      } else {
-        setError(sessionResult.message || 'No se pudo iniciar sesión en el servidor.');
-        setIsSuccess(false);
-        setLoading(false);
-      }
+      // Redirección directa al dashboard en un sitio estático
+      router.push('/dashboard');
 
     } catch (err: any) {
         let errorMessage = 'Ocurrió un error inesperado al iniciar sesión.';
@@ -66,7 +52,7 @@ export default function LoginPage() {
     <Card>
       <CardHeader className="space-y-1 text-center">
         <CardTitle className="text-2xl">Iniciar Sesión</CardTitle>
-        <CardDescription>Ingresa tu correo y contraseña para acceder a tu cuenta</CardDescription>
+        <CardDescription>Esta sección se mantiene por demostración, pero la app es de acceso público.</CardDescription>
       </CardHeader>
       <form onSubmit={handleSubmit}>
         <CardContent className="space-y-4">
@@ -109,7 +95,7 @@ export default function LoginPage() {
           <Button type="submit" className="w-full" disabled={loading}>
             {loading && !isSuccess && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
             {isSuccess && <CheckCircle className="mr-2 h-4 w-4" />}
-            {isSuccess ? '¡Bienvenido de Nuevo!' : loading ? 'Verificando...' : 'Iniciar Sesión'}
+            {isSuccess ? '¡Bienvenido!' : loading ? 'Verificando...' : 'Acceder al Dashboard'}
           </Button>
           <p className="text-center text-sm text-muted-foreground">
             ¿No tienes una cuenta?{' '}
