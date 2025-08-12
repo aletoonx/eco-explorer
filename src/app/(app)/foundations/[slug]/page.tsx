@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Mail, MapPin, Target, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import Image from "next/image";
 
 export default async function FoundationDetailPage({ params }: { params: { slug: string } }) {
   const foundation = await getFoundation(params.slug);
@@ -22,11 +23,14 @@ export default async function FoundationDetailPage({ params }: { params: { slug:
 
        <Card className="overflow-hidden">
         <CardContent className="p-0 relative aspect-video max-h-96">
-            <img
+            <Image
                 src={imageURL}
                 alt={foundation.name}
-                className="w-full h-full object-cover"
+                layout="fill"
+                objectFit="cover"
+                className="w-full h-full"
                 data-ai-hint={foundation.dataAiHint}
+                unoptimized
             />
         </CardContent>
       </Card>
@@ -73,7 +77,7 @@ export default async function FoundationDetailPage({ params }: { params: { slug:
                       <Globe className="w-5 h-5 text-primary"/>
                       <span>Sitio Web</span>
                   </CardTitle>
-              </CardHeader>
+              </Header>
               <CardContent>
                 <Button asChild>
                   <Link href={foundation.ofcWebsite} target="_blank" rel="noopener noreferrer">

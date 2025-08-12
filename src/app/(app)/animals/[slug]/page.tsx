@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { PawPrint, Globe } from "lucide-react";
+import Image from "next/image";
 
 export default async function AnimalDetailPage({ params }: { params: { slug: string } }) {
   const animal = await getAnimal(params.slug);
@@ -11,6 +12,8 @@ export default async function AnimalDetailPage({ params }: { params: { slug: str
     notFound();
   }
 
+  const imageURL = animal.imageURL || "https://placehold.co/800x450.png";
+
   return (
     <div className="space-y-8 max-w-4xl mx-auto">
       <div>
@@ -18,14 +21,17 @@ export default async function AnimalDetailPage({ params }: { params: { slug: str
         <p className="text-xl text-muted-foreground font-headline">{animal.scientificName}</p>
       </div>
 
-      {animal.imageURL && (
+      {imageURL && (
         <Card className="overflow-hidden">
             <CardContent className="p-0 relative aspect-video">
-            <img
-                src={animal.imageURL}
+            <Image
+                src={imageURL}
                 alt={animal.name}
-                className="w-full h-full object-cover"
+                layout="fill"
+                objectFit="cover"
+                className="w-full h-full"
                 data-ai-hint={animal.dataAiHint}
+                unoptimized
             />
             </CardContent>
         </Card>

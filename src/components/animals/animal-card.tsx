@@ -3,21 +3,26 @@ import type { Animal } from "@/lib/data";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "../ui/badge";
+import Image from 'next/image';
 
 type AnimalCardProps = {
   animal: Animal;
 };
 
 export function AnimalCard({ animal }: AnimalCardProps) {
+  const imageURL = animal.imageURL || "https://placehold.co/400x250.png";
   return (
     <Card className="flex flex-col h-full overflow-hidden transition-all hover:shadow-lg hover:border-primary/50">
-      {animal.imageURL && (
+      {imageURL && (
          <div className="relative h-48 w-full">
-          <img
-              src={animal.imageURL}
+          <Image
+              src={imageURL}
               alt={animal.name}
-              className="w-full h-full object-cover"
+              layout="fill"
+              objectFit="cover"
+              className="w-full h-full"
               data-ai-hint={animal.dataAiHint}
+              unoptimized
             />
        </div>
       )}

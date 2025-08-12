@@ -2,6 +2,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import type { Foundation } from "@/lib/data";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 type FoundationCardProps = {
   foundation: Foundation;
@@ -11,13 +12,16 @@ export function FoundationCard({ foundation }: FoundationCardProps) {
   const imageURL = foundation.imageURL || "https://placehold.co/400x250.png";
   return (
     <Card className="flex flex-col h-full overflow-hidden transition-all hover:shadow-lg hover:border-primary/50">
-      {foundation.imageURL && (
+      {imageURL && (
         <div className="relative h-40 w-full">
-            <img
+            <Image
             src={imageURL}
             alt={foundation.name}
-            className="w-full h-full object-cover"
+            layout="fill"
+            objectFit="cover"
+            className="w-full h-full"
             data-ai-hint={foundation.dataAiHint}
+            unoptimized
             />
         </div>
       )}
