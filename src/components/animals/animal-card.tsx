@@ -10,7 +10,7 @@ type AnimalCardProps = {
 export function AnimalCard({ animal }: AnimalCardProps) {
   const imageURL = animal.imageURL || "https://placehold.co/400x250.png";
   return (
-    <Card className="flex flex-col h-full overflow-hidden transition-all hover:shadow-lg hover:border-primary/50">
+    <Card className="flex flex-col h-auto overflow-hidden transition-all hover:shadow-lg hover:border-primary/50">
       {imageURL && (
          <div className="relative h-48 w-full">
           <Image
@@ -24,9 +24,10 @@ export function AnimalCard({ animal }: AnimalCardProps) {
        </div>
       )}
       <CardContent className="p-4 flex-grow">
-        <CardTitle className="text-lg font-headline mb-2">{animal.name}</CardTitle>
-        <CardDescription>{animal.scientificName}</CardDescription>
-        <p className="text-sm text-muted-foreground mt-2">{animal.habitat}</p>
+        <CardTitle className="text-lg font-headline mb-1">{animal.name}</CardTitle>
+        <CardDescription className="italic text-xs mb-2">{animal.scientificName}</CardDescription>
+        <p className="text-sm text-muted-foreground mb-1"><strong>Hábitat:</strong> {animal.habitat}</p>
+        <p className="text-sm text-foreground/80 mt-3">{animal.description}</p>
       </CardContent>
       <CardFooter className="p-4 pt-0">
         <Badge variant={animal.status === 'En Peligro' || animal.status === 'Endangered' ? 'destructive' : 'secondary'}>{animal.status}</Badge>

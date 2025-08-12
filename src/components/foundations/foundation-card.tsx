@@ -9,7 +9,7 @@ type FoundationCardProps = {
 export function FoundationCard({ foundation }: FoundationCardProps) {
   const imageURL = foundation.imageURL || "https://placehold.co/400x250.png";
   return (
-    <Card className="flex flex-col h-full overflow-hidden transition-all hover:shadow-lg hover:border-primary/50">
+    <Card className="flex flex-col h-auto overflow-hidden transition-all hover:shadow-lg hover:border-primary/50">
       {imageURL && (
         <div className="relative h-40 w-full">
             <Image
@@ -24,10 +24,10 @@ export function FoundationCard({ foundation }: FoundationCardProps) {
       )}
       <CardContent className="p-4 flex-grow">
         <CardTitle className="text-lg font-headline mb-2">{foundation.name}</CardTitle>
-        <CardDescription>{foundation.mission.substring(0, 120)}...</CardDescription>
+        <CardDescription className="text-foreground/80">{foundation.mission}</CardDescription>
       </CardContent>
       <CardFooter className="p-4 pt-0">
-         <p className="text-sm text-muted-foreground">{foundation.location}</p>
+         <p className="text-sm text-muted-foreground font-semibold">{foundation.location}</p>
       </CardFooter>
     </Card>
   );
