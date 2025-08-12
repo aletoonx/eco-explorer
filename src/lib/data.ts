@@ -35,12 +35,12 @@ export async function getAnimals(): Promise<Animal[]> {
   return res.rows.map(row => ({
       slug: row.slug,
       name: row.name,
-      scientificName: row.scientificName,
+      scientificName: row.scientificname,
       description: row.description,
       status: row.status,
-      imageURL: row.imageURL,
+      imageURL: row.imageurl,
       habitat: row.habitat,
-      dataAiHint: row.dataAiHint,
+      dataAiHint: row.dataaihint,
   }));
 }
 
@@ -51,12 +51,12 @@ export async function getAnimal(slug: string): Promise<Animal | undefined> {
     return {
       slug: row.slug,
       name: row.name,
-      scientificName: row.scientificName,
+      scientificName: row.scientificname,
       description: row.description,
       status: row.status,
-      imageURL: row.imageURL,
+      imageURL: row.imageurl,
       habitat: row.habitat,
-      dataAiHint: row.dataAiHint,
+      dataAiHint: row.dataaihint,
     };
   }
   return undefined;
@@ -73,12 +73,12 @@ export async function getFoundations(): Promise<Foundation[]> {
       mission: row.mission,
       location: row.location,
       contact: row.contact,
-      imageURL: row.imageURL,
-      dataAiHint: row.dataAiHint,
-      foundationActivities: row.foundationActivities,
+      imageURL: row.imageurl,
+      dataAiHint: row.dataaihint,
+      foundationActivities: row.foundationactivities,
       lat: row.lat,
       lng: row.lng,
-      ofcWebsite: row.ofcWebsite
+      ofcWebsite: row.ofcwebsite
   }));
 }
 
@@ -92,12 +92,12 @@ export async function getFoundation(slug: string): Promise<Foundation | undefine
       mission: row.mission,
       location: row.location,
       contact: row.contact,
-      imageURL: row.imageURL,
-      dataAiHint: row.dataAiHint,
-      foundationActivities: row.foundationActivities,
+      imageURL: row.imageurl,
+      dataAiHint: row.dataaihint,
+      foundationActivities: row.foundationactivities,
       lat: row.lat,
       lng: row.lng,
-      ofcWebsite: row.ofcWebsite
+      ofcWebsite: row.ofcwebsite
     };
   }
   return undefined;
