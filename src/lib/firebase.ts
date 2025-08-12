@@ -11,11 +11,9 @@ const serviceAccount: ServiceAccount | null = process.env.FIREBASE_SERVICE_ACCOU
   ? JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_KEY)
   : null;
 
-const adminApp: AdminApp | null = serviceAccount
-  ? getAdminApps().length > 0
-    ? getAdminApp()
-    : initializeAdminApp({ credential: cert(serviceAccount) })
-  : null;
+const adminApp: AdminApp | null = serviceAccount && !getAdminApps().length
+  ? initializeAdminApp({ credential: cert(serviceAccount) })
+  : getAdminApps().length > 0 ? getAdminApp() : null;
 
 const adminAuth = adminApp ? getAdminAuth(adminApp) : null;
 
