@@ -1,27 +1,9 @@
 
 'use server';
 
-import { initializeApp, getApps, getApp, type FirebaseOptions } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { initializeApp as initializeAdminApp, getApps as getAdminApps, getApp as getAdminApp, App as AdminApp, cert, type ServiceAccount } from "firebase-admin/app";
 import { getAuth as getAdminAuth } from "firebase-admin/auth";
 import { cookies } from "next/headers";
-
-// --- Configuración de Firebase para el cliente (navegador) ---
-
-const firebaseConfig: FirebaseOptions = {
-    apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-    authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-    projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-    storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-    appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
-};
-
-// --- Inicialización de la App de Firebase en el cliente (si hay config) ---
-export const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
-const auth = getAuth(app);
-
 
 // --- Configuración de Firebase para el servidor (Admin SDK) ---
 
@@ -41,25 +23,6 @@ function getAdminAppSafe(): AdminApp | null {
 
 const SESSION_COOKIE_NAME = "eco-explorer-session";
 
-// --- Funciones de autenticación (verificando si auth está disponible) ---
-
-export async function signUpWithEmail(email: string, password: string): Promise<string | null> {
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-    if (userCredential.user) {
-        const idToken = await userCredential.user.getIdToken();
-        return idToken;
-    }
-    return null;
-}
-
-export async function signInWithEmail(email: string, password: string): Promise<string | null> {
-    const userCredential = await signInWithEmailAndPassword(auth, email, password);
-    if (userCredential.user) {
-        const idToken = await userCredential.user.getIdToken();
-        return idToken;
-    }
-    return null;
-}
 
 // --- Funciones de manejo de sesión del lado del servidor (verificando si adminAuth está disponible) ---
 
