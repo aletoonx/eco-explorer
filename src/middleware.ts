@@ -8,6 +8,11 @@ export async function middleware(request: NextRequest) {
   const sessionCookie = request.cookies.get(SESSION_COOKIE_NAME);
   const { pathname } = request.nextUrl;
 
+  // Ignore API routes for actions
+  if (pathname.startsWith("/api") || pathname.startsWith("/_next")) {
+    return NextResponse.next();
+  }
+
   const isProtectedRoute = 
     protectedRoutes.some(route => pathname.startsWith(route));
   
