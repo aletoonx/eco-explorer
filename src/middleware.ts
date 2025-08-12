@@ -1,5 +1,4 @@
 import { type NextRequest, NextResponse } from "next/server";
-import { checkSession } from "@/lib/firebase";
 
 const protectedRoutes = ["/dashboard", "/map", "/animals", "/foundations"];
 const authRoutes = ["/login", "/register"];
@@ -13,32 +12,25 @@ export async function middleware(request: NextRequest) {
   const isAuthRoute = authRoutes.includes(pathname);
   const isPublicHome = pathname === '/';
 
+  // 1. Si el usuario no está autenticado (no hay cookie)
   if (!sessionCookie) {
-    // Si no hay sesión y trata de acceder a una ruta protegida, redirigir a login
+    // Y está intentando acceder a una ruta protegida, redirigir a login
     if (isProtectedRoute) {
       return NextResponse.redirect(new URL("/login", request.url));
     }
-    // Permitir acceso a rutas públicas si no hay sesión
+    // Si no, permitir el acceso a rutas públicas/auth
     return NextResponse.next();
   }
 
-  // Si hay sesión, verificar que sea válida
-  const decodedClaims = await checkSession(sessionCookie);
-
-  if (!decodedClaims) {
-      // Si la cookie es inválida, borrarla y redirigir a login
-      const response = NextResponse.redirect(new URL('/login', request.url));
-      response.cookies.delete(SESSION_COOKIE_NAME);
-      return response;
-  }
-
-  // Si hay una sesión válida:
-  // Si intenta acceder a una ruta de autenticación o a la home, redirigir al dashboard
+  // 2. Si el usuario SÍ está autenticado (hay cookie)
+  // Y está intentando acceder a una ruta de autenticación (login/register) o a la home,
+  // lo redirigimos a su panel de control.
   if (isAuthRoute || isPublicHome) {
     return NextResponse.redirect(new URL("/dashboard", request.url));
   }
 
-  // Si intenta acceder a una ruta protegida, permitir el acceso
+  // Si está autenticado y accede a cualquier otra ruta (protegida o no), se le permite el paso.
+  // La validación real de la sesión se hará en el AppLayout del servidor.
   return NextResponse.next();
 }
 

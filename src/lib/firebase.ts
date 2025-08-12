@@ -99,7 +99,8 @@ export async function getSession() {
         const decodedClaims = await adminAuth.verifySessionCookie(sessionCookie, true);
         return decodedClaims;
     } catch (error) {
-        // Silently fail, session is invalid.
+        // La sesión no es válida, borramos la cookie.
+        cookies().delete(SESSION_COOKIE_NAME);
         return null;
     }
 }

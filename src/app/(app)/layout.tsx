@@ -1,11 +1,19 @@
 import { AppHeader } from "@/components/layout/app-header";
 import { Footer } from "@/components/layout/footer";
+import { getSession } from "@/lib/firebase";
+import { redirect } from "next/navigation";
 
-export default function AppLayout({
+export default async function AppLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const session = await getSession();
+
+  if (!session) {
+    redirect("/login");
+  }
+
   return (
     <div className="flex min-h-screen flex-col">
       <AppHeader />
