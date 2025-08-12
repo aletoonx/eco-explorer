@@ -29,17 +29,7 @@ export default function LoginPage() {
         throw new Error('No se pudo obtener el token de ID.');
       }
       
-      // En un entorno estático, no podemos llamar a `createSessionCookie` directamente desde una acción
-      // que también redirige. Hacemos la redirección manualmente en el cliente.
-      // La cookie se establecerá a través de una API route o un mecanismo similar si es necesario
-      // para proteger rutas en un futuro, pero para la navegación del cliente esto funciona.
-      // Por ahora, el layout del cliente protegerá las rutas.
-      
-      // La forma más simple para un sitio estático es redirigir y dejar que el `useEffect` del layout
-      // maneje el estado de la sesión. Para hacer eso, necesitamos una forma de pasar el token
-      // o simplemente confiar en que el SDK de Firebase del cliente ahora está autenticado.
-       
-       const response = await fetch('/api/login', {
+      const response = await fetch('/api/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

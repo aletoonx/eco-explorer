@@ -6,42 +6,36 @@ import { initializeApp as initializeAdminApp, getApps as getAdminApps, getApp as
 import { getAuth as getAdminAuth } from "firebase-admin/auth";
 import { cookies } from "next/headers";
 
-// --- Helpers para verificar si las credenciales están presentes ---
-
-const hasClientSideFirebaseConfig =
-  process.env.NEXT_PUBLIC_FIREBASE_API_KEY &&
-  process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN &&
-  process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID;
-
-const hasServerSideFirebaseConfig = process.env.FIREBASE_SERVICE_ACCOUNT_KEY;
-
 // --- Configuración de Firebase para el cliente (navegador) ---
 
-const firebaseConfig: FirebaseOptions = hasClientSideFirebaseConfig
-  ? {
-      apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-      authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-      projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-      storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-      messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-      appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
-    }
-  : {};
+const firebaseConfig: FirebaseOptions = {
+    apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+    authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+    storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+};
 
 // --- Inicialización de la App de Firebase en el cliente (si hay config) ---
-export const app = hasClientSideFirebaseConfig ? (getApps().length ? getApp() : initializeApp(firebaseConfig)) : null;
-const auth = app ? getAuth(app) : null;
+export const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
+const auth = getAuth(app);
 
 
 // --- Configuración de Firebase para el servidor (Admin SDK) ---
 
 function getAdminAppSafe(): AdminApp | null {
-    if (!hasServerSideFirebaseConfig) return null;
-    const serviceAccount: ServiceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_KEY!);
-    if (getAdminApps().length > 0) {
-        return getAdminApp();
+    if (!process.env.FIREBASE_SERVICE_ACCOUNT_KEY) return null;
+    try {
+        const serviceAccount: ServiceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_KEY);
+        if (getAdminApps().length > 0) {
+            return getAdminApp();
+        }
+        return initializeAdminApp({ credential: cert(serviceAccount) });
+    } catch (error) {
+        console.error("Error parsing Firebase service account key:", error);
+        return null;
     }
-    return initializeAdminApp({ credential: cert(serviceAccount) });
 }
 
 const SESSION_COOKIE_NAME = "eco-explorer-session";
@@ -49,7 +43,6 @@ const SESSION_COOKIE_NAME = "eco-explorer-session";
 // --- Funciones de autenticación (verificando si auth está disponible) ---
 
 export async function signUpWithEmail(email: string, password: string): Promise<string | null> {
-    if (!auth) throw new Error("Firebase client not initialized. Check your environment variables.");
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     if (userCredential.user) {
         const idToken = await userCredential.user.getIdToken();
@@ -59,7 +52,6 @@ export async function signUpWithEmail(email: string, password: string): Promise<
 }
 
 export async function signInWithEmail(email: string, password: string): Promise<string | null> {
-    if (!auth) throw new Error("Firebase client not initialized. Check your environment variables.");
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
     if (userCredential.user) {
         const idToken = await userCredential.user.getIdToken();
