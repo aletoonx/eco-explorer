@@ -104,6 +104,20 @@ export async function getSession() {
     }
 }
 
+export async function checkSession(sessionCookieValue: string) {
+    if (!adminAuth) {
+        console.warn("Firebase Admin SDK not initialized. Sessions cannot be verified.");
+        return null;
+    }
+    try {
+        const decodedClaims = await adminAuth.verifySessionCookie(sessionCookieValue, true);
+        return decodedClaims;
+    } catch (error) {
+        return null;
+    }
+}
+
+
 export async function clearSessionCookie() {
     cookies().delete(SESSION_COOKIE_NAME);
 }
