@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { PawPrint, Globe } from "lucide-react";
+import Image from "next/image";
 
 export default async function AnimalDetailPage({ params }: { params: { slug: string } }) {
   const animal = await getAnimal(params.slug);
@@ -20,13 +21,12 @@ export default async function AnimalDetailPage({ params }: { params: { slug: str
 
       {animal.imageURL && (
         <Card className="overflow-hidden">
-            <CardContent className="p-0">
-            <img
+            <CardContent className="p-0 relative aspect-video">
+            <Image
                 src={animal.imageURL}
                 alt={animal.name}
-                width={800}
-                height={450}
-                className="w-full object-cover"
+                layout="fill"
+                className="object-cover"
                 data-ai-hint={animal.dataAiHint}
             />
             </CardContent>

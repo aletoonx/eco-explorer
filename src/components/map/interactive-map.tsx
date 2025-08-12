@@ -4,6 +4,7 @@
 import type { Foundation } from "@/lib/data";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { MapPin } from "lucide-react";
+import Image from "next/image";
 
 type InteractiveMapProps = {
   foundations: Foundation[];
@@ -34,7 +35,7 @@ export function InteractiveMap({ foundations }: InteractiveMapProps) {
       <div className="relative w-full max-w-5xl mx-auto rounded-lg bg-card p-4 border">
         <div className="relative mx-auto" style={{ width: `${MAP_WIDTH}px`, height: `${MAP_HEIGHT}px`}}>
             {/* Carga la imagen desde la carpeta `public` */}
-            <img
+            <Image
                 src="/costa-rica-map.png"
                 alt="Mapa de Costa Rica"
                 width={MAP_WIDTH}
