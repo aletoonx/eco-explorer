@@ -34,8 +34,7 @@ export default function LoginPage() {
       }
 
       await createSession(idToken);
-      // La redirección se maneja en la server action.
-      // No necesitamos hacer router.push() aquí.
+      // La redirección se maneja en la server action y ya no necesitamos hacer nada aquí.
 
     } catch (err: any) {
         console.error('Error de inicio de sesión:', err);
@@ -44,11 +43,11 @@ export default function LoginPage() {
             errorMessage = 'Las credenciales son incorrectas. Por favor, verifica tu correo y contraseña.';
         }
         setError(errorMessage);
-        setLoading(false); // Detenemos el loading aquí
-        return; // Detenemos la ejecución para no continuar.
+        setLoading(false); // Detenemos el loading aquí para que el usuario pueda volver a intentarlo
+        return; // ¡Importante! Detenemos la ejecución aquí si hay un error.
     }
     
-    // No es necesario setLoading(false) aquí porque la página redirigirá.
+    // No es necesario setLoading(false) aquí porque la página redirigirá en caso de éxito.
   };
 
   return (
