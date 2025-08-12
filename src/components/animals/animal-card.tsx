@@ -10,7 +10,7 @@ type AnimalCardProps = {
 };
 
 export function AnimalCard({ animal }: AnimalCardProps) {
-  const imageURL = animal.imageURL || "https://placehold.co/400x250.png";
+  const imageURL = "https://placehold.co/400x250.png";
   return (
     <Card className="flex flex-col h-full overflow-hidden transition-all hover:shadow-lg hover:border-primary/50">
       {imageURL && (
