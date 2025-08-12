@@ -1,6 +1,5 @@
 import { getFoundation, type Foundation } from "@/lib/data";
 import { notFound } from "next/navigation";
-import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Mail, MapPin, Target, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -23,7 +22,7 @@ export default async function FoundationDetailPage({ params }: { params: { slug:
 
        <Card className="overflow-hidden">
         <CardContent className="p-0">
-            <Image
+            <img
                 src={imageURL}
                 alt={foundation.name}
                 width={800}

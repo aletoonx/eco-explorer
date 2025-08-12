@@ -3,7 +3,6 @@ import type { Animal } from "@/lib/data";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "../ui/badge";
-import Image from "next/image";
 
 type AnimalCardProps = {
   animal: Animal;
@@ -14,7 +13,7 @@ export function AnimalCard({ animal }: AnimalCardProps) {
     <Card className="flex flex-col h-full overflow-hidden transition-all hover:shadow-lg hover:border-primary/50">
       {animal.imageURL ? (
          <CardHeader className="p-0">
-          <Image
+          <img
               src={animal.imageURL}
               alt={animal.name}
               width={400}
