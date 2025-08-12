@@ -7,19 +7,17 @@ import { cookies } from "next/headers";
 
 // --- Configuración de Firebase para el servidor (Admin SDK) ---
 
-function getAdminAppSafe(): AdminApp | null {
-    if (!process.env.FIREBASE_SERVICE_ACCOUNT_KEY) return null;
-    try {
-        const serviceAccount: ServiceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_KEY);
-        if (getAdminApps().length > 0) {
-            return getAdminApp();
-        }
-        return initializeAdminApp({ credential: cert(serviceAccount) });
-    } catch (error) {
-        console.error("Error parsing Firebase service account key:", error);
-        return null;
-    }
-}
+const serviceAccount: ServiceAccount | null = process.env.FIREBASE_SERVICE_ACCOUNT_KEY
+  ? JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_KEY)
+  : null;
+
+const adminApp: AdminApp | null = serviceAccount
+  ? getAdminApps().length > 0
+    ? getAdminApp()
+    : initializeAdminApp({ credential: cert(serviceAccount) })
+  : null;
+
+const adminAuth = adminApp ? getAdminAuth(adminApp) : null;
 
 const SESSION_COOKIE_NAME = "eco-explorer-session";
 
@@ -27,9 +25,7 @@ const SESSION_COOKIE_NAME = "eco-explorer-session";
 // --- Funciones de manejo de sesión del lado del servidor (verificando si adminAuth está disponible) ---
 
 export async function createSessionCookie(idToken: string) {
-    const adminApp = getAdminAppSafe();
-    if (!adminApp) throw new Error("Firebase Admin SDK not initialized. Check your environment variables.");
-    const adminAuth = getAdminAuth(adminApp);
+    if (!adminAuth) throw new Error("Firebase Admin SDK not initialized. Check your environment variables.");
 
     const expiresIn = 60 * 60 * 24 * 5 * 1000; // 5 días
     const sessionCookie = await adminAuth.createSessionCookie(idToken, { expiresIn });
@@ -44,12 +40,10 @@ export async function createSessionCookie(idToken: string) {
 }
 
 export async function getSession() {
-    const adminApp = getAdminAppSafe();
-    if (!adminApp) {
+    if (!adminAuth) {
         console.warn("Firebase Admin SDK not initialized. Sessions cannot be verified.");
         return null;
     }
-    const adminAuth = getAdminAuth(adminApp);
     const sessionCookie = cookies().get(SESSION_COOKIE_NAME)?.value;
     if (!sessionCookie) {
         return null;
@@ -65,12 +59,10 @@ export async function getSession() {
 }
 
 export async function checkSession(sessionCookieValue: string) {
-    const adminApp = getAdminAppSafe();
-    if (!adminApp) {
+    if (!adminAuth) {
         console.warn("Firebase Admin SDK not initialized. Sessions cannot be verified.");
         return null;
     }
-    const adminAuth = getAdminAuth(adminApp);
     try {
         const decodedClaims = await adminAuth.verifySessionCookie(sessionCookieValue, true);
         return decodedClaims;
