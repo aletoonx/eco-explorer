@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { suggestExplorationPath, SuggestExplorationPathInput, SuggestExplorationPathOutput } from '@/ai/flows/suggest-exploration-path';
+import { suggestExplorationPath } from '@/ai/flows/suggest-exploration-path';
+import type { SuggestExplorationPathInput, SuggestExplorationPathOutput } from '@/ai/schemas';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
